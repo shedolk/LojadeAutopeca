@@ -1,3 +1,5 @@
+package br.unitins.topicos1.modelo;
+
 public class Marca extends DefaultEntity {
     
     private String nome;

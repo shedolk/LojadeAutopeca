@@ -1,5 +1,7 @@
 package br.unitins.topicos1.modelo;
 
+import java.util.List;
+
 public class Marca extends DefaultEntity {
     
     private String nome;

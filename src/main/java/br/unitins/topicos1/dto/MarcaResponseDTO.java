@@ -8,7 +8,7 @@ public record MarcaResponseDTO(
     Long id,
     String nome,
     String descricao,
-    List<ProdutoDTO> produtos
+    List<ProdutoDTO> listaProduto
  ) {
     public static MarcaResponseDTO valueOf(Marca marca){
 

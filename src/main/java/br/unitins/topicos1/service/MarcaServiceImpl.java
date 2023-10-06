@@ -16,6 +16,7 @@ import jakarta.ws.rs.*;
 
 @ApplicationScoped
 public class MarcaServiceImpl implements MarcaService{
+    
     @Inject
     MarcaRepository repository;
 
@@ -28,7 +29,6 @@ public class MarcaServiceImpl implements MarcaService{
 
         novaMarca.setDescricao(dto.descricao());
 
-        
         if (dto.listaProduto() != null && 
                     !dto.listaProduto().isEmpty()){
             novaMarca.setListaProduto(new ArrayList<Produto>());

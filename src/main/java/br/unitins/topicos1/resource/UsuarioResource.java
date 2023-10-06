@@ -28,15 +28,15 @@ public class UsuarioResource {
     @POST
     public ResponseBuilder insert(UsuarioDTO dto) {
         Response.status(Status.CREATED).entity(service.insert(dto));
-        return  Response.status(Status.CREATED).entity(service.insert(dto));
+        return Response.status(Status.CREATED).entity(service.insert(dto));
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
     public Response update(UsuarioDTO dto, @PathParam("id") Long id) {
-         service.update(dto, id);
-         return Response.noContent().build();
+        service.update(dto, id);
+        return Response.noContent().build();
     }
 
     @DELETE
@@ -57,7 +57,7 @@ public class UsuarioResource {
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
-    
+
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {

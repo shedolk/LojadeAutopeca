@@ -1,7 +1,7 @@
 package br.unitins.topicos1.resource;
 
-import br.unitins.topicos1.dto.PedidoDTO;
-import br.unitins.topicos1.service.PedidoService;
+import br.unitins.topicos1.dto.ClienteDTO;
+import br.unitins.topicos1.service.ClienteService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -20,13 +20,12 @@ import jakarta.ws.rs.core.Response.Status;
 @Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-
-public class PedidoResource {
+public class ClienteResource {
     @Inject
-    PedidoService service;
+    ClienteService service;
 
     @POST
-    public ResponseBuilder insert(PedidoDTO dto) {
+    public ResponseBuilder insert(ClienteDTO dto) {
         Response.status(Status.CREATED).entity(service.insert(dto));
         return Response.status(Status.CREATED).entity(service.insert(dto));
     }
@@ -34,7 +33,7 @@ public class PedidoResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update(PedidoDTO dto, @PathParam("id") Long id) {
+    public Response update(ClienteDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
         return Response.noContent().build();
     }

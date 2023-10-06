@@ -7,22 +7,23 @@ import br.unitins.topicos1.modelo.Cliente;
 import br.unitins.topicos1.modelo.Pedido;
 
 public record PedidoResponseDTO(
-        LocalDate date,
-        List<ItemPedidoDTO> itemPedido,
-        String endereco,
-        Cliente cliente
+                long id,
+                LocalDate date,
+                List<ItemPedidoDTO> itemPedido,
+                String endereco,
+                Cliente cliente
 
 ) {
-    public static PedidoResponseDTO valueOf(Pedido pedido) {
-        return new PedidoResponseDTO(
+        public static PedidoResponseDTO valueOf(Pedido pedido) {
+                return new PedidoResponseDTO(
+                                pedido.getId(),
+                                pedido.getDate(),
+                                pedido.getItemPedido()
+                                                .stream()
+                                                .map(t -> ItemPedidoDTO.valueOf(t)).toList(),
+                                pedido.getEndereco(),
+                                pedido.getCliente()
 
-                pedido.getDate(),
-                pedido.getItemPedido()
-                        .stream()
-                        .map(t -> ItemPedidoDTO.valueOf(t)).toList(),
-                pedido.getEndereco(),
-                pedido.getCliente()
-
-        );
-    }
+                );
+        }
 }

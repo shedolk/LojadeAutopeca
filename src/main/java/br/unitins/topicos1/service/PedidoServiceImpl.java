@@ -16,7 +16,6 @@ import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class PedidoServiceImpl implements PedidoService  {
-
     
     @Inject
     PedidoRepository repository;

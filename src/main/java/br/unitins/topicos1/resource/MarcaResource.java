@@ -33,11 +33,8 @@ public class MarcaResource {
     MarcaService service;
 
     @POST
-    public ResponseBuilder insert(@Valid MarcaDTO dto) {
-        MarcaResponseDTO retorno = service.insert(dto);
-        //Response.status(Status.CREATED).entity(service.insert(dto));
-        return  Response.status(201).entity(retorno).build();
-
+    public Response insert(MarcaDTO dto) {
+        return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
     @PUT
@@ -45,7 +42,7 @@ public class MarcaResource {
     @Path("/{id}")
     public Response update(MarcaDTO dto, @PathParam("id") Long id) {
          service.update(dto, id);
-         return Response.status(Status.NO_CONTENT).build();
+         return Response.noContent().build();
     }
 
     @DELETE

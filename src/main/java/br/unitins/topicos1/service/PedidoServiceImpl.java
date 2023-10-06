@@ -75,8 +75,8 @@ public class PedidoServiceImpl implements PedidoService  {
     }
 
     @Override
-    public List<PedidoResponseDTO> findByNome(String nome) {
-        return repository.findByNome(nome).stream()
+    public List<PedidoResponseDTO> findByCodigo(String codigo) {
+        return repository.findByCodigo(codigo).stream()
         .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 

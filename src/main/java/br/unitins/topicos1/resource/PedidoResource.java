@@ -17,7 +17,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("/usuarios")
+@Path("/pedido")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
@@ -59,8 +59,8 @@ public class PedidoResource {
     }
 
     @GET
-    @Path("/search/nome/{nome}")
-    public Response findByNome(@PathParam("nome") String nome) {
-        return Response.ok(service.findByNome(nome)).build();
+    @Path("/search/codigo/{codigo}")
+    public Response findByCodigo(@PathParam("codigo") String codigo) {
+        return Response.ok(service.findByCodigo(codigo)).build();
     }
 }

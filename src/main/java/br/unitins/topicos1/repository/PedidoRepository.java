@@ -4,9 +4,11 @@ import java.util.List;
 
 import br.unitins.topicos1.modelo.Pedido;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.enterprise.context.ApplicationScoped;
 
-public class PedidoRepository implements PanacheRepository<Pedido>{
-    public List<Pedido> findByNome(String nome) {
-        return find("UPPER(nome) LIKE UPPER(?1) ", "%"+nome+"%").list();
+@ApplicationScoped
+public class PedidoRepository implements PanacheRepository<Pedido> {
+    public List<Pedido> findByCodigo(String codigo) {
+        return find("UPPER(nome) LIKE UPPER(?1) ", "%" + codigo + "%").list();
     }
 }

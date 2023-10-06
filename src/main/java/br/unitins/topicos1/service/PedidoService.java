@@ -15,7 +15,7 @@ public interface PedidoService {
 
     public PedidoResponseDTO  findById(Long id);
 
-    public List<PedidoResponseDTO> findByNome(String nome);
+    public List<PedidoResponseDTO> findByCodigo(String codigo);
 
     public List<PedidoResponseDTO> findByAll(); 
 }

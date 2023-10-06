@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Pedido extends DefaultEntity {
+    private String codigo;
     private LocalDate date;
     private List<ItemPedido> itemPedido;
     private String endereco;
@@ -42,6 +43,14 @@ public class Pedido extends DefaultEntity {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
 }

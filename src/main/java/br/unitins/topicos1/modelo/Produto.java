@@ -1,12 +1,6 @@
 package br.unitins.topicos1.modelo;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto extends DefaultEntity {

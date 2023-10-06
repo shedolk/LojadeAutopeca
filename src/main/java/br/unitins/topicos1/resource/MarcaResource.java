@@ -1,7 +1,5 @@
 package br.unitins.topicos1.resource;
 
-import java.util.List;
-
 import br.unitins.topicos1.dto.MarcaDTO;
 import br.unitins.topicos1.service.MarcaService;
 import jakarta.inject.Inject;

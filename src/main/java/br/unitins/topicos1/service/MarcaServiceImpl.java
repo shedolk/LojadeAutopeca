@@ -17,7 +17,7 @@ import jakarta.ws.rs.*;
 @ApplicationScoped
 public class MarcaServiceImpl implements MarcaService{
     @Inject
-    UsuarioRepository repository;
+    MarcaRepository repository;
 
     @Override
     @Transactional

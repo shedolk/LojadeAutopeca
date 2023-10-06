@@ -25,7 +25,7 @@ public class MarcaServiceImpl implements MarcaService{
     public MarcaResponseDTO insert(MarcaDTO dto) {
         Marca novaMarca = new Marca();
 
-        novaMarca.setNome(dto.getNome());
+        novaMarca.setNome(dto.nome());
 
         novaMarca.setDescricao(dto.descricao());
 

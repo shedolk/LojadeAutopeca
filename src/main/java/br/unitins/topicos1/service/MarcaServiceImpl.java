@@ -81,7 +81,7 @@ public class MarcaServiceImpl implements MarcaService{
             throw new NotFoundException();
     }
 
-    @Override
+    @Transactional
     public MarcaResponseDTO findById(Long id) {
         return MarcaResponseDTO.valueOf(repository.findById(id));
     }

@@ -42,20 +42,35 @@ INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 4);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (1, 5);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
 
+ INSERT INTO Endereco (rua,numero,cidade,estado,cep) VALUES
+('Avenida Principal', 123, 'SP', 'São Paulo', '12345-678'),
+('Rua Secundária', 456, 'RJ', 'Rio de Janeiro', '54321-876'),
+('Avenida Central', 789, 'MG', 'Belo Horizonte', '98765-432');
+
+
+ INSERT INTO Cliente (nome,email) VALUES
+('Cliente 1','cliente1@email.com'),
+('Cliente 2','cliente2@email.com' ),
+('Cliente 3','cliente3@email.com');
+
+INSERT INTO cliente_endereco (id_cliente, id_endereco) VALUES
+(1, 1), 
+(2, 2),
+(3, 3);
+
 
 INSERT INTO Cupom (codigo) VALUES
-    ('CUPOM001'),
-    ('CUPOM002'),
-    ('CUPOM003');
-
-INSERT INTO Endereco (cep, cidade, estado, numero, rua) VALUES
-    ('12345-678', 'São Paulo', 'SP', 123, 'Rua A'),
-    ('54321-876', 'Rio de Janeiro', 'RJ', 456, 'Avenida B'),
-    ('98765-432', 'Belo Horizonte', 'MG', 789, 'Travessa C');
-
-INSERT INTO ItemPedido (quantidade) VALUES
-    (5),
-    (3),
-    (8);
+('CUPOM123'),
+('CUPOM456'),
+('CUPOM789');
 
 
+INSERT INTO Pedido (codigo, date, id_cliente) VALUES
+('PEDIDO001', '2023-10-07', 1), 
+('PEDIDO002', '2023-10-08', 2),
+('PEDIDO003', '2023-10-09', 3); 
+
+INSERT INTO ItemPedido (quantidade, id_pedido) VALUES
+(5, 1),
+(3, 2), 
+(8, 3); 

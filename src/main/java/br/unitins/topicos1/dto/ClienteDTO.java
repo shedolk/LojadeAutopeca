@@ -6,6 +6,7 @@ public record ClienteDTO(
       String nome,
       String email,
       List<EnderecoDTO> endereco
-) {
+) { 
     
 }
+

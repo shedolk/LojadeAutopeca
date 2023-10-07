@@ -3,8 +3,6 @@ package br.unitins.topicos1.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.mapping.Array;
-
 import br.unitins.topicos1.dto.ClienteDTO;
 import br.unitins.topicos1.dto.ClienteResponseDTO;
 import br.unitins.topicos1.dto.EnderecoDTO;

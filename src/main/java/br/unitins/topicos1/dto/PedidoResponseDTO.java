@@ -7,7 +7,7 @@ import br.unitins.topicos1.modelo.Cliente;
 import br.unitins.topicos1.modelo.Pedido;
 
 public record PedidoResponseDTO(
-                long id,
+                Long id,
                 LocalDate date,
                 List<ItemPedidoDTO> itemPedido,
                 String endereco,

@@ -1,12 +1,13 @@
 package br.unitins.topicos1.dto;
 
 import br.unitins.topicos1.modelo.Cliente;
+import br.unitins.topicos1.modelo.Endereco;
 
 public record ClienteResponseDTO(
-    long id,
+    Long id,
     String nome,
     String email,
-    String endereco
+    Endereco endereco
 ) {
     public static ClienteResponseDTO  valueOf(Cliente cliente){
         return new ClienteResponseDTO(

@@ -1,12 +1,17 @@
 package br.unitins.topicos1.modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Cliente extends DefaultEntity{
+public class Cliente extends DefaultEntity {
     private String nome;
     private String email;
-    private String endereco;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Endereco")
+    private Endereco endereco;
 
     public String getNome() {
         return nome;
@@ -24,11 +29,11 @@ public class Cliente extends DefaultEntity{
         this.email = email;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 

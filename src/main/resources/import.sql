@@ -41,3 +41,48 @@ INSERT INTO marca_produto (id_marca, id_produto) VALUES (3, 3);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 4);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (1, 5);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
+
+INSERT INTO cliente (nome, email) VALUES ('Cliente 1', 'cliente1@email.com');
+INSERT INTO cliente (nome, email) VALUES ('Cliente 2', 'cliente2@email.com');
+INSERT INTO cliente (nome, email) VALUES ('Cliente 3', 'cliente3@email.com');
+
+INSERT INTO endereco (rua, numero, cidade, estado, cep) VALUES ('Rua 1', 123, 'Cidade 1', 'Estado 1', 'CEP 1');
+INSERT INTO endereco (rua, numero, cidade, estado, cep) VALUES ('Rua 2', 456, 'Cidade 2', 'Estado 2', 'CEP 2');
+INSERT INTO endereco (rua, numero, cidade, estado, cep) VALUES ('Rua 3', 789, 'Cidade 3', 'Estado 3', 'CEP 3');
+
+INSERT INTO cliente_pedido (id_cliente, id_pedido) VALUES (1, 1);
+INSERT INTO cliente_pedido (id_cliente, id_pedido) VALUES (2, 2);
+INSERT INTO cliente_pedido (id_cliente, id_pedido) VALUES (3, 3);
+
+INSERT INTO item_pedido (quantidade) VALUES (1);
+INSERT INTO item_pedido (quantidade) VALUES (2);
+INSERT INTO item_pedido (quantidade) VALUES (3);
+
+INSERT INTO cupom (codigo) VALUES ('Cupom1');
+INSERT INTO cupom (codigo) VALUES ('Cupom2');
+INSERT INTO cupom (codigo) VALUES ('Cupom3');
+
+INSERT INTO pedido (codigo, date,id_itemPedido, id_endereco, cliente_id) VALUES ('Pedido1', '2023-10-06',2, 1, 1);
+INSERT INTO pedido (codigo, date,id_itemPedido, id_endereco, cliente_id) VALUES ('Pedido2', '2023-10-07',1, 2, 2);
+INSERT INTO pedido (codigo, date,id_itemPedido, id_endereco, cliente_id) VALUES ('Pedido3', '2023-10-08',3, 3, 3);
+
+
+INSERT INTO cliente_pedido (id_cliente, id_pedido) VALUES (1, 1);
+INSERT INTO cliente_pedido (id_cliente, id_pedido) VALUES (2, 2);
+INSERT INTO cliente_pedido (id_cliente, id_pedido) VALUES (3, 3);
+
+INSERT INTO pedido_itempedido (id_pedido, id_itemPedido) VALUES (1, 2);
+INSERT INTO pedido_itempedido (id_pedido, id_itemPedido) VALUES (2, 1);
+INSERT INTO pedido_itempedido (id_pedido, id_itemPedido) VALUES (3, 3);
+
+INSERT INTO pedido_endereco (id_pedido, id_endereco) VALUES (1, 1);
+INSERT INTO pedido_endereco (id_pedido, id_endereco) VALUES (2, 2);
+INSERT INTO pedido_endereco (id_pedido, id_endereco) VALUES (3, 3);
+
+
+INSERT INTO pedido_cliente (id_pedido, id_cliente) VALUES (1, 1);
+INSERT INTO pedido_cliente (id_pedido, id_cliente) VALUES (2, 2);
+INSERT INTO pedido_cliente (id_pedido, id_cliente) VALUES (3, 3);
+
+
+

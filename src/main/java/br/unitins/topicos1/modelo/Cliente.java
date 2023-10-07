@@ -1,11 +1,21 @@
 package br.unitins.topicos1.modelo;
 
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+
+
 
 @Entity
 public class Cliente extends DefaultEntity {
     private String nome;
     private String email;
+
+
+    @JoinTable(name = "cliente_endereco",
+    joinColumns = @JoinColumn(name = "id_cliente"),
+    inverseJoinColumns = @JoinColumn(name = "id_endereco"))
     private Endereco endereco;
 
     public String getNome() {

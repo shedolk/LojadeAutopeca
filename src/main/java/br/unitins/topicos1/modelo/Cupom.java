@@ -1,9 +1,11 @@
 package br.unitins.topicos1.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Cupom extends DefaultEntity {
+    @Column(length = 60)
     private String codigo;
 
     public String getCodigo() {

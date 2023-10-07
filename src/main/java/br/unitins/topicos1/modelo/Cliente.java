@@ -3,6 +3,7 @@ package br.unitins.topicos1.modelo;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -10,7 +11,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 @Entity
 public class Cliente extends DefaultEntity {
-    
+    @Column(length = 60)
     private String nome;
 
    

@@ -1,13 +1,18 @@
 package br.unitins.topicos1.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Endereco extends DefaultEntity {
+    @Column(length = 60)
     private String rua;
     private Integer numero;
+    @Column(length = 80)
     private String cidade;
+    @Column(length = 60)
     private String estado;
+    @Column(length = 60)
     private String cep;
     
     public String getRua() {

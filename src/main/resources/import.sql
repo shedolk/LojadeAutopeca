@@ -43,3 +43,19 @@ INSERT INTO marca_produto (id_marca, id_produto) VALUES (1, 5);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
 
 
+INSERT INTO Cupom (codigo) VALUES
+    ('CUPOM001'),
+    ('CUPOM002'),
+    ('CUPOM003');
+
+INSERT INTO Endereco (cep, cidade, estado, numero, rua) VALUES
+    ('12345-678', 'São Paulo', 'SP', 123, 'Rua A'),
+    ('54321-876', 'Rio de Janeiro', 'RJ', 456, 'Avenida B'),
+    ('98765-432', 'Belo Horizonte', 'MG', 789, 'Travessa C');
+
+INSERT INTO ItemPedido (quantidade) VALUES
+    (5),
+    (3),
+    (8);
+
+

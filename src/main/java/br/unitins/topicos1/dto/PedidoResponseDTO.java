@@ -2,6 +2,9 @@ package br.unitins.topicos1.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import br.unitins.topicos1.modelo.Cliente;
+import br.unitins.topicos1.modelo.Endereco;
 import br.unitins.topicos1.modelo.Pedido;
 
 
@@ -10,8 +13,7 @@ public record PedidoResponseDTO(
     String codigo,
     LocalDate date,
     List<ItemPedidoDTO> itemPedido,
-    List<EnderecoDTO> Endereco,
-    List<ClienteResponseDTO> cliente
+    Cliente cliente 
 ) {
     public static PedidoResponseDTO valueOf(Pedido pedido) {
         return new PedidoResponseDTO(
@@ -22,14 +24,7 @@ public record PedidoResponseDTO(
                 .stream()
                 .map(ItemPedidoDTO::valueOf)
                 .toList(),
-            pedido.getEndereco()
-                .stream()
-                .map(EnderecoDTO::valueOf)
-                .toList(),
-            pedido.getCliente()
-                .stream()
-                .map(ClienteResponseDTO::valueOf)
-                .toList()
+                pedido.getCliente()
         );
     }
 }

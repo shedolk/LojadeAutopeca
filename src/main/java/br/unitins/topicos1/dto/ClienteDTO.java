@@ -5,7 +5,7 @@ import java.util.List;
 public record ClienteDTO(
       String nome,
       String email,
-      List<EnderecoDTO> endereco
+      List<EnderecoDTO> listaEndereco
 ) { 
     
 }

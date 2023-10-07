@@ -1,16 +1,12 @@
 package br.unitins.topicos1.service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unitins.topicos1.dto.ClienteDTO;
-import br.unitins.topicos1.dto.EnderecoDTO;
+
 import br.unitins.topicos1.dto.ItemPedidoDTO;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
-import br.unitins.topicos1.modelo.Cliente;
-import br.unitins.topicos1.modelo.Endereco;
 import br.unitins.topicos1.modelo.ItemPedido;
 import br.unitins.topicos1.modelo.Pedido;
 import br.unitins.topicos1.repository.PedidoRepository;
@@ -41,107 +37,38 @@ public class PedidoServiceImpl implements PedidoService {
             }
         }
 
-        if (dto.Endereco() == null &&
-                !dto.Endereco().isEmpty()) {
-            novoPedido.setEndereco(new ArrayList<Endereco>());
-            for (EnderecoDTO enderecos : dto.Endereco()) {
-                Endereco endereco = new Endereco();
-                endereco.setRua(enderecos.rua());
-                endereco.setNumero(enderecos.numero());
-                endereco.setCidade(enderecos.cidade());
-                endereco.setEstado(enderecos.estado());
-                endereco.setCep(enderecos.cep());
-                novoPedido.getEndereco().add(endereco);
-            }
-        }
-
-        if (dto.cliente() != null &&
-                !dto.cliente().isEmpty()) {
-            novoPedido.setCliente(new ArrayList<Cliente>());
-            for (ClienteDTO clientes : dto.cliente()) {
-                Cliente cliente = new Cliente();
-                cliente.setNome(clientes.nome());
-                cliente.setEmail(clientes.email());
-
-                if (clientes.endereco() != null && !clientes.endereco().isEmpty()) {
-                    cliente.setEndereco(new ArrayList<Endereco>());
-                    for (EnderecoDTO enderecos : clientes.endereco()) {
-                        Endereco endereco = new Endereco();
-                        endereco.setRua(enderecos.rua());
-                        endereco.setNumero(enderecos.numero());
-                        endereco.setCidade(enderecos.cidade());
-                        endereco.setEstado(enderecos.estado());
-                        endereco.setCep(enderecos.cep());
-                        cliente.getEndereco().add(endereco);
-                    }
-                }
-
-                novoPedido.getCliente().add(cliente);
-            }
-        }
+       novoPedido.setCliente(dto.cliente());
 
         repository.persist(novoPedido);
         return PedidoResponseDTO.valueOf(novoPedido);
 
     }
 
-@Override
-@Transactional
-public PedidoResponseDTO update(PedidoDTO dto, Long id) {
-    Pedido pedido = repository.findById(id);
+    @Override
+    @Transactional
+    public PedidoResponseDTO update(PedidoDTO dto, Long id) {
+        Pedido pedido = repository.findById(id);
 
-    pedido.setCodigo(dto.codigo());
-    pedido.setDate(dto.date());
+        pedido.setCodigo(dto.codigo());
+        pedido.setDate(dto.date());
 
-    List<ItemPedido> itensPedido = new ArrayList<>();
-    for (ItemPedidoDTO itemDTO : dto.itemPedido()) {
-        ItemPedido itemPedido = new ItemPedido();
-        itemPedido.setQuantidade(itemDTO.quantidade());
-        itensPedido.add(itemPedido);
-    }
-    pedido.setItemPedido(itensPedido);
-
-    List<Endereco> enderecos = new ArrayList<>();
-    for (EnderecoDTO enderecoDTO : dto.Endereco()) {
-        Endereco endereco = new Endereco();
-        endereco.setRua(enderecoDTO.rua());
-        endereco.setNumero(enderecoDTO.numero());
-        endereco.setCidade(enderecoDTO.cidade());
-        endereco.setEstado(enderecoDTO.estado());
-        endereco.setCep(enderecoDTO.cep());
-        enderecos.add(endereco);
-    }
-    pedido.setEndereco(enderecos);
-
-    List<Cliente> clientes = new ArrayList<>();
-    for (ClienteDTO clienteDTO : dto.cliente()) {
-        Cliente cliente = new Cliente();
-        cliente.setNome(clienteDTO.nome());
-        cliente.setEmail(clienteDTO.email());
-
-        List<Endereco> enderecosCliente = new ArrayList<>();
-        for (EnderecoDTO enderecoDTO : clienteDTO.endereco()) {
-            Endereco endereco = new Endereco();
-            endereco.setRua(enderecoDTO.rua());
-            endereco.setNumero(enderecoDTO.numero());
-            endereco.setCidade(enderecoDTO.cidade());
-            endereco.setEstado(enderecoDTO.estado());
-            endereco.setCep(enderecoDTO.cep());
-            enderecosCliente.add(endereco);
+        List<ItemPedido> itensPedido = new ArrayList<>();
+        for (ItemPedidoDTO itemDTO : dto.itemPedido()) {
+            ItemPedido itemPedido = new ItemPedido();
+            itemPedido.setQuantidade(itemDTO.quantidade());
+            itensPedido.add(itemPedido);
         }
-        cliente.setEndereco(enderecosCliente);
+        pedido.setItemPedido(itensPedido);
 
-        clientes.add(cliente);
+        pedido.setCliente(dto.cliente());
+
+        repository.persist(pedido);
+
+        return PedidoResponseDTO.valueOf(pedido);
     }
-    pedido.setCliente(clientes);
-
-    repository.persist(pedido);
-
-    return PedidoResponseDTO.valueOf(pedido);
-}
-
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!repository.deleteById(id))
             throw new NotFoundException();
@@ -157,7 +84,6 @@ public PedidoResponseDTO update(PedidoDTO dto, Long id) {
                 .map(e -> PedidoResponseDTO.valueOf(e))
                 .toList();
     }
-    
 
     @Override
     public List<PedidoResponseDTO> findByAll() {

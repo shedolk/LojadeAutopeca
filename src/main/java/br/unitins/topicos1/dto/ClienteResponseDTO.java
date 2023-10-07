@@ -8,7 +8,7 @@ public record ClienteResponseDTO(
         Long id,
         String nome,
         String email,
-        List<EnderecoDTO> endereco) 
+        List<EnderecoDTO> listaEndereco) 
         {
              public static ClienteResponseDTO valueOf(Cliente cliente){
 
@@ -16,7 +16,7 @@ public record ClienteResponseDTO(
             cliente.getId(),
            cliente.getNome(),
             cliente.getEmail(),
-           cliente.getEndereco()
+           cliente.getListaEndereco()
             .stream().
             map(t -> EnderecoDTO.valueOf(t)).toList()
         );

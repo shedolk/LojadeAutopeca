@@ -19,23 +19,29 @@ public class ClienteServiceImpl implements ClienteService {
     @Inject
     ClienteRepository repository;
 
+    @Override
     @Transactional
     public ClienteResponseDTO insert(ClienteDTO dto) {
         Cliente novoCliente = new Cliente();
+
         novoCliente.setNome(dto.nome());
+
         novoCliente.setEmail(dto.email());
 
-        if (dto.endereco() != null &&
-                !dto.endereco().isEmpty()) {
-            novoCliente.setEndereco(new ArrayList<Endereco>());
-            for (EnderecoDTO enderecos : dto.endereco()) {
+        if (dto.listaEndereco() != null &&
+                !dto.listaEndereco().isEmpty()) {
+            novoCliente.setListaEndereco(new ArrayList<Endereco>());
+
+            for (EnderecoDTO enderecos : dto.listaEndereco()) {
                 Endereco endereco = new Endereco();
+
                 endereco.setRua(enderecos.rua());
                 endereco.setNumero(enderecos.numero());
                 endereco.setCidade(enderecos.cidade());
                 endereco.setEstado(enderecos.estado());
                 endereco.setCep(enderecos.cep());
-                novoCliente.getEndereco().add(endereco);
+
+                novoCliente.getListaEndereco().add(endereco);
             }
         }
 
@@ -45,19 +51,25 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    @Transactional
     public ClienteResponseDTO update(ClienteDTO dto, Long id) {
         Cliente cliente = repository.findById(id);
+
         cliente.setNome(dto.nome());
+
         cliente.setEmail(dto.email());
 
         List<Endereco> enderecos = new ArrayList<>();
-        for (EnderecoDTO endereco : dto.endereco()) {
+
+        for (EnderecoDTO endereco : dto.listaEndereco()) {
             Endereco novEndereco = new Endereco();
+
             novEndereco.setRua(endereco.rua());
             novEndereco.setNumero(endereco.numero());
             novEndereco.setCidade(endereco.cidade());
             novEndereco.setEstado(endereco.estado());
             novEndereco.setCep(endereco.cep());
+            
             enderecos.add(novEndereco);
 
         }
@@ -67,6 +79,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!repository.deleteById(id))
             throw new NotFoundException();

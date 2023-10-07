@@ -14,28 +14,26 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("/clientes")
+@Path("/cliente")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClienteResource {
     @Inject
     ClienteService service;
 
-    @POST
-    public ResponseBuilder insert(ClienteDTO dto) {
-        Response.status(Status.CREATED).entity(service.insert(dto));
-        return Response.status(Status.CREATED).entity(service.insert(dto));
+     @POST
+    public Response insert(ClienteDTO dto) {
+        return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
     public Response update(ClienteDTO dto, @PathParam("id") Long id) {
-        service.update(dto, id);
-        return Response.noContent().build();
+         service.update(dto, id);
+         return Response.noContent().build();
     }
 
     @DELETE
@@ -43,7 +41,7 @@ public class ClienteResource {
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);
-        return Response.noContent().build();
+        return Response.status(Status.NO_CONTENT).build();
     }
 
     @GET
@@ -56,7 +54,7 @@ public class ClienteResource {
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
-
+    
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {

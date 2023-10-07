@@ -1,7 +1,7 @@
 package br.unitins.topicos1.resource;
 
-import br.unitins.topicos1.dto.PedidoDTO;
-import br.unitins.topicos1.service.PedidoService;
+import br.unitins.topicos1.dto.CupomDTO;
+import br.unitins.topicos1.service.CupomService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -16,23 +16,23 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("/pedido")
+@Path("/cupons")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class PedidoResource {
-
-    @Inject
-    PedidoService service;
+public class CupomResource {
     
-     @POST
-    public Response insert(PedidoDTO dto) {
+    @Inject
+    CupomService service;
+
+    @POST
+    public Response insert(CupomDTO dto) {
         return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update(PedidoDTO dto, @PathParam("id") Long id) {
+    public Response update(CupomDTO dto, @PathParam("id") Long id) {
          service.update(dto, id);
          return Response.noContent().build();
     }
@@ -45,24 +45,20 @@ public class PedidoResource {
         return Response.status(Status.NO_CONTENT).build();
     }
 
-      @GET
-    @Path("/{id}")
-    public Response findById(@PathParam("id") Long id) {
-        return Response.ok(service.findById(id)).build();
-    }
-
-     @GET
-    @Path("/search/codigo/{codigo}")
-    public Response findByCodigo(@PathParam("codigo") String codigo) {
-        return Response.ok(service.findByCodigo(codigo)).build();
-    }
-    
     @GET
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
-  
+    @GET
+    @Path("/{id}")
+    public Response findById(@PathParam("id") Long id) {
+        return Response.ok(service.findById(id)).build();
+    }
     
-   
+    @GET
+    @Path("/search/nome/{nome}")
+    public Response findByNome(@PathParam("nome") String nome) {
+        return Response.ok(service.findByNome(nome)).build();
+    }
 }

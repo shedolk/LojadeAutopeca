@@ -19,9 +19,9 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional
     public ClienteResponseDTO insert(ClienteDTO dto) {
         Cliente novoCliente = new Cliente();
-        novoCliente.setNome(dto.nome());
-        novoCliente.setEmail(dto.email());
-        novoCliente.setEndereco(dto.endereco());
+        novoCliente.setNome(dto.getNome());
+        novoCliente.setEmail(dto.getEmail());
+        novoCliente.setEndereco(dto.getEndereco());
 
         repository.persist(novoCliente);
 
@@ -31,9 +31,9 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public ClienteResponseDTO update(ClienteDTO dto, Long id) {
         Cliente cliente = repository.findById(id);
-        cliente.setNome(dto.nome());
-        cliente.setEmail(dto.email());
-        cliente.setEndereco(dto.endereco());
+        cliente.setNome(dto.getNome());
+        cliente.setEmail(dto.getEmail());
+        cliente.setEndereco(dto.getEndereco());
 
          return ClienteResponseDTO.valueOf(cliente);
 

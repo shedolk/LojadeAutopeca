@@ -24,14 +24,14 @@ public class PedidoServiceImpl implements PedidoService  {
     @Transactional
     public PedidoResponseDTO insert(PedidoDTO dto) {
          Pedido novoPedido = new Pedido();
-        novoPedido.setDate(dto.date());
-        novoPedido.setEndereco(dto.endereco());
-        novoPedido.setCliente(dto.cliente());
+        novoPedido.setDate(dto.getDate());
+        novoPedido.setEndereco(dto.getEndereco());
+        novoPedido.setCliente(dto.getCliente());
 
-        if (dto.listaItemPedido() != null && 
-                    !dto.listaItemPedido().isEmpty()){
+        if (dto.getListaItemPedido() != null && 
+                    !dto.getListaItemPedido().isEmpty()){
             novoPedido.setItemPedido(new ArrayList<ItemPedido>());
-            for (ItemPedidoDTO item : dto.listaItemPedido()) {
+            for (ItemPedidoDTO item : dto.getListaItemPedido()) {
                 ItemPedido itemPedido = new ItemPedido();
                 itemPedido.setQuantidade(item.quantidade());
                 novoPedido.getItemPedido().add(itemPedido);
@@ -48,12 +48,12 @@ public class PedidoServiceImpl implements PedidoService  {
     public PedidoResponseDTO update(PedidoDTO dto, Long id) {
         Pedido pedido = repository.findById(id);
 
-            pedido.setDate(dto.date());
-            pedido.setEndereco(dto.endereco());
-            pedido.setCliente(dto.cliente());
+            pedido.setDate(dto.getDate());
+            pedido.setEndereco(dto.getEndereco());
+            pedido.setCliente(dto.getCliente());
     
             List<ItemPedido> itemPedidos = new ArrayList<>();
-                for (ItemPedidoDTO item : dto.listaItemPedido()) {
+                for (ItemPedidoDTO item : dto.getListaItemPedido()) {
                     ItemPedido itemPedido = new ItemPedido();
                     itemPedido.setQuantidade(item.quantidade());
                     itemPedidos.add(itemPedido);

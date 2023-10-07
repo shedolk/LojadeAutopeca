@@ -10,7 +10,7 @@ public class Pedido extends DefaultEntity {
     private String codigo;
     private LocalDate date;
     private List<ItemPedido> itemPedido;
-    private String endereco;
+    private Endereco endereco;
     private Cliente cliente;
 
     public LocalDate getDate() {
@@ -29,14 +29,6 @@ public class Pedido extends DefaultEntity {
         this.itemPedido = itemPedido;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -51,6 +43,14 @@ public class Pedido extends DefaultEntity {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
 }

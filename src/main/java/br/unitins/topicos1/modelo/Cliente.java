@@ -1,16 +1,11 @@
 package br.unitins.topicos1.modelo;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Cliente extends DefaultEntity {
     private String nome;
     private String email;
-
-    @ManyToOne
-    @JoinColumn(name = "id_Endereco")
     private Endereco endereco;
 
     public String getNome() {

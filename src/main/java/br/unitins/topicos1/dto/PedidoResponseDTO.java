@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.unitins.topicos1.modelo.Cliente;
-import br.unitins.topicos1.modelo.Endereco;
 import br.unitins.topicos1.modelo.Pedido;
 
 

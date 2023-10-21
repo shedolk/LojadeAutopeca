@@ -39,12 +39,12 @@ public class HashServiceImpl implements HashService{
         HashService service = new HashServiceImpl();
 
         service.getHashSenha("123");
-        service.getHashSenha("123");
         service.getHashSenha("1234");
-        service.getHashSenha("leandra");
+        service.getHashSenha("12345");
+        service.getHashSenha("matheus");
 
         System.out.println(service.getHashSenha("1234"));
-        System.out.println(service.getHashSenha("leandra"));
+        System.out.println(service.getHashSenha("matheus"));
     
     }
 }

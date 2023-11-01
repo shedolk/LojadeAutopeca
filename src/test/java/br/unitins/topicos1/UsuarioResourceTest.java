@@ -41,7 +41,7 @@ public class UsuarioResourceTest {
         UsuarioDTO dto = new UsuarioDTO( "mark zuckeberk",
         "marquinhos",
         "333",
-        telefones);
+        null, telefones);
 
         given()
         .contentType(ContentType.JSON)
@@ -58,7 +58,7 @@ public class UsuarioResourceTest {
         UsuarioDTO dto = new UsuarioDTO( "mark zuckeberk",
         "marquinhos",
         "333",
-        telefones);
+        null, telefones);
 
         UsuarioResponseDTO usuarioTest = usuarioService.insert(dto);
 
@@ -67,7 +67,7 @@ public class UsuarioResourceTest {
         UsuarioDTO dtoUpdate = new UsuarioDTO( "mark zuckeberk",
         "marquinhos",
         "333",
-        telefones);
+        null, telefones);
 
         given()
         .contentType(ContentType.JSON)

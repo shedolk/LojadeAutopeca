@@ -9,8 +9,8 @@
 --insert into estado (nome, sigla) values('São Paulo', 'SP');
 
 
-insert into usuario (nome, login , senha) values('Siririco', 'Cagatronco','111' );
-insert into usuario (nome, login , senha) values('Ludmilo', 'prexeco','222' );
+insert into usuario (nome, login , senha) values('Siririco', 'Cagatronco','123');
+insert into usuario (nome, login , senha) values('Ludmilo', 'prexeco','123');
 
 insert into telefone (codigoArea, numero) values('63', '9999-9999' );
 insert into telefone (codigoArea, numero) values('62', '8888-8888' );

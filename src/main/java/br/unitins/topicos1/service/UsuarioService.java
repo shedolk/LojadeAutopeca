@@ -2,6 +2,7 @@ package br.unitins.topicos1.service;
 
 import java.util.List;
 
+import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import jakarta.validation.Valid;
@@ -20,6 +21,10 @@ public interface UsuarioService {
     public List<UsuarioResponseDTO> findByNome(String nome);
 
     public UsuarioResponseDTO findByLoginAndSenha(String login, String senha);
+
+    public UsuarioResponseDTO findByLogin(String login);
+
+    public String updateSenha(PatchSenhaDTO senha, Long id);
 
     public List<UsuarioResponseDTO> findByAll(); 
 }

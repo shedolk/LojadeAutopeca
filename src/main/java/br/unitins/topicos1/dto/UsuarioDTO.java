@@ -6,6 +6,7 @@ public record UsuarioDTO(
     String nome,
     String login,
     String senha,
+    Integer idPerfil,
     List<TelefoneDTO> listaTelefone
 ) {
 

@@ -3,9 +3,11 @@ package br.unitins.topicos1.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.modelo.Perfil;
 import br.unitins.topicos1.modelo.Telefone;
 import br.unitins.topicos1.modelo.Usuario;
 import br.unitins.topicos1.repository.UsuarioRepository;
@@ -22,6 +24,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Inject
     UsuarioRepository repository;
 
+    @Inject
+    HashService hashService;
+
     @Override
     @Transactional
     public UsuarioResponseDTO insert(@Valid UsuarioDTO dto) {
@@ -33,7 +38,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNome(dto.nome());
         novoUsuario.setLogin(dto.login());
-        novoUsuario.setSenha(dto.senha());
+
+        novoUsuario.setSenha(hashService.getHashSenha(dto.senha()));
+        novoUsuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 
         if (dto.listaTelefone() != null && 
                     !dto.listaTelefone().isEmpty()){
@@ -58,7 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             usuario.setNome(dto.nome());
             usuario.setLogin(dto.login());
-           usuario.setSenha(dto.senha());
+            usuario.setSenha(dto.senha());
     
             List<Telefone> telefones = new ArrayList<>();
                 for (TelefoneDTO tel : dto.listaTelefone()) {
@@ -93,6 +100,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             .map(e -> UsuarioResponseDTO.valueOf(e)).toList();
     }
 
+
     @Override
     public UsuarioResponseDTO findByLoginAndSenha(String login, String senha) {
         Usuario usuario = repository.findByLoginAndSenha(login, senha);
@@ -102,4 +110,27 @@ public class UsuarioServiceImpl implements UsuarioService {
         return UsuarioResponseDTO.valueOf(usuario);
     }
 
+    @Override
+    public UsuarioResponseDTO findByLogin(String login) {
+        Usuario usuario = repository.findByLogin(login);
+        if (usuario == null) 
+            throw new ValidationException("login", "Login inválido");
+        
+        return UsuarioResponseDTO.valueOf(usuario);
+    }
+
+    @Override
+    @Transactional
+    public String updateSenha(PatchSenhaDTO senha, Long id) {
+        Usuario usuario = repository.findById(id);
+
+        if(hashService.getHashSenha(senha.senhaAnterior()).equals(usuario.getSenha())){
+            usuario.setSenha(hashService.getHashSenha(senha.novaSenha()));
+            repository.persist(usuario);
+            return "Senha alterada com êxito";
+        }else{
+
+        throw new ValidationException("updateSenha", "Favor inserir a senha antiga correta.");
+    }
+    }
 }

@@ -1,16 +1,6 @@
 
---INSERT INTO cadeira (nome, modelo, material) VALUES ('Cadeira A', 'Modelo 123', 'Madeira');
---INSERT INTO cadeira (nome, modelo, material) VALUES ('Cadeira B', 'Modelo 456', 'Metal');
---INSERT INTO cadeira (nome, modelo, material) VALUES ('Cadeira C', 'Modelo 789', 'Plástico');
-
---insert into estado (nome, sigla) values('Tocantins', 'TO');
---insert into estado (nome, sigla) values('Goiás', 'GO');
---insert into estado (nome, sigla) values('Rio de Janeiro', 'RJ');
---insert into estado (nome, sigla) values('São Paulo', 'SP');
-
-
-insert into usuario (nome, login , senha) values('Siririco', 'Cagatronco','123');
-insert into usuario (nome, login , senha) values('Ludmilo', 'prexeco','123');
+insert into usuario (nome, login , senha,perfil) values('Siririco', 'Cagatronco','123',1);
+insert into usuario (nome, login , senha,perfil) values('Ludmilo', 'prexeco','123',2);
 
 insert into telefone (codigoArea, numero) values('63', '9999-9999' );
 insert into telefone (codigoArea, numero) values('62', '8888-8888' );
@@ -48,10 +38,10 @@ INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
 ('Avenida Central', 789, 'MG', 'Belo Horizonte', '98765-432');
 
 
- INSERT INTO Cliente (nome,email) VALUES
-('Cliente 1','cliente1@email.com'),
-('Cliente 2','cliente2@email.com' ),
-('Cliente 3','cliente3@email.com');
+ INSERT INTO Cliente (nome,login,senha,perfil,email) VALUES
+('Cliente 1','sirigueijo',1234,2,'cliente1@email.com'),
+('Cliente 2','muriçoca',12345,2,'cliente2@email.com' ),
+('Cliente 3','mussarela',123,2,'cliente3@email.com');
 
 INSERT INTO cliente_endereco (id_cliente, id_endereco) VALUES
 (1, 1), 

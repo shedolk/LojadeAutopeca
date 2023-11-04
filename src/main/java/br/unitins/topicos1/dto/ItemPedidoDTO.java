@@ -3,13 +3,15 @@ package br.unitins.topicos1.dto;
 import br.unitins.topicos1.modelo.ItemPedido;
 
 public record ItemPedidoDTO(
-        Long id,
-        int quantidade
-
+    Integer quantidade,
+    Double preco,
+    Long idProduto
 ) {
-    public static ItemPedidoDTO valueOf(ItemPedido itemPedido) {
+     public static ItemPedidoDTO valueOf(ItemPedido item){
         return new ItemPedidoDTO(
-                itemPedido.getId(),
-                itemPedido.getQuantidade());
+            item.getQuantidade(),
+            item.getPreco(),
+            item.getProduto().getId()
+        );
     }
 }

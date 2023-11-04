@@ -3,13 +3,14 @@ package br.unitins.topicos1.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import br.unitins.topicos1.dto.ItemPedidoDTO;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
 import br.unitins.topicos1.modelo.ItemPedido;
 import br.unitins.topicos1.modelo.Pedido;
+import br.unitins.topicos1.repository.ClienteRepository;
 import br.unitins.topicos1.repository.PedidoRepository;
+import br.unitins.topicos1.repository.ProdutoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -17,13 +18,27 @@ import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class PedidoServiceImpl implements PedidoService {
+
+    @Inject
+    ProdutoRepository produtoRepository;
+
+    @Inject
+    ClienteRepository clienteRepository;
+
     @Inject
     PedidoRepository repository;
 
     @Override
     @Transactional
-    public PedidoResponseDTO insert(PedidoDTO dto) {
+    public PedidoResponseDTO insert(PedidoDTO dto, String login) {
         Pedido novoPedido = new Pedido();
+
+        Double total = 0.0;
+        for (ItemPedidoDTO itemDto : dto.itemPedido()) {
+            total += (itemDto.preco() * itemDto.quantidade());
+        }
+        novoPedido.setTotalPedido(total);
+
         novoPedido.setCodigo(dto.codigo());
         novoPedido.setDate(dto.date());
 
@@ -37,11 +52,19 @@ public class PedidoServiceImpl implements PedidoService {
             }
         }
 
-       novoPedido.setCliente(dto.cliente());
+        novoPedido.setCliente(dto.cliente());
+
+        novoPedido.setCliente(clienteRepository.findByLogin(login));
 
         repository.persist(novoPedido);
         return PedidoResponseDTO.valueOf(novoPedido);
 
+    }
+
+    @Override
+    public List<PedidoResponseDTO> findByAll() {
+        return repository.listAll().stream()
+                .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 
     @Override
@@ -83,12 +106,6 @@ public class PedidoServiceImpl implements PedidoService {
         return repository.findByCodigo(codigo).stream()
                 .map(e -> PedidoResponseDTO.valueOf(e))
                 .toList();
-    }
-
-    @Override
-    public List<PedidoResponseDTO> findByAll() {
-        return repository.listAll().stream()
-                .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 
 }

@@ -14,15 +14,13 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-
-
 @Path("/auth")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AuthResource {
 
     @Inject
-    UsuarioService serviceUsuario;
+    UsuarioService service;
 
     @Inject
     HashService hashService;
@@ -31,18 +29,15 @@ public class AuthResource {
     JwtService jwtService;
 
     @POST
-    @Path("/authUsuario")
-    public Response loginUsuario(@Valid LoginDTO dto) {
+    public Response login(@Valid LoginDTO dto) {
 
         String hashSenha = hashService.getHashSenha(dto.senha());
 
-        UsuarioResponseDTO result = serviceUsuario.findByLoginAndSenha(dto.login(), hashSenha);
+        UsuarioResponseDTO result = service.findByLoginAndSenha(dto.login(), hashSenha);
 
         String token = jwtService.generateJwt(result);
 
         return Response.ok().header("Authorization", token).build();
     }
-
-    
   
 }

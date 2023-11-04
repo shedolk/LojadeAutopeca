@@ -1,7 +1,12 @@
 package br.unitins.topicos1.resource;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import br.unitins.topicos1.dto.PedidoDTO;
+import br.unitins.topicos1.dto.PedidoResponseDTO;
+import br.unitins.topicos1.service.ClienteService;
 import br.unitins.topicos1.service.PedidoService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -23,18 +28,36 @@ public class PedidoResource {
 
     @Inject
     PedidoService service;
-    
-     @POST
+
+    @Inject
+    ClienteService clienteService;
+
+    @Inject
+    JsonWebToken jwt;
+
+    @POST
+    @RolesAllowed({ "User" })
     public Response insert(PedidoDTO dto) {
-        return Response.status(Status.CREATED).entity(service.insert(dto)).build();
+
+        String login = jwt.getSubject();
+
+        PedidoResponseDTO retorno = service.insert(dto, login);
+        return Response.status(201).entity(retorno).build();
+    }
+
+    @GET
+    @RolesAllowed({ "User", "Admin" })
+    public Response findAll() {
+
+        return Response.ok(service.findByAll()).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
     public Response update(PedidoDTO dto, @PathParam("id") Long id) {
-         service.update(dto, id);
-         return Response.noContent().build();
+        service.update(dto, id);
+        return Response.noContent().build();
     }
 
     @DELETE
@@ -45,24 +68,16 @@ public class PedidoResource {
         return Response.status(Status.NO_CONTENT).build();
     }
 
-      @GET
+    @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
-     @GET
+    @GET
     @Path("/search/codigo/{codigo}")
     public Response findByCodigo(@PathParam("codigo") String codigo) {
         return Response.ok(service.findByCodigo(codigo)).build();
     }
-    
-    @GET
-    public Response findAll() {
-        return Response.ok(service.findByAll()).build();
-    }
 
-  
-    
-   
 }

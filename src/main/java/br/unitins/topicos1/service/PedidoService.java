@@ -5,16 +5,16 @@ import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
 
 public interface PedidoService {
-      public PedidoResponseDTO insert(PedidoDTO dto);
+  public PedidoResponseDTO insert(PedidoDTO dto, String login);
 
-    public PedidoResponseDTO update(PedidoDTO dto, Long id);
+  public List<PedidoResponseDTO> findByAll();
 
-    public void delete(Long id);
+  public PedidoResponseDTO update(PedidoDTO dto, Long id);
 
-    public PedidoResponseDTO findById(Long id);
+  public void delete(Long id);
 
-    public List<PedidoResponseDTO> findByCodigo(String codigo);
+  public PedidoResponseDTO findById(Long id);
 
-    public List<PedidoResponseDTO> findByAll(); 
+  public List<PedidoResponseDTO> findByCodigo(String codigo);
+
 }
-

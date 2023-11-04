@@ -28,6 +28,16 @@ public class Pedido extends DefaultEntity {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
+    private Double totalPedido;
+
+    public Double getTotalPedido() {
+        return totalPedido;
+    }
+
+    public void setTotalPedido(Double totalPedido) {
+        this.totalPedido = totalPedido;
+    }
+
     public String getCodigo() {
         return codigo;
     }

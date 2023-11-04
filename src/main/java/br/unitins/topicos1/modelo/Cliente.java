@@ -9,17 +9,19 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
+
 @Entity
 public class Cliente extends DefaultEntity {
     @Column(length = 60)
     private String nome;
+    private String login;
+    private String senha;
+    private Perfil perfil;
 
-   
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "id_cliente")
-    ,inverseJoinColumns = @JoinColumn(name = "id_endereco"))
+    @JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_endereco"))
     private List<Endereco> listaEndereco;
 
     public String getNome() {
@@ -28,6 +30,22 @@ public class Cliente extends DefaultEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getEmail() {
@@ -46,6 +64,12 @@ public class Cliente extends DefaultEntity {
         this.listaEndereco = listaEndereco;
     }
 
-   
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
 
 }

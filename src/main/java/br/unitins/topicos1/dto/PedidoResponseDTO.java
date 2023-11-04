@@ -12,7 +12,8 @@ public record PedidoResponseDTO(
     String codigo,
     LocalDate date,
     List<ItemPedidoDTO> itemPedido,
-    Cliente cliente 
+    Cliente cliente,
+    Double totalPedido 
 ) {
     public static PedidoResponseDTO valueOf(Pedido pedido) {
         return new PedidoResponseDTO(
@@ -23,7 +24,8 @@ public record PedidoResponseDTO(
                 .stream()
                 .map(ItemPedidoDTO::valueOf)
                 .toList(),
-                pedido.getCliente()
+                pedido.getCliente(),
+                pedido.getTotalPedido()
         );
     }
 }

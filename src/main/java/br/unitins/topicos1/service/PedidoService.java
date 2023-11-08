@@ -9,7 +9,7 @@ public interface PedidoService {
 
   public List<PedidoResponseDTO> findByAll();
 
-  public PedidoResponseDTO update(PedidoDTO dto, Long id);
+  public PedidoResponseDTO update(PedidoDTO dto, Long id,String login);
 
   public void delete(Long id);
 

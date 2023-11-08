@@ -1,11 +1,12 @@
 package br.unitins.topicos1.resource;
 
 
-import br.unitins.topicos1.dto.ClienteResponseDTO;
+
 import br.unitins.topicos1.dto.LoginDTO;
-import br.unitins.topicos1.service.ClienteService;
+import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import br.unitins.topicos1.service.HashService;
 import br.unitins.topicos1.service.JwtService;
+import br.unitins.topicos1.service.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -15,13 +16,13 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/auth")
+@Path("/auth-usuario")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class AuthResource {
+public class AuthResourceUsuario {
 
     @Inject
-    ClienteService service;
+    UsuarioService service;
 
     @Inject
     HashService hashService;
@@ -34,7 +35,7 @@ public class AuthResource {
 
         String hashSenha = hashService.getHashSenha(dto.senha());
 
-        ClienteResponseDTO result = service.findByLoginAndSenha(dto.login(), hashSenha);
+        UsuarioResponseDTO result = service.findByLoginAndSenha(dto.login(), hashSenha);
 
         String token = jwtService.generateJwt(result);
 

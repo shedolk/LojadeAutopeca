@@ -48,11 +48,11 @@ public class PedidoServiceImpl implements PedidoService {
             for (ItemPedidoDTO item : dto.itemPedido()) {
                 ItemPedido itemPedido = new ItemPedido();
                 itemPedido.setQuantidade(item.quantidade());
+                itemPedido.setPreco(item.preco());
+                itemPedido.setProduto(produtoRepository.findById(item.idProduto()));
                 novoPedido.getItemPedido().add(itemPedido);
             }
         }
-
-        novoPedido.setCliente(dto.cliente());
 
         novoPedido.setCliente(clienteRepository.findByLogin(login));
 
@@ -69,7 +69,7 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     @Transactional
-    public PedidoResponseDTO update(PedidoDTO dto, Long id) {
+    public PedidoResponseDTO update(PedidoDTO dto, Long id, String login) {
         Pedido pedido = repository.findById(id);
 
         pedido.setCodigo(dto.codigo());
@@ -83,7 +83,7 @@ public class PedidoServiceImpl implements PedidoService {
         }
         pedido.setItemPedido(itensPedido);
 
-        pedido.setCliente(dto.cliente());
+       pedido.setCliente(clienteRepository.findByLogin(login));
 
         repository.persist(pedido);
 

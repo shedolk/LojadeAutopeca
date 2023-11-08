@@ -36,7 +36,7 @@ public class PedidoResource {
     JsonWebToken jwt;
 
     @POST
-    @RolesAllowed({ "User" })
+    @RolesAllowed({"User", "Admin"})
     public Response insert(PedidoDTO dto) {
 
         String login = jwt.getSubject();
@@ -46,7 +46,6 @@ public class PedidoResource {
     }
 
     @GET
-    @RolesAllowed({ "User", "Admin" })
     public Response findAll() {
 
         return Response.ok(service.findByAll()).build();
@@ -55,8 +54,10 @@ public class PedidoResource {
     @PUT
     @Transactional
     @Path("/{id}")
+    @RolesAllowed({"User", "Admin"})
     public Response update(PedidoDTO dto, @PathParam("id") Long id) {
-        service.update(dto, id);
+         String login = jwt.getSubject();
+        service.update(dto, id , login);
         return Response.noContent().build();
     }
 

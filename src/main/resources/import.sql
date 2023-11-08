@@ -1,6 +1,6 @@
 
-insert into usuario (nome, login , senha,perfil) values('Siririco', 'Cagatronco','123',1);
-insert into usuario (nome, login , senha,perfil) values('Ludmilo', 'prexeco','123',2);
+insert into usuario (nome, login , senha,perfil) values('Siririco', 'Cagatronco','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',1);
+insert into usuario (nome, login , senha,perfil) values('Ludmilo', 'prexeco','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2);
 
 insert into telefone (codigoArea, numero) values('63', '9999-9999' );
 insert into telefone (codigoArea, numero) values('62', '8888-8888' );
@@ -39,9 +39,9 @@ INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
 
 
  INSERT INTO Cliente (nome,login,senha,perfil,email) VALUES
-('Cliente 1','sirigueijo',1234,2,'cliente1@email.com'),
-('Cliente 2','muriçoca',12345,2,'cliente2@email.com' ),
-('Cliente 3','mussarela',123,2,'cliente3@email.com');
+('Cliente 1','sirigueijo','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2,'cliente1@email.com'),
+('Cliente 2','muriçoca','NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==',2,'cliente2@email.com' ),
+('Cliente 3','mussarela','yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==',2,'cliente3@email.com');
 
 INSERT INTO cliente_endereco (id_cliente, id_endereco) VALUES
 (1, 1), 

@@ -16,7 +16,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/clientes")
+@Path("/minha-conta")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClienteLogadoResource {
@@ -29,7 +29,7 @@ public class ClienteLogadoResource {
 
      
     @GET
-    @RolesAllowed({"User", "Admin"})
+    @RolesAllowed({"User","Admin"})
     public Response getCliente(){
 
         // obtendo o login pelo token jwt
@@ -39,9 +39,9 @@ public class ClienteLogadoResource {
     }
 
      @PATCH
+     @RolesAllowed({"User","Admin"})
     @Transactional
-    @RolesAllowed({"User"})
-    @Path("patch/senha/")
+    @Path("/alterar-senha")
     public Response updateSenha(@Valid PatchSenhaDTO senha, Long idCliente) {
 
     // obtendo o login pelo token jwt

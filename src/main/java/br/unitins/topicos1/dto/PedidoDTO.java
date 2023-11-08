@@ -9,7 +9,6 @@ public record PedidoDTO(
         String codigo,
         LocalDate date,
         List<ItemPedidoDTO> itemPedido,
-        Cliente cliente,
         Double totalPedido
     ){
 }

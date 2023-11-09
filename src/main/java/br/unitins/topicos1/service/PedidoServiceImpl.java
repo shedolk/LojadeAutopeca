@@ -79,11 +79,13 @@ public class PedidoServiceImpl implements PedidoService {
         for (ItemPedidoDTO itemDTO : dto.itemPedido()) {
             ItemPedido itemPedido = new ItemPedido();
             itemPedido.setQuantidade(itemDTO.quantidade());
+            itemPedido.setPreco(itemDTO.preco());
+            itemPedido.setProduto(produtoRepository.findById(itemDTO.idProduto()));
             itensPedido.add(itemPedido);
         }
         pedido.setItemPedido(itensPedido);
 
-       pedido.setCliente(clienteRepository.findByLogin(login));
+        pedido.setCliente(clienteRepository.findByLogin(login));
 
         repository.persist(pedido);
 

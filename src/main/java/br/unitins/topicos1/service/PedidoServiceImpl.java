@@ -34,7 +34,7 @@ public class PedidoServiceImpl implements PedidoService {
         Pedido novoPedido = new Pedido();
 
         Double total = 0.0;
-        for (ItemPedidoDTO itemDto : dto.itemPedido()) {
+        for (ItemPedidoDTO itemDto : dto.itens()) {
             total += (itemDto.preco() * itemDto.quantidade());
         }
         novoPedido.setTotalPedido(total);
@@ -42,10 +42,10 @@ public class PedidoServiceImpl implements PedidoService {
         novoPedido.setCodigo(dto.codigo());
         novoPedido.setDate(dto.date());
 
-        if (dto.itemPedido() != null &&
-                !dto.itemPedido().isEmpty()) {
+        if (dto.itens() != null &&
+                !dto.itens().isEmpty()) {
             novoPedido.setItemPedido(new ArrayList<ItemPedido>());
-            for (ItemPedidoDTO item : dto.itemPedido()) {
+            for (ItemPedidoDTO item : dto.itens()) {
                 ItemPedido itemPedido = new ItemPedido();
                 itemPedido.setQuantidade(item.quantidade());
                 itemPedido.setPreco(item.preco());
@@ -76,7 +76,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setDate(dto.date());
 
         List<ItemPedido> itensPedido = new ArrayList<>();
-        for (ItemPedidoDTO itemDTO : dto.itemPedido()) {
+        for (ItemPedidoDTO itemDTO : dto.itens()) {
             ItemPedido itemPedido = new ItemPedido();
             itemPedido.setQuantidade(itemDTO.quantidade());
             itemPedido.setPreco(itemDTO.preco());

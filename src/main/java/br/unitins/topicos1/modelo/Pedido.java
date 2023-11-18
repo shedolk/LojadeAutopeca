@@ -20,9 +20,16 @@ public class Pedido extends DefaultEntity {
 
     private LocalDate date;
 
+    /*
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_pedido")
-    private List<ItemPedido> itemPedido;
+    private List<ItemPedido> itemPedido; 
+    */
+
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido", fetch = FetchType.LAZY)
+    //@JoinColumn(name = "id_pedido")
+    private List<ItemPedido> itens;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -55,11 +62,11 @@ public class Pedido extends DefaultEntity {
     }
 
     public List<ItemPedido> getItemPedido() {
-        return itemPedido;
+        return itens;
     }
 
     public void setItemPedido(List<ItemPedido> itemPedido) {
-        this.itemPedido = itemPedido;
+        this.itens = itemPedido;
     }
 
     public Cliente getCliente() {

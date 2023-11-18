@@ -53,14 +53,14 @@ public class MarcaResourceTest {
         List<ProdutoDTO> produtos = new ArrayList<ProdutoDTO>();
         produtos.add(new ProdutoDTO("Produto 10", "Kit mecanica Fiat Escada", 1999.99, 3));
 
-        MarcaDTO marcaDTO = new MarcaDTO("Produto 2", "Kit mecanica Gurgel",produtos); 
+        MarcaDTO marcaDTO = new MarcaDTO("Gurgel", "Origem Brasileira, ha mais de 20 anos no mercado",produtos); 
         
         // inserindo uma marca
         MarcaResponseDTO marcaTest = marcaService.insert(marcaDTO);
 
         Long id = marcaTest.id();
 
-        MarcaDTO dtoUpdate = new MarcaDTO("Produto 2", "Kit mecanica Gurgel",produtos);
+        MarcaDTO dtoUpdate = new MarcaDTO("Gurgel 2.0", "Origem Brasileira, ha mais de 30 anos no mercado",produtos);
 
         given()
             .contentType(ContentType.JSON)

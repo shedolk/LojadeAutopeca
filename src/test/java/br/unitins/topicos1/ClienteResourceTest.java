@@ -31,45 +31,69 @@ public class ClienteResourceTest {
              .statusCode(200);
     }
 
-   //  @Test
-  //  public void testInsert(){
-    //    List<EnderecoDTO> enderecos = new ArrayList<EnderecoDTO>();
-     //   enderecos.add(new EnderecoDTO("Avenida matheus", 124, "to", "palmas", "12345-678"));
-      //  ClienteDTO dto = new ClienteDTO( "Cliente 4","cliente4@email.com",
-     //   enderecos);
+   @Test
+  public void testInsert(){
 
-     //   given()
-      //  .contentType(ContentType.JSON)
-      //  .body(dto)
-       // .when().post("/cliente")
-       // .then()
-      //  .statusCode(201)
-      //  .body("id", notNullValue(), "nome",is("Cliente4"),"Email",is("cliente4@email.com"));
-    //}
+        List<EnderecoDTO> enderecos = new ArrayList<EnderecoDTO>();
+        enderecos.add(new EnderecoDTO("Avenida matheus", "124", "Palmas", "Tocantins", "12345-678"));
 
-    //@Test
-   // public void testUpdate(){
-     //   List<EnderecoDTO> enderecos = new ArrayList<EnderecoDTO>();
-     //   enderecos.add(new EnderecoDTO("Avenida Principal", 123, "SP", "São Paulo", "12345-678"));
-    //    ClienteDTO dto = new ClienteDTO( "Cliente 4","cliente4@email.com",
-      //  enderecos);
+        ClienteDTO dto = new ClienteDTO(
+          "Joao Insert", 
+          "joao", 
+          "1233", 
+          2, 
+          "joao@gmail.com", 
+          enderecos);
 
-       // ClienteResponseDTO clienteTest = clienteService.insert(dto);
+        /* 
+        ClienteDTO dto = new ClienteDTO(
+           "Cliente 4",
+           "cliente4@email.com",
+            enderecos);
+        */
 
-        //Long id = clienteTest.id();
-       // enderecos.add(new EnderecoDTO("filipe lindo", 124, "to", "palmas", "12345-678"));
-       // ClienteDTO dtoUpdate = new ClienteDTO("Cliente 4","cliente4@email.com", 
-       // enderecos);
+        given()
+        .contentType(ContentType.JSON)
+        .body(dto)
+        .when().post("/clientes")
+        .then()
+        .statusCode(201)
+        .body("id", notNullValue(), "nome",is("Joao Insert"),"Email",is("joao@gmail.com"));
+    }
 
-       // given()
-       // .contentType(ContentType.JSON)
-       // .body(dtoUpdate)
-        //.when().put("/usuarios"+id)
-        //.then()
-       // .statusCode(204)
-       // .body("id", notNullValue(), "nome",is("Cliente 4"),"email",is("cliente4@email.com"));
+    @Test
+    public void testUpdate(){
+
+        List<EnderecoDTO> enderecos = new ArrayList<EnderecoDTO>();
+        enderecos.add(new EnderecoDTO("Avenida matheus", "124", "Palmas", "Tocantins", "12345-678"));
+
+        ClienteDTO dto = new ClienteDTO(
+          "Joao Update",
+          "joao",
+          "1233",
+          2,
+          "joao@gmail.com", enderecos);
+
+        ClienteResponseDTO clienteTest = clienteService.insert(dto);
+        Long id = clienteTest.id();
+
+        //enderecos.add(new EnderecoDTO("filipe lindo", "124", "Palmas", "Tocantins", "12345-678"));
+
+        ClienteDTO dtoUpdate = new ClienteDTO("Joao Jose",
+          "john",
+          "1244",
+          2,
+          "joaojose@gmail.com", enderecos);
+
+        given()
+        .contentType(ContentType.JSON)
+        .body(dtoUpdate)
+        .when().put("/clientes/"+ id)
+        .then()
+        .statusCode(204)
+        .body("id", notNullValue(), "nome",is("Joao Jose"),"email",is("joaojose@email.com"));
     }
 
     
-//}
+}
 

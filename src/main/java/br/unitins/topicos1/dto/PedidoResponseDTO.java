@@ -11,7 +11,7 @@ public record PedidoResponseDTO(
     Long id,
     String codigo,
     LocalDate date,
-    List<ItemPedidoDTO> itemPedido,
+    List<ItemPedidoDTO> itens,
     ClienteResponseDTO cliente,
     Double totalPedido 
 ) {

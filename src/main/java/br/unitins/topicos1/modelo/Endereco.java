@@ -5,13 +5,19 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Endereco extends DefaultEntity {
+
     @Column(length = 60)
     private String rua;
-    private Integer numero;
+
+    @Column(length = 80)
+    private String numero;
+
     @Column(length = 80)
     private String cidade;
+
     @Column(length = 60)
     private String estado;
+
     @Column(length = 60)
     private String cep;
     
@@ -21,10 +27,10 @@ public class Endereco extends DefaultEntity {
     public void setRua(String rua) {
         this.rua = rua;
     }
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
     public String getCidade() {

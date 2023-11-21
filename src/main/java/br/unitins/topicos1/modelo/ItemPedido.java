@@ -1,7 +1,7 @@
 package br.unitins.topicos1.modelo;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+//import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -11,7 +11,7 @@ public class ItemPedido extends DefaultEntity {
     private Integer quantidade;
     private Double preco;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_produto")
     private Produto produto;
 

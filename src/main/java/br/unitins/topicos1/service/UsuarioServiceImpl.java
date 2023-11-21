@@ -78,6 +78,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
     
     @Override
+    public UsuarioResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+        Usuario usuario = repository.findById(id);
+        usuario.setNomeImagem(nomeImagem);
+        return UsuarioResponseDTO.valueOf(usuario);
+    }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         if (!repository.deleteById(id)) 
@@ -133,4 +140,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         throw new ValidationException("updateSenha", "Favor inserir a senha antiga correta.");
     }
     }
+
+    
 }

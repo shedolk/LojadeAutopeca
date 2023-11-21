@@ -32,35 +32,40 @@ INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 4);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (1, 5);
 INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
 
- INSERT INTO Endereco (rua,numero,cidade,estado,cep) VALUES
-('Avenida Principal', 123, 'SP', 'São Paulo', '12345-678'),
-('Rua Secundária', 456, 'RJ', 'Rio de Janeiro', '54321-876'),
-('Avenida Central', 789, 'MG', 'Belo Horizonte', '98765-432');
-
 
  INSERT INTO Cliente (nome,login,senha,perfil,email) VALUES
 ('Cliente 1','sirigueijo','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2,'cliente1@email.com'),
 ('Cliente 2','muriçoca','NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==',2,'cliente2@email.com' ),
 ('Cliente 3','mussarela','yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==',2,'cliente3@email.com');
 
+INSERT INTO Endereco (rua,numero,cidade,estado,cep) VALUES
+('Avenida Principal', 123, 'SP', 'São Paulo', '12345-678'),
+('Rua Secundária', 456, 'RJ', 'Rio de Janeiro', '54321-876'),
+('Avenida Central', 789, 'MG', 'Belo Horizonte', '98765-432');
+
 INSERT INTO cliente_endereco (id_cliente, id_endereco) VALUES
 (1, 1), 
 (2, 2),
 (3, 3);
-
 
 INSERT INTO Cupom (codigo) VALUES
 ('CUPOM123'),
 ('CUPOM456'),
 ('CUPOM789');
 
+INSERT INTO ItemPedido (quantidade, preco) VALUES
+(2, 2999.99), -- idProduto = 1
+(1, 999.99), --idProduto = 2
+(1, 4999.99); --idProduto = 3
 
-INSERT INTO Pedido (codigo, date, id_cliente) VALUES
-('PEDIDO001', '2023-10-07', 1), 
-('PEDIDO002', '2023-10-08', 2),
-('PEDIDO003', '2023-10-09', 3); 
 
-INSERT INTO ItemPedido (quantidade, id_pedido) VALUES
-(5, 1),
-(3, 2), 
-(8, 3); 
+
+--INSERT INTO Pedido (codigo, date, id_cliente) VALUES
+--('PEDIDO001', '2023-10-07', 1), --id_cliente = 1
+--('PEDIDO002', '2023-10-08', 2), --id_cliente = 2
+--('PEDIDO002', '2023-10-08', 3); --id_cliente = 3
+
+--INSERT INTO ItemPedido (quantidade, id_pedido) VALUES
+--(5, 1),
+--(3, 2), 
+--(8, 3); 

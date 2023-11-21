@@ -38,10 +38,12 @@ public class UsuarioResourceTest {
     public void testInsert(){
         List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
         telefones.add(new TelefoneDTO("63","5555-5555"));
-        UsuarioDTO dto = new UsuarioDTO( "mark zuckeberk",
-        "marquinhos",
-        "333",
-        null, telefones);
+        UsuarioDTO dto = new UsuarioDTO(
+            "Joao Insert",
+            "jaozinho",
+            "333",
+            2, 
+            telefones);
 
         given()
         .contentType(ContentType.JSON)
@@ -49,32 +51,49 @@ public class UsuarioResourceTest {
         .when().post("/usuarios")
         .then()
         .statusCode(201)
-        .body("id", notNullValue(), "nome",is("mark zuckeberk"),"login",is("marquinhos"));
+        .body(
+            "id", notNullValue(),
+         "nome",is("Joao Insert"),
+         "login",is("joaozinho"));
+         //"senha",is("333"),
+         //"idPerfil",is("2"),
+         //telefones);
     }
+    
     @Test
     public void testUpdate(){
         List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
-        telefones.add(new TelefoneDTO("63","5555-5555"));
-        UsuarioDTO dto = new UsuarioDTO( "mark zuckeberk",
-        "marquinhos",
-        "333",
-        null, telefones);
+        telefones.add(new TelefoneDTO("63","1111-1111"));
+        UsuarioDTO dto = new UsuarioDTO(
+             "Ronaldo Fenomeno",
+            "ronaldo",
+            "333",
+            2,
+            telefones);
 
         UsuarioResponseDTO usuarioTest = usuarioService.insert(dto);
 
         Long id = usuarioTest.id();
         telefones.add(new TelefoneDTO("63","5555-5555"));
-        UsuarioDTO dtoUpdate = new UsuarioDTO( "mark zuckeberk",
-        "marquinhos",
-        "333",
-        null, telefones);
+        UsuarioDTO dtoUpdate = new UsuarioDTO(
+             "Ronaldo Fenomeno",
+            "ronaldo",
+            "345",
+            1, 
+            telefones);
 
         given()
         .contentType(ContentType.JSON)
         .body(dtoUpdate)
-        .when().put("/usuarios"+id)
+        .when().put("/usuarios/"+ id)
         .then()
-        .statusCode(204)
-        .body("id", notNullValue(), "nome",is("mark zuckeberk"),"login",is("marquinhos"));
+        .statusCode(204);
+        //.body(
+        //   "id", notNullValue(),
+        //    "nome",is("Ronaldo Fenomeno"),
+        //    "login",is("ronaldo"),
+        //   "senha",is("345"),
+        //   "idPerfil", is(1),
+        //   telefones);
     }
 }

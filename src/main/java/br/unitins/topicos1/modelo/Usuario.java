@@ -5,8 +5,6 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-//import jakarta.persistence.EnumType;
-//import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
@@ -19,6 +17,8 @@ public class Usuario extends DefaultEntity {
     private String senha;
     //@Enumerated(EnumType.ORDINAL)
     private Perfil perfil;
+
+    private String nomeImagem;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinTable(name="usuario_telefone",
@@ -66,4 +66,13 @@ public class Usuario extends DefaultEntity {
         this.perfil = perfil;
     }
 
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
+
+    public void setNomeImagem(String nomeImagem) {
+        this.nomeImagem = nomeImagem;
+    }
+
+    
 }

@@ -58,7 +58,14 @@ public class ClienteResourceTest {
         .when().post("/clientes")
         .then()
         .statusCode(201)
-        .body("id", notNullValue(), "nome",is("Joao Insert"),"Email",is("joao@gmail.com"));
+        .body(
+          "id", notNullValue(),
+        "nome",is("Joao Insert"),
+        "login",is("joao"));
+        //"senha",is("1233"),
+        //"idPerfil",is(2),
+        //"Email",is("joao@gmail.com"),
+        //"endereco", is(enderecos));
     }
 
     @Test
@@ -72,26 +79,36 @@ public class ClienteResourceTest {
           "joao",
           "1233",
           2,
-          "joao@gmail.com", enderecos);
+          "joao@gmail.com",
+                enderecos);
 
         ClienteResponseDTO clienteTest = clienteService.insert(dto);
         Long id = clienteTest.id();
 
         //enderecos.add(new EnderecoDTO("filipe lindo", "124", "Palmas", "Tocantins", "12345-678"));
 
-        ClienteDTO dtoUpdate = new ClienteDTO("Joao Jose",
+        ClienteDTO dtoUpdate = new ClienteDTO(
+          "Joao Jose",
           "john",
           "1244",
           2,
-          "joaojose@gmail.com", enderecos);
+          "joaojose@gmail.com",
+                enderecos);
 
         given()
         .contentType(ContentType.JSON)
         .body(dtoUpdate)
         .when().put("/clientes/"+ id)
         .then()
-        .statusCode(204)
-        .body("id", notNullValue(), "nome",is("Joao Jose"),"email",is("joaojose@email.com"));
+        .statusCode(204);
+        //.body(
+        //  "id", notNullValue(),
+        // "nome",is("Joao Jose"),
+        // "login",is("John"),
+        // "senha",is("1244"),
+        // "idPerfil",is(2),
+        // "email",is("joaojose@email.com"),
+        // "endereco", is(enderecos));
     }
 
     

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.unitins.topicos1.dto.ProdutoDTO;
 import br.unitins.topicos1.dto.ProdutoResponseDTO;
-import br.unitins.topicos1.modelo.Produto;
+import br.unitins.topicos1.model.Produto;
 import br.unitins.topicos1.repository.ProdutoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

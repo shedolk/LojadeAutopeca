@@ -2,7 +2,7 @@ package br.unitins.topicos1.dto;
 
 import java.util.List;
 
-import br.unitins.topicos1.modelo.Marca;
+import br.unitins.topicos1.model.Marca;
 
 public record MarcaResponseDTO(
     Long id,

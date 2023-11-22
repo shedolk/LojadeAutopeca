@@ -2,8 +2,8 @@ package br.unitins.topicos1.dto;
 
 import java.util.List;
 
-import br.unitins.topicos1.modelo.Cliente;
-import br.unitins.topicos1.modelo.Perfil;
+import br.unitins.topicos1.model.Cliente;
+import br.unitins.topicos1.model.Perfil;
 
 public record ClienteResponseDTO(
         Long id,

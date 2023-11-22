@@ -1,6 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import br.unitins.topicos1.modelo.Produto;
+import br.unitins.topicos1.model.Produto;
 
 public record ProdutoResponseDTO(
     Long id,

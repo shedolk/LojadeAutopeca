@@ -60,10 +60,10 @@ INSERT INTO ItemPedido (quantidade, preco) VALUES
 
 
 
---INSERT INTO Pedido (codigo, date, id_cliente) VALUES
---('PEDIDO001', '2023-10-07', 1), --id_cliente = 1
---('PEDIDO002', '2023-10-08', 2), --id_cliente = 2
---('PEDIDO002', '2023-10-08', 3); --id_cliente = 3
+INSERT INTO Pedido (codigo, date, id_cliente) VALUES
+('PEDIDO001', '2023-10-07', 1), --id_cliente = 1
+('PEDIDO002', '2023-10-08', 2), --id_cliente = 2
+('PEDIDO002', '2023-10-08', 3); --id_cliente = 3
 
 --INSERT INTO ItemPedido (quantidade, id_pedido) VALUES
 --(5, 1),

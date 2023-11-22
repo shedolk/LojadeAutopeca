@@ -1,6 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import br.unitins.topicos1.modelo.Cupom;
+import br.unitins.topicos1.model.Cupom;
 
 public record CupomResponseDTO(
     Long id,

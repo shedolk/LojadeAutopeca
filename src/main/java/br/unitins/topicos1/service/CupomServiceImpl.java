@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.unitins.topicos1.dto.CupomDTO;
 import br.unitins.topicos1.dto.CupomResponseDTO;
-import br.unitins.topicos1.modelo.Cupom;
+import br.unitins.topicos1.model.Cupom;
 import br.unitins.topicos1.repository.CupomRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

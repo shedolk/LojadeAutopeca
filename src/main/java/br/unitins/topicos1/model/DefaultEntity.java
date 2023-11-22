@@ -1,4 +1,4 @@
-package br.unitins.topicos1.modelo;
+package br.unitins.topicos1.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

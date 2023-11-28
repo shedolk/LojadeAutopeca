@@ -1,6 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import br.unitins.topicos1.modelo.Endereco;
+import br.unitins.topicos1.model.Endereco;
 
 
 public record EnderecoDTO(

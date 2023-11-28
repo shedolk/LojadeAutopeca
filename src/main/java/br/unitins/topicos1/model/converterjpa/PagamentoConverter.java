@@ -1,7 +1,7 @@
-package br.unitins.topicos1.modelo.converterjpa;
+package br.unitins.topicos1.model.converterjpa;
 
 
-import br.unitins.topicos1.modelo.Pagamento;
+import br.unitins.topicos1.model.Pagamento;
 import jakarta.persistence.AttributeConverter;
 
 public class PagamentoConverter implements AttributeConverter<Pagamento, Integer>{

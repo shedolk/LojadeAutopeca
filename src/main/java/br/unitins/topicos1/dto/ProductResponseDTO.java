@@ -1,6 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import br.unitins.topicos1.modelo.Product;
+import br.unitins.topicos1.model.Product;
 
 //import br.unitins.topicos1.ecommerce.model.Category;
 

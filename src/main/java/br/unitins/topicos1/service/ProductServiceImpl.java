@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.unitins.topicos1.dto.ProductDTO;
 import br.unitins.topicos1.dto.ProductResponseDTO;
-import br.unitins.topicos1.modelo.Product;
+import br.unitins.topicos1.model.Product;
 import br.unitins.topicos1.repository.CategoryRepository;
 import br.unitins.topicos1.repository.ProductRepository;
 

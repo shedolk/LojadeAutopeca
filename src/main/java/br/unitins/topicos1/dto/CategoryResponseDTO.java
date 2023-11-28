@@ -1,6 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import br.unitins.topicos1.modelo.Category;
+import br.unitins.topicos1.model.Category;
 
 public record CategoryResponseDTO(
 

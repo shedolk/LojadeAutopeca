@@ -1,6 +1,6 @@
-package br.unitins.topicos1.modelo.converterjpa;
+package br.unitins.topicos1.model.converterjpa;
 
-import br.unitins.topicos1.modelo.Perfil;
+import br.unitins.topicos1.model.Perfil;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

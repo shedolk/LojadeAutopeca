@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.unitins.topicos1.dto.CategoryDTO;
 import br.unitins.topicos1.dto.CategoryResponseDTO;
-import br.unitins.topicos1.modelo.Category;
+import br.unitins.topicos1.model.Category;
 import br.unitins.topicos1.repository.CategoryRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

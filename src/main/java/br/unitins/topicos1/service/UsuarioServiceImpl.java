@@ -7,10 +7,10 @@ import br.unitins.topicos1.dto.EnderecoDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
-import br.unitins.topicos1.modelo.Endereco;
-import br.unitins.topicos1.modelo.Perfil;
-import br.unitins.topicos1.modelo.Telefone;
-import br.unitins.topicos1.modelo.Usuario;
+import br.unitins.topicos1.model.Endereco;
+import br.unitins.topicos1.model.Perfil;
+import br.unitins.topicos1.model.Telefone;
+import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -102,6 +102,12 @@ public class UsuarioServiceImpl implements UsuarioService{
         return UsuarioResponseDTO.valueOf(usuario);
     }
     
+
+    @Override
+    public UsuarioResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+        Usuario usuario = repository.findById(id);
+        return UsuarioResponseDTO.valueOf(usuario);
+    }
 
     @Override
     @Transactional

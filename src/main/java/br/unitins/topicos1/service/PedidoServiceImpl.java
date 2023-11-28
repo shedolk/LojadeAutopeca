@@ -1,5 +1,6 @@
 package br.unitins.topicos1.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,107 +8,97 @@ import br.unitins.topicos1.dto.ItemPedidoDTO;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
 import br.unitins.topicos1.modelo.ItemPedido;
+import br.unitins.topicos1.modelo.Pagamento;
 import br.unitins.topicos1.modelo.Pedido;
-import br.unitins.topicos1.repository.ClienteRepository;
+import br.unitins.topicos1.modelo.Product;
 import br.unitins.topicos1.repository.PedidoRepository;
-import br.unitins.topicos1.repository.ProdutoRepository;
+import br.unitins.topicos1.repository.ProductRepository;
+import br.unitins.topicos1.repository.UsuarioRepository;
+
+//import br.unitins.topicos1.ecommerce.model.Produto;
+
+//import br.unitins.topicos1.ecommerce.repository.ProdutoRepository;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
-public class PedidoServiceImpl implements PedidoService {
+public class PedidoServiceImpl implements PedidoService{
+
+    //@Inject
+    //ProdutoRepository produtoRepository;
 
     @Inject
-    ProdutoRepository produtoRepository;
+    ProductRepository produtoRepository;
 
     @Inject
-    ClienteRepository clienteRepository;
+    UsuarioRepository usuarioRepository;
 
     @Inject
-    PedidoRepository repository;
+    PedidoRepository pedidoRepository;
+
 
     @Override
     @Transactional
     public PedidoResponseDTO insert(PedidoDTO dto, String login) {
-        Pedido novoPedido = new Pedido();
+        Pedido pedido = new Pedido();
+        pedido.setDataHoraPedido(LocalDateTime.now());
 
+        pedido.setPagamento(Pagamento.valueOf(dto.idPagamento()));
+
+        // calculo do total do pedido
         Double total = 0.0;
-        for (ItemPedidoDTO itemDto : dto.itemPedido()) {
+        for (ItemPedidoDTO itemDto : dto.itens()) {
             total += (itemDto.preco() * itemDto.quantidade());
         }
-        novoPedido.setTotalPedido(total);
+        pedido.setTotalPedido(total);
 
-        novoPedido.setCodigo(dto.codigo());
-        novoPedido.setDate(dto.date());
+        // adicionando os itens do pedido
+        pedido.setItens(new ArrayList<ItemPedido>());
+        for (ItemPedidoDTO itemDto : dto.itens()) {
+            ItemPedido item = new ItemPedido();
+            item.setPreco(itemDto.preco());
+            item.setQuantidade(itemDto.quantidade());
+            item.setPedido(pedido);
 
-        if (dto.itemPedido() != null &&
-                !dto.itemPedido().isEmpty()) {
-            novoPedido.setItemPedido(new ArrayList<ItemPedido>());
-            for (ItemPedidoDTO item : dto.itemPedido()) {
-                ItemPedido itemPedido = new ItemPedido();
-                itemPedido.setQuantidade(item.quantidade());
-                itemPedido.setPreco(item.preco());
-                itemPedido.setProduto(produtoRepository.findById(item.idProduto()));
-                novoPedido.getItemPedido().add(itemPedido);
-            }
+            Product product = produtoRepository.findById(itemDto.idProduct());
+            item.setProduct(product);
+
+            product.setEstoque(product.getEstoque() - item.getQuantidade());
+
+            pedido.getItens().add(item);
         }
 
-        novoPedido.setCliente(clienteRepository.findByLogin(login));
+        // buscando o usuario pelo login
+        pedido.setUsuario(usuarioRepository.findByLogin(login));
 
-        repository.persist(novoPedido);
-        return PedidoResponseDTO.valueOf(novoPedido);
+        // salvando no banco
+        pedidoRepository.persist(pedido);
 
+        // atualizando o estoque
+  
+
+        return PedidoResponseDTO.valueOf(pedido);
+        
+    }
+    
+
+    @Override
+    public PedidoResponseDTO findById(Long id) {
+        return PedidoResponseDTO.valueOf(pedidoRepository.findById(id));
     }
 
     @Override
     public List<PedidoResponseDTO> findByAll() {
-        return repository.listAll().stream()
-                .map(e -> PedidoResponseDTO.valueOf(e)).toList();
+        return pedidoRepository.listAll().stream()
+            .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    @Transactional
-    public PedidoResponseDTO update(PedidoDTO dto, Long id, String login) {
-        Pedido pedido = repository.findById(id);
-
-        pedido.setCodigo(dto.codigo());
-        pedido.setDate(dto.date());
-
-        List<ItemPedido> itensPedido = new ArrayList<>();
-        for (ItemPedidoDTO itemDTO : dto.itemPedido()) {
-            ItemPedido itemPedido = new ItemPedido();
-            itemPedido.setQuantidade(itemDTO.quantidade());
-            itemPedido.setPreco(itemDTO.preco());
-            itemPedido.setProduto(produtoRepository.findById(itemDTO.idProduto()));
-            itensPedido.add(itemPedido);
-        }
-        pedido.setItemPedido(itensPedido);
-
-        pedido.setCliente(clienteRepository.findByLogin(login));
-
-        repository.persist(pedido);
-
-        return PedidoResponseDTO.valueOf(pedido);
+    public List<PedidoResponseDTO> findByAll(String login) {
+        return pedidoRepository.listAll().stream()
+            .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
-
-    @Override
-    @Transactional
-    public void delete(Long id) {
-        if (!repository.deleteById(id))
-            throw new NotFoundException();
-    }
-
-    @Override
-    public PedidoResponseDTO findById(Long id) {
-        return PedidoResponseDTO.valueOf(repository.findById(id));
-    }
-
-    public List<PedidoResponseDTO> findByCodigo(String codigo) {
-        return repository.findByCodigo(codigo).stream()
-                .map(e -> PedidoResponseDTO.valueOf(e))
-                .toList();
-    }
-
+    
 }

@@ -1,8 +1,8 @@
 package br.unitins.topicos1.resource;
 
+
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.service.UsuarioService;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -15,7 +15,6 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
 @Path("/usuarios")
@@ -27,9 +26,8 @@ public class UsuarioResource {
     UsuarioService service;
 
     @POST
-    public ResponseBuilder insert(UsuarioDTO dto) {
-        Response.status(Status.CREATED).entity(service.insert(dto));
-        return Response.status(Status.CREATED).entity(service.insert(dto));
+    public Response insert(UsuarioDTO dto) {
+        return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
     @PUT
@@ -55,7 +53,6 @@ public class UsuarioResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({"User", "Admin"})
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }

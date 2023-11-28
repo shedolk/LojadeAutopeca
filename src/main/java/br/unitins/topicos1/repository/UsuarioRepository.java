@@ -9,8 +9,9 @@ import jakarta.persistence.NoResultException;
 
 @ApplicationScoped
 public class UsuarioRepository implements PanacheRepository<Usuario>{
+
     public List<Usuario> findByNome(String nome) {
-        return find("UPPER(nome) LIKE UPPER(?1) ", "%"+nome+"%").list();
+        return find("UPPER(nome) LIKE UPPER(?1) ", "%"+ nome +"%").list();
     }
 
     public Usuario findByLogin(String login) {

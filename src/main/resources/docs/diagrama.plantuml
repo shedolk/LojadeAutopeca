@@ -1,0 +1,58 @@
+@startuml diagrama
+
+class Product {
+    - id: Long
+    - nome: String
+    - descricao: String
+    - preco: Double
+    - estoque: Integer
+}
+
+class Category {
+     - MECANICA
+     - SUSPENSAO
+     - DIRECAO
+     - ESTETICA
+     - ELETRICA
+}
+
+class Pedido {
+    - id: Long
+    - dataHoraPedido: LocalDateTime
+    - pagamento: Pagamento 
+    - totalPedido: Double
+}
+
+enum Pagamento{
+    + CREDITO
+    + PIX
+    + BOLETO 
+}
+
+class ItemPedido {
+    - id: Long
+    - quantidade: Integer
+    - preco: Double
+}
+
+class Usuario {
+    - id: Long
+    - login: String
+    - senha: String
+    - perfil: Perfil
+}
+
+enum Perfil {
+    + USER
+    + ADMIN
+}
+
+Pedido "*" o--> "*" Pagamento
+Pedido "*" --> "1" Usuario
+Pedido "1" *--> "*" ItemPedido
+
+Product "1" --> "1" Category
+Usuario "1" o--> "1" Perfil
+
+
+ItemPedido "*" --> "1" Product

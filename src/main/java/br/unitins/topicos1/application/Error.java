@@ -1,7 +1,7 @@
 package br.unitins.topicos1.application;
-
+/*
 public class Error {
-
+    
     private String code;
     private String message;
 
@@ -25,5 +25,4 @@ public class Error {
     public void setMessage(String message) {
         this.message = message;
     }
-
-}
+}*/

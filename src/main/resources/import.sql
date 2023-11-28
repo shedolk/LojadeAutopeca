@@ -1,66 +1,47 @@
+-- This file allow to write SQL commands that will be emitted in test and dev.
+-- The commands are commented as their support depends of the database
+-- insert into myentity (id, field) values(1, 'field-1');
+-- insert into myentity (id, field) values(2, 'field-2');
+-- insert into myentity (id, field) values(3, 'field-3');
+-- alter sequence myentity_seq restart with 4;
 
-insert into usuario (nome, login , senha,perfil) values('Siririco', 'Cagatronco','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',1);
-insert into usuario (nome, login , senha,perfil) values('Ludmilo', 'prexeco','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2);
+insert into usuario (nome, login, senha, perfil) values('Usuario user', 'user', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', 1);
+insert into usuario (nome, login, senha, perfil) values('Usuario admin', 'admin', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', 2);
 
-insert into telefone (codigoArea, numero) values('63', '9999-9999' );
-insert into telefone (codigoArea, numero) values('62', '8888-8888' );
-insert into telefone (codigoArea, numero) values('61', '7777-7777' );
-insert into telefone (codigoArea, numero) values('55', '6666-6666' );
+--insert into usuario (nome, login, senha, perfil) values('Neymar Jr', 'neymar', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', 1);
+--insert into usuario (nome, login, senha, perfil) values('Ronaldinho Gaucho', 'ronaldinho', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', 2);
 
-insert into usuario_telefone (id_usuario, id_telefone) values(1, 1 );
-insert into usuario_telefone (id_usuario, id_telefone) values(1, 2 );
-insert into usuario_telefone (id_usuario, id_telefone) values(2, 3 );
-insert into usuario_telefone (id_usuario, id_telefone) values(2, 4 );
+insert into telefone (codigoArea, numero) values('63', '9999-9999');
+insert into telefone (codigoArea, numero) values('62', '8888-8888');
+insert into telefone (codigoArea, numero) values('63', '7777-7777');
+insert into telefone (codigoArea, numero) values('63', '6666-6666');
 
-INSERT INTO marca (nome, descricao) VALUES ('Chevrolet', 'Origem Americana, ha mais de 50 anos no mercado');
-INSERT INTO marca (nome, descricao) VALUES ('Gurgel', 'Origem Brasileira, ha mais de 20 anos no mercado');
-INSERT INTO marca (nome, descricao) VALUES ('Jaguar', 'Origem Inglesa, ha mais de 40 anos no mercado');
-INSERT INTO marca (nome, descricao) VALUES ('Honda', 'Origem Japonesa, ha mais de 30 anos no mercado');
+insert into usuario_telefone (id_usuario, id_telefone) values(1, 1);
+insert into usuario_telefone (id_usuario, id_telefone) values(1, 2);
+insert into usuario_telefone (id_usuario, id_telefone) values(2, 3);
+insert into usuario_telefone (id_usuario, id_telefone) values(2, 4);
 
-INSERT INTO produto (nome, descricao, preco, estoque) VALUES ('Produto 1', 'Kit mecanica Chevy', 2999.99, 10);
-INSERT INTO produto (nome, descricao, preco, estoque) VALUES ('Produto 2', 'Kit mecanica Gurgel', 999.99, 5);
-INSERT INTO produto (nome, descricao, preco, estoque) VALUES ('Produto 3', 'Kit mecanica Jaguar', 4999.99, 2);
-INSERT INTO produto (nome, descricao, preco, estoque) VALUES ('Produto 4', 'Kit mecanica Honda', 3499.99, 20);
-INSERT INTO produto (nome, descricao, preco, estoque) VALUES ('Produto 5', 'Caixa de direcao Onix', 1499.99, 20);
-INSERT INTO produto (nome, descricao, preco, estoque) VALUES ('Produto 6', 'Motor Honda 1.5 flex', 32999.99, 2);
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 1', 'DESCRICAO DO PRODUTO 1', 1, 199.0, 100, 'IMAGEM PRODUTO 1');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 2', 'DESCRICAO DO PRODUTO 2', 2, 100.0, 100, 'IMAGEM PRODUTO 2');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 3', 'DESCRICAO DO PRODUTO 3', 3, 100.0, 100, 'IMAGEM PRODUTO 3');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 4', 'DESCRICAO DO PRODUTO 4', 4, 100.0, 100, 'IMAGEM PRODUTO 4');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 5', 'DESCRICAO DO PRODUTO 5', 5, 100.0, 100, 'IMAGEM PRODUTO 5');
 
-
-INSERT INTO marca_produto (id_marca, id_produto) VALUES (1, 1);
-INSERT INTO marca_produto (id_marca, id_produto) VALUES (2, 2);
-INSERT INTO marca_produto (id_marca, id_produto) VALUES (3, 3);
-INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 4);
-INSERT INTO marca_produto (id_marca, id_produto) VALUES (1, 5);
-INSERT INTO marca_produto (id_marca, id_produto) VALUES (4, 6);
-
- INSERT INTO Endereco (rua,numero,cidade,estado,cep) VALUES
-('Avenida Principal', 123, 'SP', 'São Paulo', '12345-678'),
-('Rua Secundária', 456, 'RJ', 'Rio de Janeiro', '54321-876'),
-('Avenida Central', 789, 'MG', 'Belo Horizonte', '98765-432');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 6', 'DESCRICAO DO PRODUTO 6', 1, 399.0, 100, 'IMAGEM PRODUTO 6');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 7', 'DESCRICAO DO PRODUTO 7', 2, 300.0, 100, 'IMAGEM PRODUTO 7');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 8', 'DESCRICAO DO PRODUTO 8', 3, 200.0, 100, 'IMAGEM PRODUTO 8');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 9', 'DESCRICAO DO PRODUTO 9', 4, 50.0, 100, 'IMAGEM PRODUTO 9');
+--insert into produto (nome, descricao, categoria, preco, estoque, nomeImagem) values('PRODUTO 10', 'DESCRICAO DO PRODUTO 10', 5, 69.0, 100, 'IMAGEM PRODUTO 10');
 
 
- INSERT INTO Cliente (nome,login,senha,perfil,email) VALUES
-('Cliente 1','sirigueijo','O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2,'cliente1@email.com'),
-('Cliente 2','muriçoca','NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==',2,'cliente2@email.com' ),
-('Cliente 3','mussarela','yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==',2,'cliente3@email.com');
+insert into category (category, version) values('CATEGORY 1', 0);
+insert into category (category, version) values('CATEGORY 2', 0);
+insert into category (category, version) values('CATEGORY 3', 0);
+insert into category (category, version) values('CATEGORY 4', 0);
+insert into category (category, version) values('CATEGORY 5', 0);
 
-INSERT INTO cliente_endereco (id_cliente, id_endereco) VALUES
-(1, 1), 
-(2, 2),
-(3, 3);
-
-
-INSERT INTO Cupom (codigo) VALUES
-('CUPOM123'),
-('CUPOM456'),
-('CUPOM789');
-
-
-INSERT INTO Pedido (codigo, date, id_cliente) VALUES
-('PEDIDO001', '2023-10-07', 1), 
-('PEDIDO002', '2023-10-08', 2),
-('PEDIDO003', '2023-10-09', 3); 
-
-INSERT INTO ItemPedido (quantidade, id_pedido) VALUES
-(5, 1),
-(3, 2), 
-(8, 3); 
+insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 1', 'DESCRICAO DO PRODUTO 1', 1, 199.0, 100, 'IMAGEM PRODUTO 1');
+insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 2', 'DESCRICAO DO PRODUTO 2', 2, 199.0, 100, 'IMAGEM PRODUTO 2');
+insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 3', 'DESCRICAO DO PRODUTO 3', 3, 199.0, 100, 'IMAGEM PRODUTO 3');
+insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 4', 'DESCRICAO DO PRODUTO 4', 4, 199.0, 100, 'IMAGEM PRODUTO 4');
+insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 5', 'DESCRICAO DO PRODUTO 5', 5, 199.0, 100, 'IMAGEM PRODUTO 5');

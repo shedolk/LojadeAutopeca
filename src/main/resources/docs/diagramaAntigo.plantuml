@@ -1,0 +1,75 @@
+@startuml diagramaAntigo
+class Usuario {
+  - id: int
+  - nome: string
+  - cpf: string
+  - idade: int
+  - TipoUsuario: enum
+}
+
+enum TipoUsuario{
+    + GERENTE
+    + COLABORADOR
+}
+
+class Cupom {
+  - id: int
+  - codigo: string
+}
+
+class Endereco {
+  - id: int
+  - rua: string
+  - numero: int
+  - cidade: string
+  - estado: string
+  - cep: string
+}
+
+class Marca {
+  - id: int
+  - nome: string
+  - descricao: string
+  - produtos: List<Produto>
+}
+
+class Produto {
+  - id: int
+  - nome: string
+  - descricao: string
+  - preco: float
+  - quantidadeEmEstoque: int
+}
+
+class Cliente {
+  - id: int
+  - nome: string
+  - email: string
+  - endereco: string
+}
+
+class Pedido {
+  - id: int
+  - data: Date
+  - status: string
+  - itens: List<ItemPedido>
+  - cliente: Cliente
+}
+
+class ItemPedido {
+  - quantidade: int
+  - produto: Produto
+}
+
+ 
+Usuario "*" --> "1" TipoUsuario
+Cliente "1" o-- "1" Endereco
+Cupom "1" --o "*" Pedido
+
+Cliente "1" o-- "*" Pedido
+Pedido "1" *-- "*" ItemPedido
+Produto "1" -- "*" ItemPedido
+Marca "1" o-- "*" Produto
+
+
+@enduml

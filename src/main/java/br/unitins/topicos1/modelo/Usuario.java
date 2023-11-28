@@ -1,29 +1,44 @@
 package br.unitins.topicos1.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
-//import jakarta.persistence.EnumType;
-//import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 
+
 @Entity
 public class Usuario extends DefaultEntity {
-
+    
     private String nome;
+
     private String login;
+
     private String senha;
+
     //@Enumerated(EnumType.ORDINAL)
     private Perfil perfil;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name="usuario_telefone",
-        joinColumns= @JoinColumn(name="id_usuario"),
-        inverseJoinColumns = @JoinColumn(name="id_telefone") )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinTable(name = "usuario_telefone", 
+        joinColumns = @JoinColumn(name = "id_usuario"),
+        inverseJoinColumns = @JoinColumn(name = "id_telefone"))
     private List<Telefone> listaTelefone;
+
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinTable(name = "usuario_endereco", 
+        joinColumns = @JoinColumn(name = "id_usuario"),
+        inverseJoinColumns = @JoinColumn(name = "id_endereco"))
+    private List<Endereco> endereco;
 
     public String getNome() {
         return nome;
@@ -65,4 +80,20 @@ public class Usuario extends DefaultEntity {
         this.perfil = perfil;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public List<Endereco> getListaEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<Endereco> endereco) {
+        this.endereco = endereco;
+    }
+    
 }

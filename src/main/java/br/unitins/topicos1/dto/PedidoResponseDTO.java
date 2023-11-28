@@ -1,32 +1,31 @@
 package br.unitins.topicos1.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
-
+import br.unitins.topicos1.modelo.Pagamento;
 import br.unitins.topicos1.modelo.Pedido;
 
 
+
 public record PedidoResponseDTO(
+
     Long id,
-    String codigo,
-    LocalDate date,
-    List<ItemPedidoDTO> itemPedido,
-    ClienteResponseDTO cliente,
-    Double totalPedido 
+    LocalDateTime dataHora,
+    UsuarioResponseDTO usuario,
+    Double totalPedido,
+    List<ItemPedidoResponseDTO> itens,
+    Pagamento pagamento
+
 ) {
-    public static PedidoResponseDTO valueOf(Pedido pedido) {
+    public static PedidoResponseDTO valueOf(Pedido pedido){
         return new PedidoResponseDTO(
-            pedido.getId(),
-            pedido.getCodigo(),
-            pedido.getDate(),
-            pedido.getItemPedido()
-                .stream()
-                .map(ItemPedidoDTO::valueOf)
-                .toList(),
-                ClienteResponseDTO.valueOf(pedido.getCliente()),
-                pedido.getTotalPedido()
-        );
+            pedido.getId(), 
+            pedido.getDataHoraPedido(),
+            UsuarioResponseDTO.valueOf(pedido.getUsuario()),
+            pedido.getTotalPedido(),
+            ItemPedidoResponseDTO.valueOf(pedido.getItens()), 
+            pedido.getPagamento());
     }
-}
+} 
 

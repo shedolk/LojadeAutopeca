@@ -10,11 +10,11 @@ import jakarta.ws.rs.ext.Provider;
 
 @Provider
 @ApplicationScoped
-public class BeanValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
+public class BeanValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException>{
 
     @Override
     public Response toResponse(ConstraintViolationException exception) {
-
+        
         ValidationError validationError = new ValidationError("400", "Erro de validação.");
 
         for (ConstraintViolation<?> violation : exception.getConstraintViolations()) {
@@ -24,9 +24,11 @@ public class BeanValidationExceptionMapper implements ExceptionMapper<Constraint
             String message = violation.getMessage();
 
             validationError.addFieldError(fieldName, message);
+
+            validationError.addFieldError(fieldName, message);
         }
 
         return Response.status(Status.BAD_REQUEST).entity(validationError).build();
-
     }
+    
 }

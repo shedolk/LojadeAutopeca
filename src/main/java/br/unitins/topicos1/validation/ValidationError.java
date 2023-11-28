@@ -1,12 +1,12 @@
 package br.unitins.topicos1.validation;
 
-import br.unitins.topicos1.application.Error;
+import br.unitins.topicos1.util.Error;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidationError extends Error {
-
+public class ValidationError extends Error{
+    
     record FieldError(String fieldName, String message) {};
     private List<FieldError> errors = null;
     

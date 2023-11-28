@@ -1,20 +1,22 @@
 package br.unitins.topicos1;
 
-import org.junit.jupiter.api.Test;
-import io.quarkus.test.junit.QuarkusTest;
-import jakarta.inject.Inject;
 import static io.restassured.RestAssured.given;
 
-import br.unitins.topicos1.service.PedidoService;
+import org.junit.jupiter.api.Test;
 
+import br.unitins.topicos1.service.PedidoService;
+import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
+import jakarta.inject.Inject;
 
 @QuarkusTest
 public class PedidoResourceTest {
-
-     @Inject
+    
+    @Inject
     PedidoService pedidoService;
 
-     @Test
+    @Test
+    @TestSecurity(authorizationEnabled = false)
     public void testFindAll() {
         given()
           .when().get("/pedidos")
@@ -22,18 +24,7 @@ public class PedidoResourceTest {
              .statusCode(200);
     }
 
-   /* @Test
-    public void testInsert(){
-        List<ItemPedidoDTO> itemPedidos = new ArrayList<ItemPedidoDTO>();
-        itemPedidos.add(new ItemPedidoDTO(2,5));
-        PedidoDTO dto = new PedidoDTO("PEDIDO001", "2023-10-07", 2);
 
-        given()
-        .contentType(ContentType.JSON)
-        .body(dto)
-        .when().post("/pedido")
-        .then()
-        .statusCode(201)
-        .body("id", notNullValue(), "produto",is("PEDIDO001"),"data",is("2023-10-07"));
-    }*/
 }
+
+

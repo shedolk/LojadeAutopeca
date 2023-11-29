@@ -4,12 +4,11 @@ import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.ProductDTO;
 import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.service.ProductService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 
 import org.jboss.logging.Logger;
 
-
-//import br.unitins.topicos1.ecommerce.dto.ProdutoDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -35,6 +34,7 @@ public class ProductResource {
     private static final Logger LOG = Logger.getLogger(ProductResource.class);
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(ProductDTO dto) {
         LOG.infof("Inserindo um product: %s", dto.nome());
 
@@ -49,6 +49,7 @@ public class ProductResource {
     @PUT
     @Transactional
     @Path("/{id}")
+    @RolesAllowed({"Admin"})
     public Response update(ProductDTO dto, @PathParam("id") Long id) {
 
         try {
@@ -68,6 +69,7 @@ public class ProductResource {
     @DELETE
     @Transactional
     @Path("/{id}")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         productService.delete(id);
         return Response.noContent().build();

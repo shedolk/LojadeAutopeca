@@ -1,6 +1,9 @@
 package br.unitins.topicos1.resource;
 
+import java.time.LocalDateTime;
+
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.jboss.logging.Logger;
 
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
@@ -30,21 +33,28 @@ public class PedidoResource {
     @Inject
     JsonWebToken jwt;
 
+    private static final Logger LOG = Logger.getLogger(PedidoResource.class);
 
     @POST
     @RolesAllowed({"User", "Admin"})
     public Response insert(PedidoDTO dto) {
 
+        LOG.info("USUARIO REALIZANDO UM PEDIDO");
+
         String login = jwt.getSubject();
         
         PedidoResponseDTO retorno = service.insert(dto, login);
+
+        LOG.info("data e hora do pedido: " + LocalDateTime.now());
+
         return Response.status(201).entity(retorno).build();
     }
 
     @GET
     @RolesAllowed({"User", "Admin"})
     public Response findAll() {
-        
+        LOG.info("BUSCANDO TODOS OS PEDIDOS FEITOS POR ESSE USUARIO");
+
         return Response.ok(service.findByAll()).build();
     }
 }

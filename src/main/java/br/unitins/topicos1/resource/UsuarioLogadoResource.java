@@ -37,4 +37,6 @@ public class UsuarioLogadoResource {
         return Response.ok(usuarioService.findByLogin(login)).build();
 
     }
+
+    
 }

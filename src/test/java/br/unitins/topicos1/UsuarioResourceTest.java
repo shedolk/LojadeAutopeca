@@ -3,6 +3,7 @@ package br.unitins.topicos1;
 
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
 import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
 
@@ -36,6 +37,7 @@ public class UsuarioResourceTest {
              .statusCode(200);
     }
     @Test
+    @TestSecurity(authorizationEnabled = false)
     public void testInsert(){
         List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
         telefones.add(new TelefoneDTO("63","5555-5555"));
@@ -46,6 +48,7 @@ public class UsuarioResourceTest {
             "Joao Insert",
             "joaozinho",
             "333",
+            "12345678911",
             2, 
             telefones,
             enderecos);
@@ -62,10 +65,12 @@ public class UsuarioResourceTest {
          "login",is("joaozinho"));
          //"senha",is("333"),
          //"idPerfil",is("2"),
-         //telefones);
+         //telefones)
+         //enderecos);
     }
     
     @Test
+    @TestSecurity(authorizationEnabled = false)
     public void testUpdate(){
         List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
         telefones.add(new TelefoneDTO("63","1111-1111"));
@@ -76,6 +81,7 @@ public class UsuarioResourceTest {
              "Ronaldo Fenomeno",
             "ronaldo",
             "333",
+            "12345678811",
             2,
             telefones,
             enderecos);
@@ -88,6 +94,7 @@ public class UsuarioResourceTest {
              "Ronaldo Fenomeno",
             "ronaldo",
             "345",
+            "123456788",
             1, 
             telefones, enderecos);
 

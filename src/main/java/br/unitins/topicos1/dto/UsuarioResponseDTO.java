@@ -11,6 +11,7 @@ public record UsuarioResponseDTO(
         String nome,
         String login,
         String senha,
+        String cpf,
         Perfil perfil,
         List<TelefoneDTO> listaTelefone,
         List<EnderecoDTO> listaEndereco
@@ -27,6 +28,7 @@ public record UsuarioResponseDTO(
                 usuario.getNome(),
                 usuario.getLogin(),
                 usuario.getSenha(),
+                usuario.getCpf(),
                 usuario.getPerfil(),
                 usuario.getListaTelefone()
                         .stream()

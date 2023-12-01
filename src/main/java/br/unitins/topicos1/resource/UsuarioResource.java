@@ -96,7 +96,7 @@ public class UsuarioResource {
             service.updateLogin(id, newLogin);
             return Response.status(Response.Status.OK).build();
         } catch (Exception e) {
-            // Handle exceptions and return an appropriate response
+            
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -108,7 +108,7 @@ public class UsuarioResource {
             service.updateTelefones(id, newTelefones);
             return Response.status(Response.Status.OK).build();
         } catch (Exception e) {
-            // Handle exceptions and return an appropriate response
+            
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }

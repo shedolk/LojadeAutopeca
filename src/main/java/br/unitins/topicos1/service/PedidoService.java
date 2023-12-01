@@ -5,8 +5,6 @@ import java.util.List;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
 
-
-
 public interface PedidoService {
 
     public PedidoResponseDTO insert(PedidoDTO dto, String login);
@@ -16,4 +14,6 @@ public interface PedidoService {
     public List<PedidoResponseDTO> findByAll();
 
     public List<PedidoResponseDTO> findByAll(String login);
+
+    public void delete(Long id);
 } 

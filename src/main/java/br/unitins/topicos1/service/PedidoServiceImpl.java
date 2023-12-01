@@ -22,12 +22,13 @@ import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
-public class PedidoServiceImpl implements PedidoService{
+public class PedidoServiceImpl implements PedidoService {
 
-    //@Inject
-    //ProdutoRepository produtoRepository;
+    // @Inject
+    // ProdutoRepository produtoRepository;
 
     @Inject
     ProductRepository produtoRepository;
@@ -37,7 +38,6 @@ public class PedidoServiceImpl implements PedidoService{
 
     @Inject
     PedidoRepository pedidoRepository;
-
 
     @Override
     @Transactional
@@ -77,12 +77,10 @@ public class PedidoServiceImpl implements PedidoService{
         pedidoRepository.persist(pedido);
 
         // atualizando o estoque
-  
 
         return PedidoResponseDTO.valueOf(pedido);
-        
+
     }
-    
 
     @Override
     public PedidoResponseDTO findById(Long id) {
@@ -92,13 +90,24 @@ public class PedidoServiceImpl implements PedidoService{
     @Override
     public List<PedidoResponseDTO> findByAll() {
         return pedidoRepository.listAll().stream()
-            .map(e -> PedidoResponseDTO.valueOf(e)).toList();
+                .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<PedidoResponseDTO> findByAll(String login) {
         return pedidoRepository.listAll().stream()
-            .map(e -> PedidoResponseDTO.valueOf(e)).toList();
+                .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
-    
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        try {
+            if (!pedidoRepository.deleteById(id)) {
+                throw new NotFoundException("Usuário não encontrado");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao excluir usuário", e);
+        }
+    }
 }

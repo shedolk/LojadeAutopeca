@@ -102,8 +102,6 @@ public class ProductResource {
             return Response.status(Status.NOT_FOUND).entity(result).build();
         }
 
-        //productService.update(id, dto);
-        //return Response.noContent().build();
     }
 
     @DELETE
@@ -122,6 +120,7 @@ public class ProductResource {
 
     @GET
     @Path("/{id}")
+     @RolesAllowed({"Admin"})
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(productService.findById(id)).build();
     }

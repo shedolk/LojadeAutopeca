@@ -1,7 +1,5 @@
 package br.unitins.topicos1;
 
-
-
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
 import io.restassured.http.ContentType;
@@ -18,6 +16,8 @@ import br.unitins.topicos1.service.UsuarioService;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class UsuarioResourceTest {
         UsuarioDTO dto = new UsuarioDTO(
             "Joao Insert",
             "joaozinho",
-            "333",
+            "1234",
             "12345678911",
             2, 
             telefones,
@@ -62,11 +62,8 @@ public class UsuarioResourceTest {
         .body(
             "id", notNullValue(),
          "nome",is("Joao Insert"),
-         "login",is("joaozinho"));
-         //"senha",is("333"),
-         //"idPerfil",is("2"),
-         //telefones)
-         //enderecos);
+         "login",is("joaozinho")
+        );
     }
     
     @Test
@@ -81,7 +78,7 @@ public class UsuarioResourceTest {
              "Ronaldo Fenomeno",
             "ronaldo",
             "333",
-            "12345678811",
+            "12345678911",
             2,
             telefones,
             enderecos);
@@ -91,10 +88,10 @@ public class UsuarioResourceTest {
         Long id = usuarioTest.id();
         telefones.add(new TelefoneDTO("63","5555-5555"));
         UsuarioDTO dtoUpdate = new UsuarioDTO(
-             "Ronaldo Fenomeno",
-            "ronaldo",
+             "Angel Romero",
+            "romero",
             "345",
-            "123456788",
+            "12345678900",
             1, 
             telefones, enderecos);
 
@@ -104,13 +101,51 @@ public class UsuarioResourceTest {
         .when().put("/usuarios/"+ id)
         .then()
         .statusCode(204);
-        //.body(
-        //   "id", notNullValue(),
-        //    "nome",is("Ronaldo Fenomeno"),
-        //    "login",is("ronaldo"),
-        //   "senha",is("345"),
-        //   "idPerfil", is(1),
-        //   telefones);
+
+        // Verificando se os dados foram atualizados no banco de dados
+        UsuarioResponseDTO usuarioResponseDTO = usuarioService.findById(id);
+        assertThat(usuarioResponseDTO.nome(), is("Angel Romero"));
+        assertThat(usuarioResponseDTO.cpf(), is("12345678900"));
     }
+
+        @Test
+        @TestSecurity(authorizationEnabled = false)
+        public void testDelete() {
+
+            List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
+            telefones.add(new TelefoneDTO("63","1111-1111"));
+            List<EnderecoDTO> enderecos = new ArrayList<EnderecoDTO>();
+            enderecos.add(new EnderecoDTO("rua 10", "numero10", "Palmas", "Tocantins","123456789"));
+
+            // Adicionando uma pessoa no banco de dados
+            UsuarioDTO usuario = new UsuarioDTO(
+                "Filipe",
+                "lilipe", 
+                "1111", 
+                "123456789", 
+                1, 
+                telefones, 
+                enderecos
+            );
+
+
+            Long id = usuarioService.insert(usuario).id();
+            given()
+            .when().delete("/usuarios/" + id)
+            .then()
+            .statusCode(204);
+
+            // verificando se o usuario foi excluida
+            UsuarioResponseDTO usuarioResponseDTO = null;
+                try {
+                usuarioService.findById(id);
+                } catch (Exception e) {
+                }
+                finally {
+                    assertNull(usuarioResponseDTO); 
+                } 
+        
+        }
+
 
 }

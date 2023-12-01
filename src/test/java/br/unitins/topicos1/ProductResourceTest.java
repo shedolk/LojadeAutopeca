@@ -6,8 +6,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-//import java.util.ArrayList;
-//import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +15,6 @@ import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.service.CategoryService;
 import br.unitins.topicos1.service.ProductService;
 
-//import br.unitins.topicos1.ecommerce.dto.CategoryDTO;
-//import br.unitins.topicos1.ecommerce.dto.CategoryResponseDTO;
-//import br.unitins.topicos1.ecommerce.dto.CategoryResponseDTO;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
@@ -71,16 +67,20 @@ public class ProductResourceTest {
     @TestSecurity(authorizationEnabled = false)
     public void testUpdate() {
 
-        //CategoryDTO category = new CategoryDTO("CATEGORY 1");
-
-        ProductDTO productDTO = new ProductDTO("mechanic", "description", (long)1, 299.00, 100, "nomeImagem");
+        ProductDTO dto = new ProductDTO("mechanic", "description", (long)1, 299.00, 100, "nomeImagem");
 
         // inserindo uma product
-        ProductResponseDTO productTest = productService.insert(productDTO);
+        ProductResponseDTO productTest = productService.insert(dto);
 
         Long id = productTest.id();
 
-        ProductDTO dtoUpdate = new ProductDTO("MECHANIC 2.0", "description", (long)1, 399.00, 50, "nomeImagem");
+        ProductDTO dtoUpdate = new ProductDTO(
+            "Suspensoes", 
+            "description coxinha", 
+            (long)2, 
+            399.00, 
+            50, 
+            "nomeImage");
 
         given()
             .contentType(ContentType.JSON)
@@ -90,4 +90,35 @@ public class ProductResourceTest {
             .statusCode(200);
     }
 
+        @Test
+        @TestSecurity(authorizationEnabled = false)
+        public void testDelete() {
+
+            // Adicionando um product no banco de dados
+            ProductDTO product = new ProductDTO(
+                "Freios", 
+                "descricao dos freios", 
+                (long)1, 
+                70.00, 
+                50, 
+                "nomeImagem");   
+            ;
+
+            Long id = productService.insert(product).id();
+
+            given()
+            .when().delete("/products/" + id)
+            .then()
+            .statusCode(204);
+
+            // verificando seo product foi excluido
+            ProductResponseDTO productResponseDTO = null;
+                try {
+                productService.findById(id);
+                } catch (Exception e) {
+                }
+                finally {
+                    assertNull(productResponseDTO); 
+                } 
+        }
 }

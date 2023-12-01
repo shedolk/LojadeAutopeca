@@ -2,10 +2,11 @@ package br.unitins.topicos1.service;
 
 import java.util.List;
 
-
+import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import jakarta.validation.Valid;
+import jakarta.ws.rs.core.Response;
 
 
 public interface UsuarioService {
@@ -27,4 +28,12 @@ public interface UsuarioService {
     public UsuarioResponseDTO findByLogin(String login);
 
     public List<UsuarioResponseDTO> findByAll();
+
+    Response updateNome(Long id, String newNome);
+
+    Response updateSenha(Long id, String newSenha);
+
+    Response updateLogin(Long id, String newLogin);
+
+    Response updateTelefones(Long id, List<TelefoneDTO> newTelefones);
 }

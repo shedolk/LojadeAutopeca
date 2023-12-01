@@ -45,7 +45,7 @@ public class ProductResource {
 
     private static final Logger LOG = Logger.getLogger(ProductResource.class);
 
-       @PATCH
+    @PATCH
     @Path("/upload/imagem/{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response salvarImagem(@MultipartForm ProductImageForm form,@PathParam("id") Long id ){

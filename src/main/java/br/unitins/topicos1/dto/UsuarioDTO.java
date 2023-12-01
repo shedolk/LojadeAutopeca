@@ -17,7 +17,7 @@ public record UsuarioDTO (
     @NotBlank(message = "O campo nome não pode ser nulo.")
     String senha,
 
-    @NotBlank(message = "Escreva com pontos e traços.")
+    @NotBlank(message = "O campo nome não pode ser nulo.")
     String cpf,
 
     Integer idPerfil,

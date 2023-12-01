@@ -14,11 +14,6 @@ import br.unitins.topicos1.repository.ProductRepository;
 
 import br.unitins.topicos1.util.Error;
 
-//import br.unitins.topicos1.ecommerce.dto.ProdutoResponseDTO;
-//import br.unitins.topicos1.ecommerce.model.Categoria;
-
-//import br.unitins.topicos1.ecommerce.model.Produto;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

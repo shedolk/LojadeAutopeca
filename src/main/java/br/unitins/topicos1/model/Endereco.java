@@ -60,8 +60,5 @@ public class Endereco extends DefaultEntity {
     public void setCep(String cep) {
         this.cep = cep;
     }
-
-    
-    
 }
 

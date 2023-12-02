@@ -12,7 +12,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
-//import jakarta.validation.constraints.Pattern;
 
 
 @Entity
@@ -24,7 +23,6 @@ public class Usuario extends DefaultEntity {
 
     private String senha;
 
-    //@Pattern(regexp = "[\\d]{1,3}\\.[\\d]{3}\\.[\\d]{3}\\-[\\d]{2}", message = "CPF inválido")
     private String cpf;
 
     //@Enumerated(EnumType.ORDINAL)

@@ -30,7 +30,7 @@ public class UsuarioResource {
     @Inject
     UsuarioService service;
 
-    private static final Logger LOG = Logger.getLogger(ProductResource.class);
+    private static final Logger LOG = Logger.getLogger(UsuarioResource.class);
 
     @POST
     public Response insert(UsuarioDTO dto) {

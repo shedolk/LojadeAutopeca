@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.topicos1.dto.EnderecoDTO;
+import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
@@ -259,6 +260,21 @@ public class UsuarioServiceImpl implements UsuarioService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar telefones do usuário", e);
         }
+    }
+
+    @Override
+    @Transactional
+    public String updatePassword(PatchSenhaDTO senha, Long id) {
+        Usuario usuario = repository.findById(id);
+
+        if(hashService.getHashSenha(senha.senhaAnterior()).equals(usuario.getSenha())){
+            usuario.setSenha(hashService.getHashSenha(senha.novaSenha()));
+            repository.persist(usuario);
+            return "Senha alterada com êxito";
+        }else{
+
+        throw new ValidationException("updateSenha", "Favor inserir a senha antiga correta.");
+    }
     }
 
 }

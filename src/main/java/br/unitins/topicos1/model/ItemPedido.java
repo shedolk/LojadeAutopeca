@@ -10,12 +10,6 @@ public class ItemPedido extends DefaultEntity {
     private Integer quantidade;
     private Double preco;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name="id_produto")
-    private Produto produto;
-    */
-
     @ManyToOne
     @JoinColumn(name="id_produto")
     private Product product;

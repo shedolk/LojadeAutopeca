@@ -54,7 +54,7 @@ public class PedidoResource {
     }
 
     @GET
-    @Path("/meuspedidos")
+    @Path("/pedidos")
     @RolesAllowed({"User", "Admin"})
     public Response findAll() {
         LOG.info("BUSCANDO TODOS OS PEDIDOS FEITOS POR ESSE USUARIO");

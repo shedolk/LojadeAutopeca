@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.topicos1.dto.EnderecoDTO;
+import br.unitins.topicos1.dto.PatchNomeDTO;
 import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
@@ -275,6 +276,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         throw new ValidationException("updateSenha", "Favor inserir a senha antiga correta.");
     }
+    }
+
+    @Override
+    public Object updateNomeAuth(@Valid PatchNomeDTO nome, Long id) {
+        Usuario usuario = repository.findById(id);
+        usuario.setNome(nome.nome());
+        return "Nome alterado com sucesso.";
     }
 
 }

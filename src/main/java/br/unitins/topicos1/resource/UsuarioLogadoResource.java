@@ -3,6 +3,7 @@ package br.unitins.topicos1.resource;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import br.unitins.topicos1.dto.PatchNomeDTO;
 import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.service.UsuarioService;
 
@@ -56,4 +57,16 @@ public class UsuarioLogadoResource {
     return Response.status(200).entity(usuarioService.updatePassword(senha, id)).build();
   }
 
+  @PATCH
+  @RolesAllowed({"User", "Admin"})
+  @Path("patch/nome/")
+  public Response updateNomeAuth(@Valid PatchNomeDTO nome, Long idCliente) {
+
+    // obtendo o login pelo token jwt
+    String login = jwt.getSubject();
+
+    Long id = usuarioService.findByLogin(login).id();
+
+    return Response.status(200).entity(usuarioService.updateNomeAuth(nome, id)).build();
+  }
 }

@@ -2,6 +2,7 @@ package br.unitins.topicos1.service;
 
 import java.util.List;
 
+import br.unitins.topicos1.dto.PatchNomeDTO;
 import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
@@ -39,4 +40,6 @@ public interface UsuarioService {
     Response updateTelefones(Long id, List<TelefoneDTO> newTelefones);
 
     public Object updatePassword(@Valid PatchSenhaDTO senha, Long id);
+
+    public Object updateNomeAuth(@Valid PatchNomeDTO nome, Long id);
 }

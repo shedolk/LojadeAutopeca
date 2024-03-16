@@ -26,7 +26,7 @@ import jakarta.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PedidoResource {
-    
+
     @Inject
     PedidoService service;
 
@@ -39,13 +39,13 @@ public class PedidoResource {
     private static final Logger LOG = Logger.getLogger(PedidoResource.class);
 
     @POST
-    @RolesAllowed({"User", "Admin"})
+    @RolesAllowed({ "User", "Admin" })
     public Response insert(PedidoDTO dto) {
 
         LOG.info("USUARIO REALIZANDO UM PEDIDO");
 
         String login = jwt.getSubject();
-        
+
         PedidoResponseDTO retorno = service.insert(dto, login);
 
         LOG.info("data e hora do pedido: " + LocalDateTime.now());
@@ -55,7 +55,7 @@ public class PedidoResource {
 
     @GET
     @Path("/pedidos")
-    @RolesAllowed({"User", "Admin"})
+
     public Response findAll() {
         LOG.info("BUSCANDO TODOS OS PEDIDOS FEITOS POR ESSE USUARIO");
 
@@ -63,7 +63,7 @@ public class PedidoResource {
     }
 
     @GET
-    @RolesAllowed({"User", "Admin"})
+    @RolesAllowed({ "User", "Admin" })
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
@@ -71,7 +71,7 @@ public class PedidoResource {
 
     @DELETE
     @Transactional
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({ "Admin" })
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);

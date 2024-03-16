@@ -2,9 +2,13 @@ package br.unitins.topicos1.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Endereco extends DefaultEntity {
+
+    Long id;
 
     @Column(length = 60)
     private String rua;
@@ -20,6 +24,10 @@ public class Endereco extends DefaultEntity {
 
     @Column(length = 60)
     private String cep;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
     public String getRua() {
         return rua;
@@ -60,5 +68,21 @@ public class Endereco extends DefaultEntity {
     public void setCep(String cep) {
         this.cep = cep;
     }
-}
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+}

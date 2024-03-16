@@ -5,18 +5,13 @@ import java.util.List;
 
 //import org.hibernate.validator.constraints.br.CPF;
 
-import jakarta.persistence.CascadeType;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
 
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Usuario extends DefaultEntity {
-    
+
     private String nome;
 
     private String login;
@@ -25,23 +20,17 @@ public class Usuario extends DefaultEntity {
 
     private String cpf;
 
-    //@Enumerated(EnumType.ORDINAL)
+    // @Enumerated(EnumType.ORDINAL)
     private Perfil perfil;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinTable(name = "usuario_telefone", 
-        joinColumns = @JoinColumn(name = "id_usuario"),
-        inverseJoinColumns = @JoinColumn(name = "id_telefone"))
-    private List<Telefone> listaTelefone;
+    @OneToMany(mappedBy = "usuario")
+    private List<Telefone> listaTelefone = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos = new ArrayList<>();
-    
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinTable(name = "usuario_endereco", 
-        joinColumns = @JoinColumn(name = "id_usuario"),
-        inverseJoinColumns = @JoinColumn(name = "id_endereco"))
-    private List<Endereco> listaEndereco;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Endereco> listaEndereco = new ArrayList<>();
 
     public String getNome() {
         return nome;
@@ -91,7 +80,6 @@ public class Usuario extends DefaultEntity {
         this.pedidos = pedidos;
     }
 
-
     public String getCpf() {
         return cpf;
     }
@@ -108,5 +96,4 @@ public class Usuario extends DefaultEntity {
         this.listaEndereco = listaEndereco;
     }
 
-    
 }

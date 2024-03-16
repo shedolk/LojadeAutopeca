@@ -19,20 +19,20 @@ import jakarta.ws.rs.core.Response.Status;
 @Path("/enderecos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class EnderecoResourse {
+public class EnderecoResource {
     @Inject
     EnderecoService enderecoService;
 
     @POST
-    public Response insert(EnderecoDTO dto) {
-        return Response.status(Status.CREATED).entity(enderecoService.insert(dto)).build();
+    public Response insert(EnderecoDTO dto, Long idUsuario) {
+        return Response.status(Status.CREATED).entity(enderecoService.insert(dto, idUsuario)).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update( @PathParam("id") Long id,EnderecoDTO dto) {
-        enderecoService.update(id,dto);
+    public Response update(@PathParam("id") Long id, EnderecoDTO dto, Long idUsuario) {
+        enderecoService.update(id, dto, idUsuario);
         return Response.noContent().build();
     }
 
@@ -44,7 +44,7 @@ public class EnderecoResourse {
         return Response.noContent().build();
     }
 
-     @GET
+    @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(enderecoService.findById(id)).build();
@@ -53,5 +53,11 @@ public class EnderecoResourse {
     @GET
     public Response findAll() {
         return Response.ok(enderecoService.findByAll()).build();
+    }
+
+    @GET
+    @Path("/usuario/{id}")
+    public Response findByIdUser(@PathParam("id") Long id) {
+        return Response.ok(enderecoService.findByIdUser(id)).build();
     }
 }

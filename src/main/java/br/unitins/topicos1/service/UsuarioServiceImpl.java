@@ -1,15 +1,12 @@
 package br.unitins.topicos1.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.unitins.topicos1.dto.EnderecoDTO;
 import br.unitins.topicos1.dto.PatchNomeDTO;
 import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
-import br.unitins.topicos1.model.Endereco;
 import br.unitins.topicos1.model.Perfil;
 import br.unitins.topicos1.model.Telefone;
 import br.unitins.topicos1.model.Usuario;
@@ -52,30 +49,6 @@ public class UsuarioServiceImpl implements UsuarioService {
             novoUsuario.setCpf(dto.cpf());
             novoUsuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 
-            if (dto.listaTelefone() != null &&
-                    !dto.listaTelefone().isEmpty()) {
-                novoUsuario.setListaTelefone(new ArrayList<Telefone>());
-                for (TelefoneDTO tel : dto.listaTelefone()) {
-                    Telefone telefone = new Telefone();
-                    telefone.setCodigoArea(tel.codigoArea());
-                    telefone.setNumero(tel.numero());
-                    novoUsuario.getListaTelefone().add(telefone);
-                }
-            }
-
-            if (dto.listaEndereco() != null && !dto.listaTelefone().isEmpty()) {
-                novoUsuario.setListaEndereco(new ArrayList<Endereco>());
-                for (EnderecoDTO end : dto.listaEndereco()) {
-                    Endereco endereco = new Endereco();
-                    endereco.setRua(end.rua());
-                    endereco.setNumero(end.numero());
-                    endereco.setCidade(end.cidade());
-                    endereco.setEstado(end.estado());
-                    endereco.setCep(end.cep());
-                    novoUsuario.getListaEndereco().add(endereco);
-                }
-            }
-
             repository.persist(novoUsuario);
 
             return UsuarioResponseDTO.valueOf(novoUsuario);
@@ -99,24 +72,6 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuario.setLogin(dto.login());
             usuario.setSenha(dto.senha());
             usuario.setCpf(dto.cpf());
-
-            List<Telefone> telefones = new ArrayList<>();
-            for (TelefoneDTO tel : dto.listaTelefone()) {
-                Telefone telefone = new Telefone();
-                telefone.setCodigoArea(tel.codigoArea());
-                telefone.setNumero(tel.numero());
-                telefones.add(telefone);
-            }
-            List<Endereco> enderecos = new ArrayList<>();
-            for (EnderecoDTO end : dto.listaEndereco()) {
-                Endereco endereco = new Endereco();
-                endereco.setRua(end.rua());
-                endereco.setNumero(end.numero());
-                endereco.setCidade(end.cidade());
-                endereco.setEstado(end.estado());
-                endereco.setCep(end.cep());
-                enderecos.add(endereco);
-            }
 
             return UsuarioResponseDTO.valueOf(usuario);
         } catch (Exception e) {
@@ -268,14 +223,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     public String updatePassword(PatchSenhaDTO senha, Long id) {
         Usuario usuario = repository.findById(id);
 
-        if(hashService.getHashSenha(senha.senhaAnterior()).equals(usuario.getSenha())){
+        if (hashService.getHashSenha(senha.senhaAnterior()).equals(usuario.getSenha())) {
             usuario.setSenha(hashService.getHashSenha(senha.novaSenha()));
             repository.persist(usuario);
             return "Senha alterada com êxito";
-        }else{
+        } else {
 
-        throw new ValidationException("updateSenha", "Favor inserir a senha antiga correta.");
-    }
+            throw new ValidationException("updateSenha", "Favor inserir a senha antiga correta.");
+        }
     }
 
     @Override

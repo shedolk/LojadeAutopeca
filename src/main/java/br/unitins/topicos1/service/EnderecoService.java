@@ -7,13 +7,15 @@ import br.unitins.topicos1.dto.EnderecoResponseDTO;
 import jakarta.validation.Valid;
 
 public interface EnderecoService {
-    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto);
+    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto, Long idUsuario);
 
-    EnderecoResponseDTO update(Long id, EnderecoDTO dto);
+    EnderecoResponseDTO update(Long id, EnderecoDTO dto, Long idUsuario);
 
     void delete(Long id);
 
     public EnderecoResponseDTO findById(Long id);
 
     public List<EnderecoResponseDTO> findByAll();
+
+    public List<EnderecoResponseDTO> findByIdUser(Long idUsuario);
 }

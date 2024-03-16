@@ -2,7 +2,6 @@ package br.unitins.topicos1.dto;
 
 import br.unitins.topicos1.model.Endereco;
 
-
 public record EnderecoDTO(
 
         String rua,
@@ -10,6 +9,7 @@ public record EnderecoDTO(
         String cidade,
         String estado,
         String cep) {
+
     public static EnderecoDTO valueOf(Endereco endereco) {
         return new EnderecoDTO(
                 endereco.getRua(),

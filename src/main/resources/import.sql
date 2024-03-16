@@ -8,24 +8,19 @@
 insert into usuario (nome, login, senha, cpf, perfil) values('Usuario user', 'user', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', '12345678900',1);
 insert into usuario (nome, login, senha, cpf, perfil) values('Usuario admin', 'admin', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', '98765432111',2);
 
-INSERT INTO Endereco (rua,numero,cidade, estado,cep) VALUES
-('Rua A','123','Cidade1','Estado1','12345-678'),
-('Rua b','456','Cidade2','Estado2','87654-321'),
-('Rua c','789','Cidade3','Estado3','11111-111');
+INSERT INTO Endereco (rua,numero,cidade, estado,cep,id_usuario) VALUES
+('Rua A','123','Cidade1','Estado1','12345-678',1),
+('Rua b','456','Cidade2','Estado2','87654-321',2),
+('Rua c','789','Cidade3','Estado3','11111-111',1);
 
-insert into usuario_endereco (id_usuario, id_endereco) values (1,1);
-insert into usuario_endereco (id_usuario, id_endereco) values (1,2);
-insert into usuario_endereco (id_usuario, id_endereco) values (2,3);
 
-insert into telefone (codigoArea, numero) values('63', '9999-9999');
-insert into telefone (codigoArea, numero) values('62', '8888-8888');
-insert into telefone (codigoArea, numero) values('63', '7777-7777');
-insert into telefone (codigoArea, numero) values('63', '6666-6666');
 
-insert into usuario_telefone (id_usuario, id_telefone) values(1, 1);
-insert into usuario_telefone (id_usuario, id_telefone) values(1, 2);
-insert into usuario_telefone (id_usuario, id_telefone) values(2, 3);
-insert into usuario_telefone (id_usuario, id_telefone) values(2, 4);
+insert into telefone (codigoArea, numero,id_usuario) values('63', '9999-9999',1);
+insert into telefone (codigoArea, numero,id_usuario) values('62', '8888-8888',2);
+insert into telefone (codigoArea, numero,id_usuario) values('63', '7777-7777',1);
+insert into telefone (codigoArea, numero,id_usuario) values('63', '6666-6666',2);
+
+
 
 
 insert into category (category, version) values('CATEGORY 1', 0);

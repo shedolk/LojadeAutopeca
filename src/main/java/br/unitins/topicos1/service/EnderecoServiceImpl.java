@@ -6,6 +6,7 @@ import br.unitins.topicos1.dto.EnderecoDTO;
 import br.unitins.topicos1.dto.EnderecoResponseDTO;
 import br.unitins.topicos1.model.Endereco;
 import br.unitins.topicos1.repository.EnderecoRepository;
+import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -18,15 +19,19 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Inject
     EnderecoRepository enderecoRepository;
 
+    @Inject
+    UsuarioRepository usuarioRepository;
+
     @Override
     @Transactional
-    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto) {
+    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto, Long idUsuario) {
         Endereco novoEndereco = new Endereco();
         novoEndereco.setRua(dto.rua());
         novoEndereco.setNumero(dto.numero());
         novoEndereco.setCidade(dto.cidade());
         novoEndereco.setEstado(dto.estado());
         novoEndereco.setCep(dto.cep());
+        novoEndereco.setUsuario(usuarioRepository.findById(idUsuario));
 
         enderecoRepository.persist(novoEndereco);
 
@@ -35,7 +40,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     @Transactional
-    public EnderecoResponseDTO update(Long id, EnderecoDTO dto) {
+    public EnderecoResponseDTO update(Long id, EnderecoDTO dto, Long idUsuario) {
         Endereco endereco = enderecoRepository.findById(id);
 
         if (enderecoRepository.findById(id) == null || endereco.getId() == null) {
@@ -45,6 +50,7 @@ public class EnderecoServiceImpl implements EnderecoService {
             endereco.setCidade(dto.cidade());
             endereco.setEstado(dto.estado());
             endereco.setCep(dto.cep());
+            endereco.setUsuario(usuarioRepository.findById(idUsuario));
         }
 
         return EnderecoResponseDTO.valueOf(endereco);
@@ -65,6 +71,12 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Override
     public List<EnderecoResponseDTO> findByAll() {
         return enderecoRepository.listAll().stream()
+                .map(e -> EnderecoResponseDTO.valueOf(e)).toList();
+    }
+
+    @Override
+    public List<EnderecoResponseDTO> findByIdUser(Long id) {
+        return enderecoRepository.findByIdUser(id).stream()
                 .map(e -> EnderecoResponseDTO.valueOf(e)).toList();
     }
 

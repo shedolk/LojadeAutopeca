@@ -1,6 +1,7 @@
 package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.TelefoneDTO;
+
 import br.unitins.topicos1.service.TelefoneService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -31,8 +32,8 @@ public class TelefoneResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, TelefoneDTO dto) {
-        telefoneService.update(id, dto);
+    public Response update(@PathParam("id") Long id, TelefoneDTO dto, Long idUsuario) {
+        telefoneService.update(id, dto, idUsuario);
         return Response.noContent().build();
     }
 
@@ -53,5 +54,11 @@ public class TelefoneResource {
     @GET
     public Response findAll() {
         return Response.ok(telefoneService.findByAll()).build();
+    }
+
+    @GET
+    @Path("/usuario/{id}")
+    public Response findByIdUser(@PathParam("id") Long id) {
+        return Response.ok(telefoneService.findByIdUser(id)).build();
     }
 }

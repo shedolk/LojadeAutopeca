@@ -2,14 +2,16 @@ package br.unitins.topicos1.service;
 
 import java.util.List;
 
-import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.TelefoneResponseDTO;
+import br.unitins.topicos1.dto.TelefoneDTO;
+
 import br.unitins.topicos1.model.Telefone;
 import br.unitins.topicos1.repository.TelefoneRepository;
 import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -23,7 +25,7 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public TelefoneResponseDTO insert(TelefoneDTO dto, Long idUsuario) {
+    public TelefoneResponseDTO insert(@Valid TelefoneDTO dto, Long idUsuario) {
         Telefone novoTelefone = new Telefone();
         novoTelefone.setCodigoArea(dto.codigoArea());
         novoTelefone.setNumero(dto.numero());
@@ -36,11 +38,12 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public TelefoneResponseDTO update(Long id, TelefoneDTO dto) {
+    public TelefoneResponseDTO update(Long id, TelefoneDTO dto, Long idUsuario) {
         Telefone telefone = telefoneRepository.findById(id);
 
         telefone.setCodigoArea(dto.codigoArea());
         telefone.setNumero(dto.numero());
+        telefone.setUsuario(usuarioRepository.findById(idUsuario));
 
         return TelefoneResponseDTO.valueOf(telefone);
     }
@@ -60,6 +63,12 @@ public class TelefoneServiceImpl implements TelefoneService {
     @Override
     public List<TelefoneResponseDTO> findByAll() {
         return telefoneRepository.listAll().stream()
+                .map(e -> TelefoneResponseDTO.valueOf(e)).toList();
+    }
+
+    @Override
+    public List<TelefoneResponseDTO> findByIdUser(Long id) {
+        return telefoneRepository.findByIdUser(id).stream()
                 .map(e -> TelefoneResponseDTO.valueOf(e)).toList();
     }
 

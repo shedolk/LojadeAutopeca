@@ -3,33 +3,62 @@ package br.unitins.topicos1.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pedido extends DefaultEntity {
+    private Long id;
 
-    private LocalDateTime dataHoraPedido;
+    private LocalDateTime dataPedido;
+
+    // @Enumerated(EnumType.ORDINAL)
+    @OneToOne
+    @JoinColumn(name = "pedido")
+    private Pagamento pagamento;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+    @JoinColumn(name = "pedido")
+    private StatusPedido statusPedido;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido", fetch = FetchType.LAZY)
-    private List<ItemPedido> itens;
+    @ManyToOne
+    @JoinColumn(name = "pedido")
+    private Cupom cupom;
 
     private Double totalPedido;
 
-    // @Enumerated(EnumType.ORDINAL)
-    private Pagamento pagamento;
+    @OneToOne(mappedBy = "pedido")
+    private Usuario usuario;
 
-    private StatusPedido statusPedido;
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 
-    private Cupom cupom;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(LocalDateTime dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
 
     public StatusPedido getStatusPedido() {
         return statusPedido;
@@ -47,12 +76,12 @@ public class Pedido extends DefaultEntity {
         this.cupom = cupom;
     }
 
-    public LocalDateTime getDataHoraPedido() {
-        return dataHoraPedido;
+    public Double getTotalPedido() {
+        return totalPedido;
     }
 
-    public void setDataHoraPedido(LocalDateTime dataHoraPedido) {
-        this.dataHoraPedido = dataHoraPedido;
+    public void setTotalPedido(Double totalPedido) {
+        this.totalPedido = totalPedido;
     }
 
     public Usuario getUsuario() {
@@ -69,22 +98,6 @@ public class Pedido extends DefaultEntity {
 
     public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
-    }
-
-    public Double getTotalPedido() {
-        return totalPedido;
-    }
-
-    public void setTotalPedido(Double totalPedido) {
-        this.totalPedido = totalPedido;
-    }
-
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
     }
 
 }

@@ -10,7 +10,9 @@ import br.unitins.topicos1.dto.PedidoResponseDTO;
 import br.unitins.topicos1.model.ItemPedido;
 import br.unitins.topicos1.model.Pagamento;
 import br.unitins.topicos1.model.Pedido;
+import br.unitins.topicos1.model.Perfil;
 import br.unitins.topicos1.model.Product;
+import br.unitins.topicos1.model.StatusPedido;
 import br.unitins.topicos1.repository.PedidoRepository;
 import br.unitins.topicos1.repository.ProductRepository;
 import br.unitins.topicos1.repository.UsuarioRepository;
@@ -43,10 +45,10 @@ public class PedidoServiceImpl implements PedidoService {
     @Transactional
     public PedidoResponseDTO insert(PedidoDTO dto, String login) {
         Pedido pedido = new Pedido();
-        pedido.setDataHoraPedido(LocalDateTime.now());
-
-        pedido.setPagamento(Pagamento.valueOf(dto.idPagamento()));
-
+        pedido.setDataPedido(LocalDateTime.now());
+        pedido.setPagamento(dto.pagamento());
+        pedido.setStatusPedido(StatusPedido.valueOf(dto.statusPedido()));
+        pedido.setCupom(dto.cupom());
         // calculo do total do pedido
         Double total = 0.0;
         for (ItemPedidoDTO itemDto : dto.itens()) {
@@ -61,11 +63,6 @@ public class PedidoServiceImpl implements PedidoService {
             item.setPreco(itemDto.preco());
             item.setQuantidade(itemDto.quantidade());
             item.setPedido(pedido);
-
-            Product product = produtoRepository.findById(itemDto.idProduct());
-            item.setProduct(product);
-
-            product.setEstoque(product.getEstoque() - item.getQuantidade());
 
             pedido.getItens().add(item);
         }

@@ -7,13 +7,18 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class ItemPedido extends DefaultEntity {
 
+    Long id;
+
     private Integer quantidade;
+
     private Double preco;
 
+    // aqui inves de product vai ser pecaSuspensao
     @ManyToOne
     @JoinColumn(name = "id_produto")
     private Product product;
 
+    // aqui acho que está errado.
     @ManyToOne
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
@@ -34,16 +39,6 @@ public class ItemPedido extends DefaultEntity {
         this.preco = preco;
     }
 
-    /*
-     * public Produto getProduto() {
-     * return produto;
-     * }
-     * 
-     * public void setProduto(Produto produto) {
-     * this.produto = produto;
-     * }
-     */
-
     public Pedido getPedido() {
         return pedido;
     }
@@ -59,4 +54,13 @@ public class ItemPedido extends DefaultEntity {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

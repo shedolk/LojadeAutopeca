@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pedido extends DefaultEntity {
-    
+
     private LocalDateTime dataHoraPedido;
 
     @ManyToOne
@@ -24,8 +24,28 @@ public class Pedido extends DefaultEntity {
 
     private Double totalPedido;
 
-    //@Enumerated(EnumType.ORDINAL)
+    // @Enumerated(EnumType.ORDINAL)
     private Pagamento pagamento;
+
+    private StatusPedido statusPedido;
+
+    private Cupom cupom;
+
+    public StatusPedido getStatusPedido() {
+        return statusPedido;
+    }
+
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
+    }
+
+    public Cupom getCupom() {
+        return cupom;
+    }
+
+    public void setCupom(Cupom cupom) {
+        this.cupom = cupom;
+    }
 
     public LocalDateTime getDataHoraPedido() {
         return dataHoraPedido;
@@ -67,5 +87,4 @@ public class Pedido extends DefaultEntity {
         this.pagamento = pagamento;
     }
 
-    
 }

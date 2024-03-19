@@ -2,7 +2,10 @@ package br.unitins.topicos1.model;
 
 import java.time.LocalDate;
 
-public class Pagamento {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Pagamento extends DefaultEntity {
     Long id;
     LocalDate momento;
     FormaPagamento formaPagamento;

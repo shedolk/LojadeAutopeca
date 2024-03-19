@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pedido extends DefaultEntity {
@@ -15,22 +14,22 @@ public class Pedido extends DefaultEntity {
 
     private LocalDateTime dataPedido;
 
-    // @Enumerated(EnumType.ORDINAL)
-    @OneToOne
-    @JoinColumn(name = "pedido")
+    // @OneToOne
+    // @JoinColumn(name = "pedido")
+    @ManyToOne
+    @JoinColumn(name = "pagamento_id")
     private Pagamento pagamento;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido")
     private StatusPedido statusPedido;
 
     @ManyToOne
-    @JoinColumn(name = "pedido")
+    @JoinColumn(name = "cupom_id")
     private Cupom cupom;
 
     private Double totalPedido;
 
-    @OneToOne(mappedBy = "pedido")
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "pedido")

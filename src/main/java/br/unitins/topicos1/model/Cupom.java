@@ -2,7 +2,10 @@ package br.unitins.topicos1.model;
 
 import java.time.LocalDate;
 
-public class Cupom {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Cupom extends DefaultEntity {
     Long id;
     String nomeCupom;
     LocalDate dataAplicada;

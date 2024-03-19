@@ -9,7 +9,7 @@ import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
 import br.unitins.topicos1.service.PedidoService;
 import br.unitins.topicos1.service.UsuarioService;
-import jakarta.annotation.security.RolesAllowed;
+//import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -39,7 +39,7 @@ public class PedidoResource {
     private static final Logger LOG = Logger.getLogger(PedidoResource.class);
 
     @POST
-    @RolesAllowed({ "User", "Admin" })
+    // @RolesAllowed({ "User", "Admin" })
     public Response insert(PedidoDTO dto) {
 
         LOG.info("USUARIO REALIZANDO UM PEDIDO");
@@ -54,7 +54,7 @@ public class PedidoResource {
     }
 
     @GET
-    @Path("/pedidos")
+    @Path("/")
 
     public Response findAll() {
         LOG.info("BUSCANDO TODOS OS PEDIDOS FEITOS POR ESSE USUARIO");
@@ -63,7 +63,7 @@ public class PedidoResource {
     }
 
     @GET
-    @RolesAllowed({ "User", "Admin" })
+    // @RolesAllowed({ "User", "Admin" })
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
@@ -71,7 +71,7 @@ public class PedidoResource {
 
     @DELETE
     @Transactional
-    @RolesAllowed({ "Admin" })
+    // @RolesAllowed({ "Admin" })
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);

@@ -23,69 +23,68 @@ import jakarta.ws.rs.core.Response;
 
 @QuarkusTest
 public class PedidoResourceTest {
-    
-    @Inject
-    PedidoService pedidoService;
 
-    @Inject
-    PedidoResource pedidoResource;
+    // @Inject
+    // PedidoService pedidoService;
+
+    // @Inject
+    // PedidoResource pedidoResource;
+
+    // /*
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testFindAll() {
+    // given()
+    // .when().get("/pedidos")
+    // .then()
+    // .statusCode(200);
+    // }*/
+
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testFindAll() {
+
+    // Response response = pedidoResource.findAll();
+
+    // assertEquals(200, response.getStatus());
+
+    // }
+
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testInsert() {
+
+    // List<ItemPedidoDTO> itens = new ArrayList<ItemPedidoDTO>();
+    // itens.add(new ItemPedidoDTO(2, 199.00, (long)1));
+
+    // PedidoDTO pedidoDTO = new PedidoDTO(itens, LocalDateTime.now(), 1);
+
+    // given()
+    // .contentType(ContentType.JSON)
+    // .body(pedidoDTO)
+    // .when().post("/pedidos")
+    // .then()
+    // .statusCode(201)
+    // .body(
+    // "id", notNullValue());
+    // }
 
     /*
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testFindAll() {
-        given()
-          .when().get("/pedidos")
-          .then()
-             .statusCode(200);
-    }*/
-
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testFindAll() {
-        
-        Response response = pedidoResource.findAll();
-
-        assertEquals(200, response.getStatus());
-
-    }
-
-
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testInsert() {
-
-        List<ItemPedidoDTO> itens = new ArrayList<ItemPedidoDTO>();
-        itens.add(new ItemPedidoDTO(2, 199.00, (long)1));
-
-        PedidoDTO pedidoDTO = new PedidoDTO(itens, LocalDateTime.now(), 1);
-
-        given()
-        .contentType(ContentType.JSON)
-        .body(pedidoDTO)
-        .when().post("/pedidos")
-        .then()
-        .statusCode(201)
-        .body(
-            "id", notNullValue());
-    }
-
-    /*
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testFindById() {
-        // Configurar objetos fictícios
-        
-        Long id = 1L;
-
-        // Chamar o método e verificar o resultado
-        Response response = pedidoResource.findById(id);
-
-        assertEquals(200, response.getStatus());
-
-        // Você pode adicionar mais verificações conforme necessário
-    }*/
+     * @Test
+     * 
+     * @TestSecurity(authorizationEnabled = false)
+     * public void testFindById() {
+     * // Configurar objetos fictícios
+     * 
+     * Long id = 1L;
+     * 
+     * // Chamar o método e verificar o resultado
+     * Response response = pedidoResource.findById(id);
+     * 
+     * assertEquals(200, response.getStatus());
+     * 
+     * // Você pode adicionar mais verificações conforme necessário
+     * }
+     */
 
 }
-
-

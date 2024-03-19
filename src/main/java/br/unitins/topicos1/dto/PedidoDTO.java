@@ -3,16 +3,13 @@ package br.unitins.topicos1.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.unitins.topicos1.model.Cupom;
-import br.unitins.topicos1.model.Pagamento;
-
 public record PedidoDTO(
         LocalDateTime dataPedido,
-        Pagamento pagamento,
+        Integer pagamento_id,
         Integer statusPedido,
-        Cupom cupom,
+        Integer cupom_id,
         Double totalPedido,
-        UsuarioResponseDTO usuario,
+        Integer usuario_id,
         List<ItemPedidoDTO> itens
 
 ) {

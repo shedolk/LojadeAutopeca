@@ -5,6 +5,21 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
+-- Exemplo de inserção de dados na tabela Cupom
+INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) 
+VALUES 
+    ('2024-03-19', 10.5, 'CUPOM10'), -- Exemplo de cupom com desconto de 10.5% aplicado em 19 de março de 2024
+    ('2024-03-20', 5.75, 'DESC5'),   -- Exemplo de cupom com desconto de 5.75% aplicado em 20 de março de 2024
+    ('2024-03-21', 15, 'SUPERDESC');  -- Exemplo de cupom com desconto de 15% aplicado em 21 de março de 2024
+
+
+-- Exemplo de inserção de dados na tabela Pagamento
+INSERT INTO Pagamento (formaPagamento, momento) 
+VALUES 
+    (0, '2024-03-19'), -- Exemplo de forma de pagamento 0 (pode ser substituído pelo valor desejado)
+    (1, '2024-03-20'), -- Exemplo de forma de pagamento 1 (pode ser substituído pelo valor desejado)
+    (2, '2024-03-21'); -- Exemplo de forma de pagamento 2 (pode ser substituído pelo valor desejado)
+
 insert into usuario (nome, login, senha, cpf, perfil) values('Usuario user', 'user', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', '12345678900',1);
 insert into usuario (nome, login, senha, cpf, perfil) values('Usuario admin', 'admin', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', '98765432111',2);
 
@@ -36,15 +51,31 @@ insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) v
 insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 5', 'DESCRICAO DO PRODUTO 5', 5, 199.0, 100, 'IMAGEM PRODUTO 5');
 
 
-INSERT INTO Pedido (dataHoraPedido, pagamento, totalPedido, id_usuario) VALUES
+-- INSERT INTO Pedido (dataHoraPedido, pagamento, totalPedido, id_usuario) VALUES
+--     ('2023-01-01 10:00:00', 1, 597.00, 1),
+--     ('2023-02-01 12:30:00', 2, 398.00, 2);
+
+-- Inserções na tabela Pedido
+INSERT INTO Pedido (dataPedido, statusPedido, totalPedido, usuario_id) 
+VALUES 
     ('2023-01-01 10:00:00', 1, 597.00, 1),
     ('2023-02-01 12:30:00', 2, 398.00, 2);
 
+ -- Inserções na tabela ItemPedido
+INSERT INTO ItemPedido (preco, quantidade, id_pedido, id_produto) 
+VALUES 
+    (25.99, 2, (SELECT id FROM Pedido WHERE dataPedido = '2023-01-01 10:00:00'), 101),   
+    (15.5, 3, (SELECT id FROM Pedido WHERE dataPedido = '2023-02-01 12:30:00'), 102),    
+    (10.75, 1, (SELECT id FROM Pedido WHERE dataPedido = '2023-02-01 12:30:00'), 103);
 
-INSERT INTO ItemPedido (quantidade, preco, id_produto, id_pedido) VALUES
-    (1, 199.0, 1, 1),
-    (2, 199.0, 2, 1),
-    (2, 199.0, 3, 2);
+-- INSERT INTO ItemPedido (quantidade, preco, id_produto, id_pedido) VALUES
+--     (1, 199.0, 1, 1),
+--     (2, 199.0, 2, 1),
+--     (2, 199.0, 3, 2);
+
+    -- Inserções corrigidas na tabela ItemPedido
+
+
     
 
 

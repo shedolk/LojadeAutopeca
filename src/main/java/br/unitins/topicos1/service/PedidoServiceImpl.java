@@ -7,19 +7,18 @@ import java.util.List;
 import br.unitins.topicos1.dto.ItemPedidoDTO;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
+import br.unitins.topicos1.model.Cupom;
 import br.unitins.topicos1.model.ItemPedido;
 import br.unitins.topicos1.model.Pagamento;
 import br.unitins.topicos1.model.Pedido;
-import br.unitins.topicos1.model.Perfil;
-import br.unitins.topicos1.model.Product;
+
 import br.unitins.topicos1.model.StatusPedido;
+import br.unitins.topicos1.model.Usuario;
+import br.unitins.topicos1.repository.CupomRepository;
+import br.unitins.topicos1.repository.PagamentoRepository;
 import br.unitins.topicos1.repository.PedidoRepository;
 import br.unitins.topicos1.repository.ProductRepository;
 import br.unitins.topicos1.repository.UsuarioRepository;
-
-//import br.unitins.topicos1.ecommerce.model.Produto;
-
-//import br.unitins.topicos1.ecommerce.repository.ProdutoRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -28,9 +27,6 @@ import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class PedidoServiceImpl implements PedidoService {
-
-    // @Inject
-    // ProdutoRepository produtoRepository;
 
     @Inject
     ProductRepository produtoRepository;
@@ -41,20 +37,34 @@ public class PedidoServiceImpl implements PedidoService {
     @Inject
     PedidoRepository pedidoRepository;
 
+    @Inject
+    PagamentoRepository pagamentoRepository;
+
+    @Inject
+    CupomRepository cupomRepository;
+
     @Override
     @Transactional
     public PedidoResponseDTO insert(PedidoDTO dto, String login) {
         Pedido pedido = new Pedido();
         pedido.setDataPedido(LocalDateTime.now());
-        pedido.setPagamento(dto.pagamento());
+        Pagamento pagamento = pagamentoRepository.findById(dto.pagamento_id());
+        pedido.setPagamento(pagamento);
         pedido.setStatusPedido(StatusPedido.valueOf(dto.statusPedido()));
-        pedido.setCupom(dto.cupom());
+        Cupom cupom = cupomRepository.findById(dto.cupom_id());
+        pedido.setCupom(cupom);
+
         // calculo do total do pedido
         Double total = 0.0;
         for (ItemPedidoDTO itemDto : dto.itens()) {
             total += (itemDto.preco() * itemDto.quantidade());
         }
         pedido.setTotalPedido(total);
+
+        // buscando o usuario pelo login
+        Usuario usuario = usuarioRepository.findById(dto.usuario_id());
+        pedido.setUsuario(usuario);
+        // pedido.setUsuario(usuarioRepository.findByLogin(login));
 
         // adicionando os itens do pedido
         pedido.setItens(new ArrayList<ItemPedido>());
@@ -66,9 +76,6 @@ public class PedidoServiceImpl implements PedidoService {
 
             pedido.getItens().add(item);
         }
-
-        // buscando o usuario pelo login
-        pedido.setUsuario(usuarioRepository.findByLogin(login));
 
         // salvando no banco
         pedidoRepository.persist(pedido);

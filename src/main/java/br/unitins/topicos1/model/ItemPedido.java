@@ -13,12 +13,10 @@ public class ItemPedido extends DefaultEntity {
 
     private Double preco;
 
-    // aqui inves de product vai ser pecaSuspensao
     @ManyToOne
     @JoinColumn(name = "id_produto")
     private Product product;
 
-    // aqui acho que está errado.
     @ManyToOne
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;

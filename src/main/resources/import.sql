@@ -1,81 +1,55 @@
--- This file allow to write SQL commands that will be emitted in test and dev.
--- The commands are commented as their support depends of the database
--- insert into myentity (id, field) values(1, 'field-1');
--- insert into myentity (id, field) values(2, 'field-2');
--- insert into myentity (id, field) values(3, 'field-3');
--- alter sequence myentity_seq restart with 4;
+-- Inserção na tabela Category
+INSERT INTO Category (category, version) VALUES 
+    ('Eletrônicos', 1),
+    ('Roupas', 1),
+    ('Alimentos', 1);
 
--- Exemplo de inserção de dados na tabela Cupom
-INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) 
-VALUES 
-    ('2024-03-19', 10.5, 'CUPOM10'), -- Exemplo de cupom com desconto de 10.5% aplicado em 19 de março de 2024
-    ('2024-03-20', 5.75, 'DESC5'),   -- Exemplo de cupom com desconto de 5.75% aplicado em 20 de março de 2024
-    ('2024-03-21', 15, 'SUPERDESC');  -- Exemplo de cupom com desconto de 15% aplicado em 21 de março de 2024
-
-
--- Exemplo de inserção de dados na tabela Pagamento
-INSERT INTO Pagamento (formaPagamento, momento) 
-VALUES 
-    (0, '2024-03-19'), -- Exemplo de forma de pagamento 0 (pode ser substituído pelo valor desejado)
-    (1, '2024-03-20'), -- Exemplo de forma de pagamento 1 (pode ser substituído pelo valor desejado)
-    (2, '2024-03-21'); -- Exemplo de forma de pagamento 2 (pode ser substituído pelo valor desejado)
-
-insert into usuario (nome, login, senha, cpf, perfil) values('Usuario user', 'user', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', '12345678900',1);
-insert into usuario (nome, login, senha, cpf, perfil) values('Usuario admin', 'admin', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==', '98765432111',2);
-
-INSERT INTO Endereco (rua,numero,cidade, estado,cep,id_usuario) VALUES
-('Rua A','123','Cidade1','Estado1','12345-678',1),
-('Rua b','456','Cidade2','Estado2','87654-321',2),
-('Rua c','789','Cidade3','Estado3','11111-111',1);
+-- Inserção na tabela Cupom
+INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) VALUES 
+    ('2023-01-15', 10.0, 'DESCONTO10'),
+    ('2023-02-20', 15.0, 'DESCONTO15'),
+    ('2023-03-25', 20.0, 'DESCONTO20');
 
 
 
-insert into telefone (codigoArea, numero,id_usuario) values('63', '9999-9999',1);
-insert into telefone (codigoArea, numero,id_usuario) values('62', '8888-8888',2);
-insert into telefone (codigoArea, numero,id_usuario) values('63', '7777-7777',1);
-insert into telefone (codigoArea, numero,id_usuario) values('63', '6666-6666',2);
+-- Inserção na tabela Produto
+INSERT INTO Product (descricao, estoque, nome, nomeImagem, preco, id_category) VALUES 
+    ('Smartphone', 100, 'iPhone', 'iphone.jpg', 5000.0, 1),
+    ('Camiseta', 200, 'Camiseta Branca', 'camiseta.jpg', 50.0, 2),
+    ('Arroz', 300, 'Arroz Integral', 'arroz.jpg', 10.0, 3);
 
+-- Inserção na tabela Usuario
+INSERT INTO Usuario (cpf, login, nome, perfil, senha) VALUES 
+    ('12345678900', 'usuario1', 'Usuário 1', 1, 'senha1'),
+    ('98765432100', 'usuario2', 'Usuário 2', 2, 'senha2'),
+    ('11122233344', 'usuario3', 'Usuário 3', 1, 'senha3');
 
+    -- Inserção na tabela Endereco
+INSERT INTO Endereco (cep, cidade, estado, numero, rua, id_usuario) VALUES 
+    ('12345-678', 'São Paulo', 'SP', '123', 'Rua A', 1),
+    ('54321-876', 'Rio de Janeiro', 'RJ', '456', 'Rua B', 2),
+    ('98765-432', 'Belo Horizonte', 'MG', '789', 'Rua C', 3);
 
+-- Inserção na tabela Pagamento
+INSERT INTO Pagamento (formaPagamento, momento) VALUES 
+    (0, '2023-01-01'),
+    (1, '2023-02-01'),
+    (2, '2023-03-01');
 
-insert into category (category, version) values('CATEGORY 1', 0);
-insert into category (category, version) values('CATEGORY 2', 0);
-insert into category (category, version) values('CATEGORY 3', 0);
-insert into category (category, version) values('CATEGORY 4', 0);
-insert into category (category, version) values('CATEGORY 5', 0);
+-- Inserção na tabela Pedido
+INSERT INTO Pedido (dataPedido, statusPedido, totalPedido, cupom_id, pagamento_id, usuario_id) VALUES 
+    ('2023-01-01 10:00:00', 0, 1000.0, 1, 1, 1),
+    ('2023-02-01 12:30:00', 1, 1500.0, 2, 2, 2),
+    ('2023-03-01 15:45:00', 2, 2000.0, 3, 3, 3);
 
-insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 1', 'DESCRICAO DO PRODUTO 1', 1, 199.0, 100, 'IMAGEM PRODUTO 1');
-insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 2', 'DESCRICAO DO PRODUTO 2', 2, 199.0, 100, 'IMAGEM PRODUTO 2');
-insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 3', 'DESCRICAO DO PRODUTO 3', 3, 199.0, 100, 'IMAGEM PRODUTO 3');
-insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 4', 'DESCRICAO DO PRODUTO 4', 4, 199.0, 100, 'IMAGEM PRODUTO 4');
-insert into product (nome, descricao, id_category, preco, estoque, nomeImagem) values('PRODUCT 5', 'DESCRICAO DO PRODUTO 5', 5, 199.0, 100, 'IMAGEM PRODUTO 5');
+-- Inserção na tabela ItemPedido
+INSERT INTO ItemPedido (preco, quantidade, id_pedido, id_produto) VALUES 
+    (25.99, 2, 1, 1),
+    (15.5, 3, 2, 2),
+    (10.75, 1, 2, 3);
 
-
--- INSERT INTO Pedido (dataHoraPedido, pagamento, totalPedido, id_usuario) VALUES
---     ('2023-01-01 10:00:00', 1, 597.00, 1),
---     ('2023-02-01 12:30:00', 2, 398.00, 2);
-
--- Inserções na tabela Pedido
-INSERT INTO Pedido (dataPedido, statusPedido, totalPedido, usuario_id) 
-VALUES 
-    ('2023-01-01 10:00:00', 1, 597.00, 1),
-    ('2023-02-01 12:30:00', 2, 398.00, 2);
-
- -- Inserções na tabela ItemPedido
-INSERT INTO ItemPedido (preco, quantidade, id_pedido, id_produto) 
-VALUES 
-    (25.99, 2, (SELECT id FROM Pedido WHERE dataPedido = '2023-01-01 10:00:00'), 101),   
-    (15.5, 3, (SELECT id FROM Pedido WHERE dataPedido = '2023-02-01 12:30:00'), 102),    
-    (10.75, 1, (SELECT id FROM Pedido WHERE dataPedido = '2023-02-01 12:30:00'), 103);
-
--- INSERT INTO ItemPedido (quantidade, preco, id_produto, id_pedido) VALUES
---     (1, 199.0, 1, 1),
---     (2, 199.0, 2, 1),
---     (2, 199.0, 3, 2);
-
-    -- Inserções corrigidas na tabela ItemPedido
-
-
-    
-
-
+-- Inserção na tabela Telefone
+INSERT INTO Telefone (codigoArea, numero, id_usuario) VALUES 
+    ('11', '999999999', 1),
+    ('21', '888888888', 2),
+    ('31', '777777777', 3);

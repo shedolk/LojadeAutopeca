@@ -1,14 +1,16 @@
 package br.unitins.topicos1.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product extends DefaultEntity {
-    
+
     private String nome;
 
     private String descricao;
@@ -19,10 +21,13 @@ public class Product extends DefaultEntity {
 
     private Double preco;
 
-    //@Check(constraints = "estoque >= 0")
+    // @Check(constraints = "estoque >= 0")
     private Integer estoque;
-    
+
     private String nomeImagem;
+
+    @OneToMany(mappedBy = "product")
+    private List<ItemPedido> itemPedidos;
 
     public String getNome() {
         return nome;
@@ -40,7 +45,7 @@ public class Product extends DefaultEntity {
         this.descricao = descricao;
     }
 
-     public Category getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -71,4 +76,13 @@ public class Product extends DefaultEntity {
     public void setNomeImagem(String nomeImagem) {
         this.nomeImagem = nomeImagem;
     }
+
+    public List<ItemPedido> getItemPedidos() {
+        return itemPedidos;
+    }
+
+    public void setItemPedidos(List<ItemPedido> itemPedidos) {
+        this.itemPedidos = itemPedidos;
+    }
+
 }

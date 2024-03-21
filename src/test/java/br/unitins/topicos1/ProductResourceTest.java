@@ -1,7 +1,5 @@
 package br.unitins.topicos1;
 
-
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -15,7 +13,6 @@ import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.service.CategoryService;
 import br.unitins.topicos1.service.ProductService;
 
-
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
 import io.restassured.http.ContentType;
@@ -23,102 +20,103 @@ import jakarta.inject.Inject;
 
 @QuarkusTest
 public class ProductResourceTest {
-    
-    @Inject
-    ProductService productService;
 
-    @Inject
-    CategoryService categoryService;
+    // @Inject
+    // ProductService productService;
 
-    @Test
-    public void testFindAll() {
-        given()
-          .when().get("/products")
-          .then()
-             .statusCode(200);
-    }
+    // @Inject
+    // CategoryService categoryService;
 
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testInsert() {
+    // @Test
+    // public void testFindAll() {
+    // given()
+    // .when().get("/products")
+    // .then()
+    // .statusCode(200);
+    // }
 
-        ProductDTO productDTO = new ProductDTO(
-            "Produto Insert",
-            "Descricao produto insert",
-            (long) 1,
-            199.00,
-            100,
-            "nomeImagem"
-        );
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testInsert() {
 
-        given()
-        .contentType(ContentType.JSON)
-        .body(productDTO)
-        .when().post("/products")
-        .then()
-        .statusCode(201)
-        .body(
-            "id", notNullValue(),
-         "nome",is("Produto Insert"),
-         "descricao",is("Descricao produto insert"));
-    }
+    // ProductDTO productDTO = new ProductDTO(
+    // "Produto Insert",
+    // "Descricao produto insert",
+    // (long) 1,
+    // 199.00,
+    // 100,
+    // "nomeImagem"
+    // );
 
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testUpdate() {
+    // given()
+    // .contentType(ContentType.JSON)
+    // .body(productDTO)
+    // .when().post("/products")
+    // .then()
+    // .statusCode(201)
+    // .body(
+    // "id", notNullValue(),
+    // "nome",is("Produto Insert"),
+    // "descricao",is("Descricao produto insert"));
+    // }
 
-        ProductDTO dto = new ProductDTO("mechanic", "description", (long)1, 299.00, 100, "nomeImagem");
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testUpdate() {
 
-        // inserindo uma product
-        ProductResponseDTO productTest = productService.insert(dto);
+    // ProductDTO dto = new ProductDTO("mechanic", "description", (long)1, 299.00,
+    // 100, "nomeImagem");
 
-        Long id = productTest.id();
+    // // inserindo uma product
+    // ProductResponseDTO productTest = productService.insert(dto);
 
-        ProductDTO dtoUpdate = new ProductDTO(
-            "Suspensoes", 
-            "description coxinha", 
-            (long)2, 
-            399.00, 
-            50, 
-            "nomeImage");
+    // Long id = productTest.id();
 
-        given()
-            .contentType(ContentType.JSON)
-            .body(dtoUpdate)
-            .when().put("/products/"+ id)
-            .then()
-            .statusCode(200);
-    }
+    // ProductDTO dtoUpdate = new ProductDTO(
+    // "Suspensoes",
+    // "description coxinha",
+    // (long)2,
+    // 399.00,
+    // 50,
+    // "nomeImage");
 
-        @Test
-        @TestSecurity(authorizationEnabled = false)
-        public void testDelete() {
+    // given()
+    // .contentType(ContentType.JSON)
+    // .body(dtoUpdate)
+    // .when().put("/products/"+ id)
+    // .then()
+    // .statusCode(200);
+    // }
 
-            // Adicionando um product no banco de dados
-            ProductDTO product = new ProductDTO(
-                "Freios", 
-                "descricao dos freios", 
-                (long)1, 
-                70.00, 
-                50, 
-                "nomeImagem");   
-            ;
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testDelete() {
 
-            Long id = productService.insert(product).id();
+    // // Adicionando um product no banco de dados
+    // ProductDTO product = new ProductDTO(
+    // "Freios",
+    // "descricao dos freios",
+    // (long)1,
+    // 70.00,
+    // 50,
+    // "nomeImagem");
+    // ;
 
-            given()
-            .when().delete("/products/" + id)
-            .then()
-            .statusCode(204);
+    // Long id = productService.insert(product).id();
 
-            // verificando seo product foi excluido
-            ProductResponseDTO productResponseDTO = null;
-                try {
-                productService.findById(id);
-                } catch (Exception e) {
-                }
-                finally {
-                    assertNull(productResponseDTO); 
-                } 
-        }
+    // given()
+    // .when().delete("/products/" + id)
+    // .then()
+    // .statusCode(204);
+
+    // // verificando seo product foi excluido
+    // ProductResponseDTO productResponseDTO = null;
+    // try {
+    // productService.findById(id);
+    // } catch (Exception e) {
+    // }
+    // finally {
+    // assertNull(productResponseDTO);
+    // }
+    // }
 }

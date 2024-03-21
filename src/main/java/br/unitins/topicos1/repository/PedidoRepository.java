@@ -4,8 +4,11 @@ import java.util.List;
 
 import br.unitins.topicos1.model.Pedido;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.hibernate.orm.runtime.dev.HibernateOrmDevInfo.Query;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class PedidoRepository implements PanacheRepository<Pedido> {
@@ -26,5 +29,13 @@ public class PedidoRepository implements PanacheRepository<Pedido> {
             return null;
         }
 
+    }
+
+    @Transactional
+    public Pedido findByIdUser(Long idUsuario) {
+        TypedQuery<Pedido> query = getEntityManager()
+                .createQuery("SELECT p FROM Pedido p WHERE p.usuario.id = :idUsuario", Pedido.class);
+        query.setParameter("idUsuario", idUsuario);
+        return query.getSingleResult();
     }
 }

@@ -6,7 +6,7 @@ import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.CategoryDTO;
 import br.unitins.topicos1.dto.CategoryResponseDTO;
 import br.unitins.topicos1.service.CategoryService;
-import jakarta.annotation.security.RolesAllowed;
+// import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -25,7 +25,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CategoryResource {
-    
+
     @Inject
     CategoryService categoryService;
 
@@ -40,13 +40,13 @@ public class CategoryResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public CategoryResponseDTO findById(@PathParam("id") Long id) {
         return categoryService.findById(id);
     }
 
     @POST
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response insert(CategoryDTO dto) {
         LOG.infof("Inserindo uma categoria: %s", dto.category());
 
@@ -58,20 +58,20 @@ public class CategoryResource {
 
     @PUT
     @Path("/{id}")
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, CategoryDTO dto) {
         try {
             CategoryResponseDTO category = categoryService.update(id, dto);
             return Response.ok(category).build();
-        } catch(ConstraintViolationException e) {
+        } catch (ConstraintViolationException e) {
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
-        }      
+        }
     }
 
     @DELETE
     @Path("/{id}")
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         categoryService.delete(id);
         return Response.status(Status.NO_CONTENT).build();

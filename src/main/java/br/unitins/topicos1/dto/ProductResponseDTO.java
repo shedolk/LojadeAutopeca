@@ -1,10 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import java.util.List;
-
 import br.unitins.topicos1.model.Product;
-
-//import br.unitins.topicos1.ecommerce.model.Category;
 
 public record ProductResponseDTO(
 
@@ -14,8 +10,7 @@ public record ProductResponseDTO(
         CategoryResponseDTO category,
         Double preco,
         Integer estoque,
-        String nomeImagem,
-        List<ItemPedidoResponseDTO> itemPedidos) {
+        String nomeImagem) {
 
     public static ProductResponseDTO valueOf(Product product) {
         return new ProductResponseDTO(
@@ -23,10 +18,8 @@ public record ProductResponseDTO(
                 product.getNome(),
                 product.getDescricao(),
                 CategoryResponseDTO.valueOf(product.getCategory()),
-                // product.getCategory(),
                 product.getPreco(),
                 product.getEstoque(),
-                product.getNomeImagem(),
-                ItemPedidoResponseDTO.valueOf(product.getItemPedidos()));
+                product.getNomeImagem());
     }
 }

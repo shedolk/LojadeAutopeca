@@ -1,6 +1,5 @@
 package br.unitins.topicos1.service;
 
-import br.unitins.topicos1.dto.EnderecoResponseDTO;
 import br.unitins.topicos1.dto.ItemPedidoDTO;
 import br.unitins.topicos1.dto.ItemPedidoResponseDTO;
 import br.unitins.topicos1.model.ItemPedido;

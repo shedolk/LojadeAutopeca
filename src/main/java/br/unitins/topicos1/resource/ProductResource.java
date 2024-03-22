@@ -6,7 +6,7 @@ import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.form.ProductImageForm;
 import br.unitins.topicos1.service.ProductFileService;
 import br.unitins.topicos1.service.ProductService;
-import jakarta.annotation.security.RolesAllowed;
+// import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 
 import br.unitins.topicos1.util.Error;
@@ -36,7 +36,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductResource {
-    
+
     @Inject
     ProductService productService;
 
@@ -46,10 +46,10 @@ public class ProductResource {
     private static final Logger LOG = Logger.getLogger(ProductResource.class);
 
     @PATCH
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     @Path("/upload/imagem/{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response salvarImagem(@MultipartForm ProductImageForm form,@PathParam("id") Long id ){
+    public Response salvarImagem(@MultipartForm ProductImageForm form, @PathParam("id") Long id) {
         String nomeImagem;
         try {
             nomeImagem = productFileService.salvar(form.getNomeImagem(), form.getImagem());
@@ -70,12 +70,12 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response download(@PathParam("nomeImagem") String nomeImagem) {
         ResponseBuilder response = Response.ok(productFileService.obter(nomeImagem));
-        response.header("Content-Disposition", "attachment;filename="+nomeImagem);
+        response.header("Content-Disposition", "attachment;filename=" + nomeImagem);
         return response.build();
     }
 
     @POST
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response insert(ProductDTO dto) {
         LOG.infof("Inserindo um product: %s", dto.nome());
 
@@ -83,22 +83,21 @@ public class ProductResource {
 
         LOG.infof("Product (%d) criado com sucesso.", product.id());
 
-       return Response.status(Status.CREATED).entity(product).build();
-       
+        return Response.status(Status.CREATED).entity(product).build();
+
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response update(ProductDTO dto, @PathParam("id") Long id) {
 
         try {
             ProductResponseDTO product = productService.update(id, dto);
             return Response.ok(product).build();
 
-        } 
-        catch (ConstraintViolationException e) {
+        } catch (ConstraintViolationException e) {
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
         }
@@ -108,12 +107,12 @@ public class ProductResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         productService.delete(id);
         return Response.noContent().build();
     }
-    
+
     @GET
     public Response findAll() {
         return Response.ok(productService.findAll()).build();
@@ -121,11 +120,11 @@ public class ProductResource {
 
     @GET
     @Path("/{id}")
-     @RolesAllowed({"Admin"})
+    // @RolesAllowed({"Admin"})
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(productService.findById(id)).build();
     }
-    
+
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {

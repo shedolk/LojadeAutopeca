@@ -28,7 +28,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
 @ApplicationScoped
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Inject
     ProductRepository productRepository;
@@ -50,10 +50,10 @@ public class ProductServiceImpl implements ProductService{
 
         novoProduct.setPreco(dto.preco());
         novoProduct.setEstoque(dto.estoque());
-       
+
         productRepository.persist(novoProduct);
 
-       return ProductResponseDTO.valueOf(novoProduct);
+        return ProductResponseDTO.valueOf(novoProduct);
     }
 
     @Override
@@ -75,7 +75,6 @@ public class ProductServiceImpl implements ProductService{
 
         return ProductResponseDTO.valueOf(product);
     }
-    
 
     @Override
     @Transactional
@@ -107,24 +106,23 @@ public class ProductServiceImpl implements ProductService{
 
         if (produto == null)
             throw new NullPointerException("Nenhum produto encontrado");
-            
+
         produto.setNomeImagem(nomeImagem);
     }
-    
+
     @PATCH
     @Path("/upload/imagem/{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response salvarImagem(@MultipartForm ProductImageForm form,@PathParam("id") Long id ){
+    public Response salvarImagem(@MultipartForm ProductImageForm form, @PathParam("id") Long id) {
         try {
-           productFileService.salvar(form.getNomeImagem(), form.getImagem());
+            productFileService.salvar(form.getNomeImagem(), form.getImagem());
         } catch (IOException e) {
             e.printStackTrace();
             Error error = new Error("409", e.getMessage());
             return Response.status(Status.CONFLICT).entity(error).build();
         }
 
-       
-     ((ProductService) productFileService).updateNomeImagem(id, form.getNomeImagem());
+        ((ProductService) productFileService).updateNomeImagem(id, form.getNomeImagem());
 
         return Response.ok(Status.NO_CONTENT).build();
 

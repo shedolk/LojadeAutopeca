@@ -11,7 +11,6 @@ import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -25,10 +24,11 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public TelefoneResponseDTO insert(@Valid TelefoneDTO dto, Long idUsuario) {
+    public TelefoneResponseDTO insert(TelefoneDTO dto, Long idUsuario) {
         Telefone novoTelefone = new Telefone();
         novoTelefone.setCodigoArea(dto.codigoArea());
         novoTelefone.setNumero(dto.numero());
+        // novoTelefone.setUsuario(usuarioRepository.findById(idUsuario));
         novoTelefone.setUsuario(usuarioRepository.findById(idUsuario));
 
         telefoneRepository.persist(novoTelefone);

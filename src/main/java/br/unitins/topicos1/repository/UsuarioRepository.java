@@ -33,9 +33,10 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         }
     }
 
-    public Usuario findById(Integer id) {
+    public Usuario findById(Long id) {
         if (id == null)
             return null;
         return find("id", id).firstResult();
     }
+
 }

@@ -11,7 +11,6 @@ import br.unitins.topicos1.model.Cupom;
 import br.unitins.topicos1.model.ItemPedido;
 import br.unitins.topicos1.model.Pagamento;
 import br.unitins.topicos1.model.Pedido;
-import br.unitins.topicos1.model.Product;
 import br.unitins.topicos1.model.StatusPedido;
 import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.CupomRepository;

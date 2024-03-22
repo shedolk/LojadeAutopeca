@@ -9,7 +9,7 @@ public record PedidoDTO(
         Integer statusPedido,
         Integer cupom_id,
         Double totalPedido,
-        Integer usuario_id,
+        Long usuario_id,
         List<ItemPedidoDTO> itens
 
 ) {

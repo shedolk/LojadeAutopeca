@@ -5,10 +5,8 @@ import java.util.List;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.TelefoneResponseDTO;
 
-import jakarta.validation.Valid;
-
 public interface TelefoneService {
-    public TelefoneResponseDTO insert(@Valid TelefoneDTO dto, Long idUsuario);
+    public TelefoneResponseDTO insert(TelefoneDTO dto, Long idUsuario);
 
     TelefoneResponseDTO update(Long id, TelefoneDTO dto, Long idUsuario);
 

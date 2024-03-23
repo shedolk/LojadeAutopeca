@@ -41,7 +41,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
         }
         itemPedido.setProduct(product);
 
-        Pedido pedido = pedidoRepository.findByIdUser(idUsuario);
+        Pedido pedido = pedidoRepository.findByIdUser1(idUsuario);
         if (pedido == null) {
             throw new NotFoundException("Pedido não encontrado para o usuário com ID: " + idUsuario);
         }
@@ -69,7 +69,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
         }
         itemPedido.setProduct(product);
 
-        Pedido pedido = pedidoRepository.findByIdUser(idUsuario);
+        Pedido pedido = pedidoRepository.findByIdUser1(idUsuario);
         if (pedido == null) {
             throw new NotFoundException("Pedido não encontrado para o usuário com ID: " + idUsuario);
         }

@@ -2,12 +2,16 @@ package br.unitins.topicos1.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Endereco extends DefaultEntity {
-
+    @Id // Adicionar esta anotação para indicar que é a chave primária
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Adicionar esta anotação para indicar auto-incremento
     Long id;
 
     @Column(length = 60)

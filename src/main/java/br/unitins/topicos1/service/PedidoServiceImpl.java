@@ -42,6 +42,9 @@ public class PedidoServiceImpl implements PedidoService {
     @Inject
     CupomRepository cupomRepository;
 
+    @Inject
+    ItemPedidoService itemPedidoRepository;
+
     @Override
     @Transactional
     public PedidoResponseDTO insert(PedidoDTO dto, String login) {
@@ -102,15 +105,37 @@ public class PedidoServiceImpl implements PedidoService {
                 .map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 
+    // @Override
+    // @Transactional
+    // public void delete(Long id) {
+    // try {
+    // if (!pedidoRepository.deleteById(id)) {
+    // throw new NotFoundException("Usuário não encontrado");
+    // }
+    // } catch (Exception e) {
+    // throw new RuntimeException("Erro ao excluir usuário", e);
+    // }
+    // }
+
     @Override
     @Transactional
     public void delete(Long id) {
         try {
-            if (!pedidoRepository.deleteById(id)) {
-                throw new NotFoundException("Usuário não encontrado");
+            // Verifica se o pedido existe
+            Pedido pedido = pedidoRepository.findById(id);
+            if (pedido == null) {
+                throw new NotFoundException("Pedido não encontrado");
             }
+
+            // Remove todos os itens de pedido relacionados ao pedido
+            for (ItemPedido itemPedido : pedido.getItens()) {
+                itemPedidoRepository.delete(id);
+            }
+
+            // Remove o pedido
+            pedidoRepository.delete(pedido);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao excluir usuário", e);
+            throw new RuntimeException("Erro ao excluir pedido", e);
         }
     }
 }

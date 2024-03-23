@@ -7,9 +7,15 @@ import br.unitins.topicos1.dto.PatchSenhaDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.model.Endereco;
+import br.unitins.topicos1.model.ItemPedido;
+import br.unitins.topicos1.model.Pedido;
 import br.unitins.topicos1.model.Perfil;
 import br.unitins.topicos1.model.Telefone;
 import br.unitins.topicos1.model.Usuario;
+import br.unitins.topicos1.repository.EnderecoRepository;
+import br.unitins.topicos1.repository.PedidoRepository;
+import br.unitins.topicos1.repository.TelefoneRepository;
 import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -29,7 +35,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     UsuarioRepository repository;
 
     @Inject
+    EnderecoRepository enderecoRepository;
+
+    @Inject
+    TelefoneRepository telefoneRepository;
+
+    @Inject
+    PedidoRepository pedidoRepository;
+
+    @Inject
     HashService hashService;
+
+    @Inject
+    ItemPedidoService itemPedidoRepository;
 
     @Override
     @Transactional
@@ -85,13 +103,49 @@ public class UsuarioServiceImpl implements UsuarioService {
         return UsuarioResponseDTO.valueOf(usuario);
     }
 
+    // @Override
+    // @Transactional
+    // public void delete(Long id) {
+    // try {
+    // if (!repository.deleteById(id)) {
+    // throw new NotFoundException("Usuário não encontrado");
+    // }
+    // } catch (Exception e) {
+    // throw new RuntimeException("Erro ao excluir usuário", e);
+    // }
+    // }
     @Override
     @Transactional
     public void delete(Long id) {
         try {
-            if (!repository.deleteById(id)) {
+            // Verifica se o usuário existe
+            Usuario usuario = repository.findById(id);
+            if (usuario == null) {
                 throw new NotFoundException("Usuário não encontrado");
             }
+
+            // Remove todos os pedidos vinculados ao usuário
+            for (Pedido pedido : pedidoRepository.findByIdUser(id)) {
+                // Remove todos os itens de pedido relacionados ao pedido
+                for (ItemPedido itemPedido : pedido.getItens()) {
+                    itemPedidoRepository.delete(id);
+                }
+                // Remove o pedido
+                pedidoRepository.delete(pedido);
+            }
+
+            // Remove todos os telefones vinculados ao usuário
+            for (Telefone telefone : telefoneRepository.findByIdUser(id)) {
+                telefoneRepository.delete(telefone);
+            }
+
+            // Remove todos os endereços vinculados ao usuário
+            for (Endereco endereco : enderecoRepository.findByIdUser(id)) {
+                enderecoRepository.delete(endereco);
+            }
+
+            // Agora, podemos excluir o usuário
+            repository.delete(usuario);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao excluir usuário", e);
         }

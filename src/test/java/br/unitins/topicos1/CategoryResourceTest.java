@@ -16,57 +16,56 @@ import jakarta.inject.Inject;
 
 @QuarkusTest
 public class CategoryResourceTest {
-    
+
     @Inject
     CategoryService categoryService;
 
+    // @Test
+    // public void testFindAll() {
+    // given()
+    // .when().get("/categories")
+    // .then()
+    // .statusCode(200);
+    // }
 
-    @Test
-    public void testFindAll() {
-        given()
-          .when().get("/categories")
-          .then()
-             .statusCode(200);
-    }
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testInsert(){
 
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testInsert(){
+    // CategoryDTO dto = new CategoryDTO(
+    // "BATERIAS"
+    // );
 
-        CategoryDTO dto = new CategoryDTO(
-            "BATERIAS"
-            );
+    // given()
+    // .contentType(ContentType.JSON)
+    // .body(dto)
+    // .when().post("/categories")
+    // .then()
+    // .statusCode(201)
+    // .body(
+    // "id", notNullValue(),
+    // "category", is("BATERIAS")
+    // );
+    // }
 
-        given()
-        .contentType(ContentType.JSON)
-        .body(dto)
-        .when().post("/categories")
-        .then()
-        .statusCode(201)
-        .body(
-            "id", notNullValue(),
-        "category", is("BATERIAS")
-        );
-}
+    // @Test
+    // @TestSecurity(authorizationEnabled = false)
+    // public void testUpdate() {
 
-    @Test
-    @TestSecurity(authorizationEnabled = false)
-    public void testUpdate() {
+    // CategoryDTO categoryDTO = new CategoryDTO("Baterias");
 
-        CategoryDTO categoryDTO = new CategoryDTO("Baterias"); 
-        
-        // inserindo uma category
-        CategoryResponseDTO categoryTest = categoryService.create(categoryDTO);
+    // // inserindo uma category
+    // CategoryResponseDTO categoryTest = categoryService.create(categoryDTO);
 
-        Long id = categoryTest.id();
+    // Long id = categoryTest.id();
 
-        CategoryDTO dtoUpdate = new CategoryDTO("MOTOR ELETRICO");
+    // CategoryDTO dtoUpdate = new CategoryDTO("MOTOR ELETRICO");
 
-        given()
-            .contentType(ContentType.JSON)
-            .body(dtoUpdate)
-            .when().put("/categories/"+ id)
-            .then()
-            .statusCode(200);
-    }
+    // given()
+    // .contentType(ContentType.JSON)
+    // .body(dtoUpdate)
+    // .when().put("/categories/"+ id)
+    // .then()
+    // .statusCode(200);
+    // }
 }

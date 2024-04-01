@@ -61,17 +61,16 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponseDTO update(Long id, ProductDTO dto) {
         Product product = productRepository.findById(id);
 
-        if (productRepository.findById(id) == null || product.getId() == null) {
+        product.setId(id);
+        product.setNome(dto.nome());
+        product.setDescricao(dto.descricao());
 
-            product.setId(id);
-            product.setNome(dto.nome());
-            product.setDescricao(dto.descricao());
+        product.setCategory(categoryRepository.findById(dto.idCategory()));
 
-            product.setCategory(categoryRepository.findById(dto.idCategory()));
+        product.setPreco(dto.preco());
+        product.setEstoque(dto.estoque());
 
-            product.setPreco(dto.preco());
-            product.setEstoque(dto.estoque());
-        }
+        productRepository.persist(product);
 
         return ProductResponseDTO.valueOf(product);
     }

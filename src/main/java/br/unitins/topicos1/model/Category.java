@@ -2,7 +2,7 @@ package br.unitins.topicos1.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Version;
+//import jakarta.persistence.Version;
 
 @Entity
 public class Category extends DefaultEntity{
@@ -10,8 +10,10 @@ public class Category extends DefaultEntity{
     @Column(length = 20)
     private String category;
 
-    @Version
-    private int version;
+    // @Version
+    // private int version;
+
+    private String material;
 
     public String getCategory() {
         return category;
@@ -21,12 +23,20 @@ public class Category extends DefaultEntity{
         this.category = category;
     }
 
-    public int getVersion() {
-        return version;
+    // public int getVersion() {
+    //     return version;
+    // }
+
+    // public void setVersion(int version) {
+    //     this.version = version;
+    // }
+
+    public String getMaterial() {
+        return material;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
     

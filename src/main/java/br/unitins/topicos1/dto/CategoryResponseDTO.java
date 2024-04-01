@@ -5,7 +5,8 @@ import br.unitins.topicos1.model.Category;
 public record CategoryResponseDTO(
 
     Long id,
-    String category
+    String category,
+    String material
 ) {
     
     public static CategoryResponseDTO valueOf(Category category) {
@@ -16,7 +17,8 @@ public record CategoryResponseDTO(
         
         return new CategoryResponseDTO(
             category.getId(), 
-            category.getCategory()
+            category.getCategory(),
+            category.getMaterial()
         );
     }
 }

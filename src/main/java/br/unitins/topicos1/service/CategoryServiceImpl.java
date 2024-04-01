@@ -34,6 +34,9 @@ public class CategoryServiceImpl implements CategoryService{
         
         Category entity = new Category();
         entity.setCategory(dto.category());
+
+        // atributo novo
+        entity.setMaterial(dto.material());
         
         categoryRepository.persist(entity);
 
@@ -60,7 +63,14 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public List<CategoryResponseDTO> findByAll() {
         return categoryRepository.listAll().stream()
-            .map(e -> CategoryResponseDTO.valueOf(e)).toList();
+            .map(CategoryResponseDTO::valueOf).toList();
     }
+
+    // @Override
+    // public List<CategoryResponseDTO> findByAll() {
+    //     return cupomRepository.listAll().stream()
+    //             .map(CupomResponseDTO::valueOf)
+    //             .toList();
+    // }
     
 }

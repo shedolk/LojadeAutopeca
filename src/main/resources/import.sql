@@ -1,8 +1,16 @@
 -- Inserção na tabela Category
-INSERT INTO Category (category, version) VALUES 
-    ('Eletrônicos', 1),
-    ('Roupas', 1),
-    ('Alimentos', 1);
+--INSERT INTO Category (category, version) VALUES 
+   -- ('SUSPENSAO PADRAO', 1),
+   -- ('SUSPENSAO ESPORTIVA', 1),
+   -- ('SUSPENSAO OFF-ROAD', 1);
+
+-- Inserção na tabela Category
+INSERT INTO Category (category, material) VALUES 
+    ('SUSPENSAO PADRAO', 'ferro'),
+    ('SUSPENSAO ESPORTIVA', 'ferro reforcado'),
+    ('SUSPENSAO OFF-ROAD', 'aço');
+
+
 
 -- Inserção na tabela Cupom
 INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) VALUES 
@@ -14,9 +22,9 @@ INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) VALUES
 
 -- Inserção na tabela Produto
 INSERT INTO Product (descricao, estoque, nome, nomeImagem, preco, id_category) VALUES 
-    ('Smartphone', 100, 'iPhone', 'iphone.jpg', 5000.0, 1),
-    ('Camiseta', 200, 'Camiseta Branca', 'camiseta.jpg', 50.0, 2),
-    ('Arroz', 300, 'Arroz Integral', 'arroz.jpg', 10.0, 3);
+    ('FALCON 2000', 100, 'Falcon', 'falcon.jpg', 500.0, 1),
+    ('X-SPORT 1000', 200, 'X-Sport', 'xsport.jpg', 750.0, 2),
+    ('X-COUNTRY', 300, 'CROSS Susp', 'cross.jpg', 1000.0, 3);
 
 -- Inserção na tabela Usuario
 INSERT INTO Usuario (cpf, login, nome, perfil, senha) VALUES 

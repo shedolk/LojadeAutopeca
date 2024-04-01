@@ -9,6 +9,11 @@ public record CategoryResponseDTO(
 ) {
     
     public static CategoryResponseDTO valueOf(Category category) {
+
+        if (category == null) {
+            return null; // Ou lançar uma exceção, dependendo do seu requisito
+        }
+        
         return new CategoryResponseDTO(
             category.getId(), 
             category.getCategory()

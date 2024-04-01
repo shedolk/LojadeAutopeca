@@ -8,6 +8,7 @@ import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 import br.unitins.topicos1.dto.ProductDTO;
 import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.form.ProductImageForm;
+//import br.unitins.topicos1.model.Category;
 import br.unitins.topicos1.model.Product;
 import br.unitins.topicos1.repository.CategoryRepository;
 import br.unitins.topicos1.repository.ProductRepository;
@@ -50,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 
         novoProduct.setPreco(dto.preco());
         novoProduct.setEstoque(dto.estoque());
-
+        novoProduct.setNomeImagem(dto.nomeImagem());
         productRepository.persist(novoProduct);
 
         return ProductResponseDTO.valueOf(novoProduct);

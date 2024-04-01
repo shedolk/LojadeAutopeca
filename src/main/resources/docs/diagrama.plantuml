@@ -1,26 +1,46 @@
 @startuml diagrama
 
-class Product {
-    - id: Long
-    - nome: String
-    - descricao: String
-    - preco: Double
-    - estoque: Integer
+class Peca {
+    id: Long
+    nome: String
+    descricao: String
+    preco: Double
+    estoque: Integer
 }
 
-class Category {
-     - MECANICA
-     - SUSPENSAO
-     - DIRECAO
-     - ESTETICA
-     - ELETRICA
+class Suspensao {
+    id: Long
+    nome: String
+    mola: String
+    amortecedor: String
+    compatibilidade: String
 }
+
+class Cupom {
+    id: Long
+    nomeCupom: String
+    dataAplicada: LocalDate
+    desconto: Double
+}
+
+Pedido "1" --> "1" Cupom
+
+enum StatusPedido{
+    + AGUARDANDO_PAGAMENTO
+    + PAGAMENTO_APROVADO
+    + EM_SEPARACAO
+    + ENVIADO
+    + ENTREGA
+    + CANCELADO
+}
+
+Pedido --> StatusPedido
 
 class Pedido {
-    - id: Long
-    - dataHoraPedido: LocalDateTime
-    - pagamento: Pagamento 
-    - totalPedido: Double
+    id: Long
+    dataHoraPedido: LocalDateTime
+    pagamento: Pagamento 
+    totalPedido: Double
 }
 
 enum Pagamento{
@@ -30,16 +50,37 @@ enum Pagamento{
 }
 
 class ItemPedido {
-    - id: Long
-    - quantidade: Integer
-    - preco: Double
+    id: Long
+    quantidade: Integer
+    preco: Double
 }
 
 class Usuario {
-    - id: Long
-    - login: String
-    - senha: String
-    - perfil: Perfil
+    id: Long
+    login: String
+    senha: String
+    perfil: Perfil
+}
+
+Usuario "1" --> "*" Endereco
+
+class Endereco {
+    id: Long
+    rua: String
+    numero: String
+    cidade: String
+    estado: String
+    cep: String
+    usuario: Usuario
+}
+
+Usuario "1" --> "*" Telefone
+
+class Telefone {
+    id: Long
+    codigoArea: String
+    numero: String
+    usuario: Usuario
 }
 
 enum Perfil {
@@ -51,8 +92,8 @@ Pedido "*" o--> "*" Pagamento
 Pedido "*" --> "1" Usuario
 Pedido "1" *--> "*" ItemPedido
 
-Product "1" --> "1" Category
+Peca "1" --> "1" Suspensao
 Usuario "1" o--> "1" Perfil
 
 
-ItemPedido "*" --> "1" Product
+ItemPedido "*" --> "1" Peca

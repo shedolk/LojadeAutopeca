@@ -6,7 +6,8 @@ public record ItemPedidoDTO(
 
         Integer quantidade,
         Double preco,
-        Long productId
+        Long productId,
+        Long pedidoId
 
 ) {
 
@@ -14,7 +15,8 @@ public record ItemPedidoDTO(
         return new ItemPedidoDTO(
                 itemPedido.getQuantidade(),
                 itemPedido.getPreco(),
-                itemPedido.getProduct() != null ? itemPedido.getProduct().getId() : null);
+                itemPedido.getProduct() != null ? itemPedido.getProduct().getId() : null,
+                itemPedido.getPedido() != null ? itemPedido.getPedido().getId() : null);
 
     }
 

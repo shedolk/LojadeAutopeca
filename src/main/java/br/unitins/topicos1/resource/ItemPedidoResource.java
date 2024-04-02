@@ -55,9 +55,9 @@ public class ItemPedidoResource {
         return Response.ok(itempedidoService.findByAll()).build();
     }
 
-    @GET
-    @Path("/usuario/{id}")
-    public Response findByIdUser(@PathParam("id") Long id) {
-        return Response.ok(itempedidoService.findByIdUser(id)).build();
-    }
+    // @GET
+    // @Path("/usuario/{id}")
+    // public Response findByIdUser(@PathParam("id") Long id) {
+    // return Response.ok(itempedidoService.findByIdUser(id)).build();
+    // }
 }

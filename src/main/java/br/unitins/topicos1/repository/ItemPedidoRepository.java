@@ -15,7 +15,7 @@ public class ItemPedidoRepository implements PanacheRepository<ItemPedido> {
         return find("id", id).firstResult();
     }
 
-    public List<ItemPedido> findByIdUser(Long idUsuario) {
-        return find("usuario.id = ?1", idUsuario).list();
-    }
+    // public List<ItemPedido> findByIdUser(Long idUsuario) {
+    // return find("usuario.id = ?1", idUsuario).list();
+    // }
 }

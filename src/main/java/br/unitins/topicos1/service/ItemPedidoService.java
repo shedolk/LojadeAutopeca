@@ -17,5 +17,5 @@ public interface ItemPedidoService {
 
     public List<ItemPedidoResponseDTO> findByAll();
 
-    public List<ItemPedidoResponseDTO> findByIdUser(Long idUsuario);
+    // public List<ItemPedidoResponseDTO> findByIdUser(Long idUsuario);
 }

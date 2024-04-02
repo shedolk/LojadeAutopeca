@@ -50,11 +50,11 @@ INSERT INTO Pedido (dataPedido, statusPedido, totalPedido, cupom_id, pagamento_i
     ('2023-02-01 12:30:00', 1, 1500.0, 2, 2, 2),
     ('2023-03-01 15:45:00', 2, 2000.0, 3, 3, 3);
 
--- Inserção na tabela ItemPedido
-INSERT INTO ItemPedido (preco, quantidade, id_pedido, id_produto) VALUES 
-    (25.99, 2, 1, 1),
-    (15.5, 3, 2, 2),
-    (10.75, 1, 2, 3);
+INSERT INTO ItemPedido (quantidade, preco, id_pedido, id_produto) VALUES 
+    (2, 25.99, 1, 1),
+    (3, 15.5, 2, 2),
+    (1, 10.75, 2, 3);
+
 
 -- Inserção na tabela Telefone
 INSERT INTO Telefone (codigoArea, numero, id_usuario) VALUES 

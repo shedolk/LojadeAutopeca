@@ -103,11 +103,11 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
                 .map(e -> ItemPedidoResponseDTO.valueOf(e)).toList();
     }
 
-    @Override
-    public List<ItemPedidoResponseDTO> findByIdUser(Long idUsuario) {
-        return itemPedidoRepository.findByIdUser(idUsuario).stream()
-                .map(e -> (ItemPedidoResponseDTO) ItemPedidoResponseDTO.valueOf(e))
-                .toList();
-    }
+    // @Override
+    // public List<ItemPedidoResponseDTO> findByIdUser(Long idUsuario) {
+    // return itemPedidoRepository.findByIdUser(idUsuario).stream()
+    // .map(e -> (ItemPedidoResponseDTO) ItemPedidoResponseDTO.valueOf(e))
+    // .toList();
+    // }
 
 }

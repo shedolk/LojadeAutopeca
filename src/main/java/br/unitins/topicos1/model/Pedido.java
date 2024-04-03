@@ -37,9 +37,6 @@ public class Pedido extends DefaultEntity {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<ItemPedido> itens;
-
     public Long getId() {
         return id;
     }
@@ -94,14 +91,6 @@ public class Pedido extends DefaultEntity {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public List<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemPedido> itens) {
-        this.itens = itens;
     }
 
 }

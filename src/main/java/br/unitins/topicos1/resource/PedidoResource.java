@@ -5,22 +5,28 @@ import java.time.LocalDateTime;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
+import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
+import br.unitins.topicos1.dto.ProductDTO;
+import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.service.PedidoService;
 import br.unitins.topicos1.service.UsuarioService;
 //import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @Path("/pedidos")
 @Produces(MediaType.APPLICATION_JSON)
@@ -51,6 +57,22 @@ public class PedidoResource {
         LOG.info("data e hora do pedido: " + LocalDateTime.now());
 
         return Response.status(201).entity(retorno).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    // @RolesAllowed({"Admin"})
+    public Response update(@PathParam("id") Long id, PedidoDTO dto) {
+        try {
+            PedidoResponseDTO pedido = service.update(id, dto);
+            return Response.ok(pedido).build();
+
+        } catch (ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
+
     }
 
     @GET

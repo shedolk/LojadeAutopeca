@@ -9,6 +9,8 @@ public interface PedidoService {
 
     public PedidoResponseDTO insert(PedidoDTO dto, String login);
 
+    public PedidoResponseDTO update(Long id, PedidoDTO dto);
+
     public PedidoResponseDTO findById(Long id);
 
     public List<PedidoResponseDTO> findByAll();
@@ -16,4 +18,4 @@ public interface PedidoService {
     public List<PedidoResponseDTO> findByAll(String login);
 
     public void delete(Long id);
-} 
+}

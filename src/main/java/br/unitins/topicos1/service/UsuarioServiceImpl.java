@@ -126,10 +126,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             // Remove todos os pedidos vinculados ao usuário
             for (Pedido pedido : pedidoRepository.findByIdUser(id)) {
-                // Remove todos os itens de pedido relacionados ao pedido
-                for (ItemPedido itemPedido : pedido.getItens()) {
-                    itemPedidoRepository.delete(id);
-                }
                 // Remove o pedido
                 pedidoRepository.delete(pedido);
             }

@@ -16,8 +16,7 @@ public record PedidoResponseDTO(
                 StatusPedido statusPedido,
                 Cupom cupom,
                 Double totalPedido,
-                UsuarioResponseDTO usuario,
-                List<ItemPedidoDTO> itens
+                UsuarioResponseDTO usuario
 
 ) {
         public static PedidoResponseDTO valueOf(Pedido pedido) {
@@ -28,10 +27,7 @@ public record PedidoResponseDTO(
                                 pedido.getStatusPedido(),
                                 pedido.getCupom(),
                                 pedido.getTotalPedido(),
-                                UsuarioResponseDTO.valueOf(pedido.getUsuario()),
-                                pedido.getItens()
-                                                .stream()
-                                                .map(t -> ItemPedidoDTO.valueOf(t)).toList());
+                                UsuarioResponseDTO.valueOf(pedido.getUsuario()));
 
         }
 }

@@ -1,7 +1,6 @@
 package br.unitins.topicos1.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public record PedidoDTO(
         LocalDateTime dataPedido,
@@ -9,8 +8,7 @@ public record PedidoDTO(
         Integer statusPedido,
         Integer cupom_id,
         Double totalPedido,
-        Long usuario_id,
-        List<ItemPedidoDTO> itens
+        Long usuario_id
 
 ) {
     // public static PedidoDTO valueOf(Pedido pedido) {

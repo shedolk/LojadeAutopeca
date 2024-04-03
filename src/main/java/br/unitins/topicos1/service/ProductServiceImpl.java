@@ -12,7 +12,7 @@ import br.unitins.topicos1.form.ProductImageForm;
 import br.unitins.topicos1.model.Product;
 import br.unitins.topicos1.repository.CategoryRepository;
 import br.unitins.topicos1.repository.ProductRepository;
-
+import br.unitins.topicos1.resource.PedidoResource;
 import br.unitins.topicos1.util.Error;
 
 import jakarta.enterprise.context.ApplicationScoped;

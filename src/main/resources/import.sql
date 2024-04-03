@@ -4,12 +4,23 @@
    -- ('SUSPENSAO ESPORTIVA', 1),
    -- ('SUSPENSAO OFF-ROAD', 1);
 
+-- Inserir dados técnicos para uma suspensão dianteira para carros da Marca A, Modelo X
+INSERT INTO dadostecnicos (compatibilidade, tipoMola, tipoAmortecedor, fornecedor, embalagem, peso) 
+VALUES ('Marca A - Modelo X', 'Mola helicoidal', 'Amortecedor hidráulico', 'Fabricante A', 'Caixa individual', 15);
+
+-- Inserir dados técnicos para uma suspensão traseira para carros da Marca B, Modelo Y
+INSERT INTO dadostecnicos (compatibilidade, tipoMola, tipoAmortecedor, fornecedor, embalagem, peso) 
+VALUES ('Marca B - Modelo Y', 'Mola a gás', 'Amortecedor a ar', 'Fabricante B', 'Embalagem de plástico', 18);
+
+-- Inserir dados técnicos para uma suspensão dianteira reforçada para caminhonetes da Marca C, Modelo Z
+INSERT INTO dadostecnicos (compatibilidade, tipoMola, tipoAmortecedor, fornecedor, embalagem, peso) 
+VALUES ('Marca C - Modelo Z', 'Mola reforçada', 'Amortecedor de alta resistência', 'Fabricante C', 'Caixa resistente', 22);
+
 -- Inserção na tabela Category
 INSERT INTO Category (category, material) VALUES 
     ('SUSPENSAO PADRAO', 'ferro'),
     ('SUSPENSAO ESPORTIVA', 'ferro reforcado'),
     ('SUSPENSAO OFF-ROAD', 'aço');
-
 
 
 -- Inserção na tabela Cupom

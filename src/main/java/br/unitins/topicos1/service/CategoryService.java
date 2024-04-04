@@ -17,4 +17,10 @@ public interface CategoryService {
     void delete(Long id);
 
     public List<CategoryResponseDTO> findByAll();
+
+    List<CategoryResponseDTO> findByNome(String category, int page, int pageSize);
+    
+    long count();
+
+    long countByNome(String nome);
 } 

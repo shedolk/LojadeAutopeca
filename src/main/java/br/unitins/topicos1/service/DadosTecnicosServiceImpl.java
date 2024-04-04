@@ -45,6 +45,7 @@ public class DadosTecnicosServiceImpl implements DadosTecnicosService{
     }
 
     @Override
+    @Transactional
     public DadosTecnicosResponseDTO update(Long id, DadosTecnicosDTO dto) {
 
         DadosTecnicos entity = dadosTecnicosRepository.findById(id);
@@ -60,6 +61,7 @@ public class DadosTecnicosServiceImpl implements DadosTecnicosService{
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         dadosTecnicosRepository.deleteById(id);
     }

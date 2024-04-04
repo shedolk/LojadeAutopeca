@@ -11,7 +11,7 @@ public class CategoryRepository implements PanacheRepository<Category> {
     public PanacheQuery<Category> findByNome(String category) {
         if (category == null)
             return null;
-        return find("UPPER(nome) LIKE ?1 ", "%" + category.toUpperCase() + "%");
+        return find("UPPER(category) LIKE ?1 ", "%" + category.toUpperCase() + "%");
     }
 
     public Category findById(Long id) {

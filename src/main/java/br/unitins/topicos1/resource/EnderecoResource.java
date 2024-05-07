@@ -24,15 +24,15 @@ public class EnderecoResource {
     EnderecoService enderecoService;
 
     @POST
-    public Response insert(EnderecoDTO dto, Long idUsuario) {
-        return Response.status(Status.CREATED).entity(enderecoService.insert(dto, idUsuario)).build();
+    public Response insert(EnderecoDTO dto) {
+        return Response.status(Status.CREATED).entity(enderecoService.insert(dto)).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, EnderecoDTO dto, Long idUsuario) {
-        enderecoService.update(id, dto, idUsuario);
+    public Response update(@PathParam("id") Long id, EnderecoDTO dto) {
+        enderecoService.update(id, dto);
         return Response.noContent().build();
     }
 

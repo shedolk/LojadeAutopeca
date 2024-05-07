@@ -25,12 +25,11 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public TelefoneResponseDTO insert(TelefoneDTO dto, Long idUsuario) {
+    public TelefoneResponseDTO insert(TelefoneDTO dto) {
         Telefone novoTelefone = new Telefone();
         novoTelefone.setCodigoArea(dto.codigoArea());
         novoTelefone.setNumero(dto.numero());
-        // novoTelefone.setUsuario(usuarioRepository.findById(idUsuario));
-        novoTelefone.setUsuario(usuarioRepository.findById(idUsuario));
+        novoTelefone.setUsuario(usuarioRepository.findById(dto.idUsuario()));
 
         telefoneRepository.persist(novoTelefone);
 
@@ -39,12 +38,12 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public TelefoneResponseDTO update(Long id, TelefoneDTO dto, Long idUsuario) {
+    public TelefoneResponseDTO update(Long id, TelefoneDTO dto) {
         Telefone telefone = telefoneRepository.findById(id);
 
         telefone.setCodigoArea(dto.codigoArea());
         telefone.setNumero(dto.numero());
-        telefone.setUsuario(usuarioRepository.findById(idUsuario));
+        telefone.setUsuario(usuarioRepository.findById(dto.idUsuario()));
 
         return TelefoneResponseDTO.valueOf(telefone);
     }

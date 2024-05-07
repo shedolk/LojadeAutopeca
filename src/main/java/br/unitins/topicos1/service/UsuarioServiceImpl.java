@@ -90,6 +90,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuario.setLogin(dto.login());
             usuario.setSenha(dto.senha());
             usuario.setCpf(dto.cpf());
+            usuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 
             return UsuarioResponseDTO.valueOf(usuario);
         } catch (Exception e) {

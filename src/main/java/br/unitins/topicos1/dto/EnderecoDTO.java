@@ -8,7 +8,8 @@ public record EnderecoDTO(
         String numero,
         String cidade,
         String estado,
-        String cep) {
+        String cep,
+        Long idUsuario) {
 
     public static EnderecoDTO valueOf(Endereco endereco) {
         return new EnderecoDTO(
@@ -16,6 +17,7 @@ public record EnderecoDTO(
                 endereco.getNumero(),
                 endereco.getCidade(),
                 endereco.getEstado(),
-                endereco.getCep());
+                endereco.getCep(),
+                endereco.getIdUsuario());
     }
 }

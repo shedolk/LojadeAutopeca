@@ -26,14 +26,14 @@ public class TelefoneResource {
 
     @POST
     public Response insert(TelefoneDTO dto, Long idUsuario) {
-        return Response.status(Status.CREATED).entity(telefoneService.insert(dto, idUsuario)).build();
+        return Response.status(Status.CREATED).entity(telefoneService.insert(dto)).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, TelefoneDTO dto, Long idUsuario) {
-        telefoneService.update(id, dto, idUsuario);
+    public Response update(@PathParam("id") Long id, TelefoneDTO dto) {
+        telefoneService.update(id, dto);
         return Response.noContent().build();
     }
 

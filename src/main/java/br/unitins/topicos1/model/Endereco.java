@@ -14,6 +14,8 @@ public class Endereco extends DefaultEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Adicionar esta anotação para indicar auto-incremento
     Long id;
 
+    private Long idUsuario;
+
     @Column(length = 60)
     private String rua;
 
@@ -22,6 +24,14 @@ public class Endereco extends DefaultEntity {
 
     @Column(length = 80)
     private String cidade;
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     @Column(length = 60)
     private String estado;

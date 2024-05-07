@@ -7,9 +7,9 @@ import br.unitins.topicos1.dto.EnderecoResponseDTO;
 import jakarta.validation.Valid;
 
 public interface EnderecoService {
-    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto, Long idUsuario);
+    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto);
 
-    EnderecoResponseDTO update(Long id, EnderecoDTO dto, Long idUsuario);
+    EnderecoResponseDTO update(Long id, EnderecoDTO dto);
 
     void delete(Long id);
 

@@ -6,9 +6,9 @@ import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.TelefoneResponseDTO;
 
 public interface TelefoneService {
-    public TelefoneResponseDTO insert(TelefoneDTO dto, Long idUsuario);
+    public TelefoneResponseDTO insert(TelefoneDTO dto);
 
-    TelefoneResponseDTO update(Long id, TelefoneDTO dto, Long idUsuario);
+    TelefoneResponseDTO update(Long id, TelefoneDTO dto);
 
     void delete(Long id);
 

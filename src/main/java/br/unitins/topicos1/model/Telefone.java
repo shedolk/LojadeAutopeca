@@ -14,6 +14,7 @@ public class Telefone extends DefaultEntity {
     private Long id;
     private String codigoArea;
     private String numero;
+    private Long idUsuario;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -49,6 +50,14 @@ public class Telefone extends DefaultEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

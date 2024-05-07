@@ -24,14 +24,14 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     @Transactional
-    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto, Long idUsuario) {
+    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto) {
         Endereco novoEndereco = new Endereco();
         novoEndereco.setRua(dto.rua());
         novoEndereco.setNumero(dto.numero());
         novoEndereco.setCidade(dto.cidade());
         novoEndereco.setEstado(dto.estado());
         novoEndereco.setCep(dto.cep());
-        novoEndereco.setUsuario(usuarioRepository.findById(idUsuario));
+        novoEndereco.setUsuario(usuarioRepository.findById(dto.idUsuario()));
 
         enderecoRepository.persist(novoEndereco);
 
@@ -40,18 +40,15 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     @Transactional
-    public EnderecoResponseDTO update(Long id, EnderecoDTO dto, Long idUsuario) {
+    public EnderecoResponseDTO update(Long id, EnderecoDTO dto) {
         Endereco endereco = enderecoRepository.findById(id);
 
-        if (enderecoRepository.findById(id) == null || endereco.getId() == null) {
-            endereco.setId(id);
-            endereco.setRua(dto.rua());
-            endereco.setNumero(dto.numero());
-            endereco.setCidade(dto.cidade());
-            endereco.setEstado(dto.estado());
-            endereco.setCep(dto.cep());
-            endereco.setUsuario(usuarioRepository.findById(idUsuario));
-        }
+        endereco.setRua(dto.rua());
+        endereco.setNumero(dto.numero());
+        endereco.setCidade(dto.cidade());
+        endereco.setEstado(dto.estado());
+        endereco.setCep(dto.cep());
+        endereco.setUsuario(usuarioRepository.findById(dto.idUsuario()));
 
         return EnderecoResponseDTO.valueOf(endereco);
     }

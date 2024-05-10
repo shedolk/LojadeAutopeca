@@ -6,7 +6,7 @@ import br.unitins.topicos1.dto.TelefoneResponseDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 
 import br.unitins.topicos1.model.Telefone;
-import br.unitins.topicos1.model.Usuario;
+//import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.TelefoneRepository;
 import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;

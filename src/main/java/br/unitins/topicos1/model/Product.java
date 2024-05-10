@@ -10,13 +10,13 @@ public class Product extends DefaultEntity {
 
     private String nome;
 
-    private String descricao;
-
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
 
     private Double preco;
+
+    private String descricao;
 
     private Integer estoque;
 
@@ -28,14 +28,6 @@ public class Product extends DefaultEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Category getCategory() {
@@ -54,6 +46,14 @@ public class Product extends DefaultEntity {
         this.preco = preco;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public Integer getEstoque() {
         return estoque;
     }
@@ -69,5 +69,7 @@ public class Product extends DefaultEntity {
     public void setNomeImagem(String nomeImagem) {
         this.nomeImagem = nomeImagem;
     }
+
+    
 
 }

@@ -1,24 +1,24 @@
 package br.unitins.topicos1;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+// import static io.restassured.RestAssured.given;
+// import static org.hamcrest.CoreMatchers.is;
+// import static org.hamcrest.CoreMatchers.notNullValue;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 
-import br.unitins.topicos1.dto.CategoryDTO;
-import br.unitins.topicos1.dto.CategoryResponseDTO;
-import br.unitins.topicos1.service.CategoryService;
-import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.security.TestSecurity;
-import io.restassured.http.ContentType;
-import jakarta.inject.Inject;
+// import br.unitins.topicos1.dto.CategoryDTO;
+// import br.unitins.topicos1.dto.CategoryResponseDTO;
+// import br.unitins.topicos1.service.CategoryService;
+// import io.quarkus.test.junit.QuarkusTest;
+// import io.quarkus.test.security.TestSecurity;
+// import io.restassured.http.ContentType;
+// import jakarta.inject.Inject;
 
-@QuarkusTest
-public class CategoryResourceTest {
+// @QuarkusTest
+// public class CategoryResourceTest {
 
-    @Inject
-    CategoryService categoryService;
+//     @Inject
+//     CategoryService categoryService;
 
     // @Test
     // public void testFindAll() {
@@ -68,4 +68,4 @@ public class CategoryResourceTest {
     // .then()
     // .statusCode(200);
     // }
-}
+//}

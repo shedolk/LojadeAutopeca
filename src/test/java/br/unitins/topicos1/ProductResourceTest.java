@@ -1,25 +1,25 @@
 package br.unitins.topicos1;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+// import static io.restassured.RestAssured.given;
+// import static org.hamcrest.CoreMatchers.is;
+// import static org.hamcrest.CoreMatchers.notNullValue;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+// import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 
-import br.unitins.topicos1.dto.ProductDTO;
-import br.unitins.topicos1.dto.ProductResponseDTO;
-import br.unitins.topicos1.service.CategoryService;
-import br.unitins.topicos1.service.ProductService;
+// import br.unitins.topicos1.dto.ProductDTO;
+// import br.unitins.topicos1.dto.ProductResponseDTO;
+// import br.unitins.topicos1.service.CategoryService;
+// import br.unitins.topicos1.service.ProductService;
 
-import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.security.TestSecurity;
-import io.restassured.http.ContentType;
-import jakarta.inject.Inject;
+// import io.quarkus.test.junit.QuarkusTest;
+// import io.quarkus.test.security.TestSecurity;
+// import io.restassured.http.ContentType;
+// import jakarta.inject.Inject;
 
-@QuarkusTest
-public class ProductResourceTest {
+// @QuarkusTest
+// public class ProductResourceTest {
 
     // @Inject
     // ProductService productService;
@@ -119,4 +119,4 @@ public class ProductResourceTest {
     // assertNull(productResponseDTO);
     // }
     // }
-}
+//}

@@ -17,11 +17,15 @@ INSERT INTO dadostecnicos (compatibilidade, tipoMola, tipoAmortecedor, fornecedo
 VALUES ('Marca C - Modelo Z', 'Mola reforçada', 'Amortecedor de alta resistência', 'Fabricante C', 'Caixa resistente', 22);
 
 -- Inserção na tabela Category
-INSERT INTO Category (category, material) VALUES 
-    ('SUSPENSAO PADRAO', 'ferro'),
-    ('SUSPENSAO ESPORTIVA', 'ferro reforcado'),
-    ('SUSPENSAO OFF-ROAD', 'aço');
+-- INSERT INTO Category (category, material) VALUES 
+--     ('SUSPENSAO PADRAO', 'ferro'),
+--     ('SUSPENSAO ESPORTIVA', 'ferro reforcado'),
+--     ('SUSPENSAO OFF-ROAD', 'aço');
 
+INSERT INTO Category (category, compatibilidade, tipoMola, tipoAmortecedor) VALUES 
+    ('SUSPENSAO PADRAO', 'HATCHS', 'Mola helicoidal', 'Amortecedor Hidráulico'),
+    ('SUSPENSAO ESPORTIVA', 'SEDANS', 'Mola de Flexão', 'Amortecedor Hidráulico'),
+    ('SUSPENSAO OFF-ROAD', 'OFF-ROAD', 'Mola de Torçãol', 'Amortecedor Pressurizado');
 
 -- Inserção na tabela Cupom
 INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) VALUES 

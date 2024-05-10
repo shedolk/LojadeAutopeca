@@ -1,29 +1,29 @@
 package br.unitins.topicos1;
 
-import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.security.TestSecurity;
-import io.restassured.http.ContentType;
-import jakarta.inject.Inject;
+// import io.quarkus.test.junit.QuarkusTest;
+// import io.quarkus.test.security.TestSecurity;
+// import io.restassured.http.ContentType;
+// import jakarta.inject.Inject;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 
-import br.unitins.topicos1.dto.EnderecoDTO;
-import br.unitins.topicos1.dto.TelefoneDTO;
-import br.unitins.topicos1.dto.UsuarioDTO;
-import br.unitins.topicos1.dto.UsuarioResponseDTO;
-import br.unitins.topicos1.service.UsuarioService;
+// import br.unitins.topicos1.dto.EnderecoDTO;
+// import br.unitins.topicos1.dto.TelefoneDTO;
+// import br.unitins.topicos1.dto.UsuarioDTO;
+// import br.unitins.topicos1.dto.UsuarioResponseDTO;
+// import br.unitins.topicos1.service.UsuarioService;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
+// import static io.restassured.RestAssured.given;
+// import static org.hamcrest.CoreMatchers.is;
+// import static org.hamcrest.CoreMatchers.notNullValue;
+// import static org.hamcrest.MatcherAssert.assertThat;
+// import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
 
-@QuarkusTest
-public class UsuarioResourceTest {
+// @QuarkusTest
+// public class UsuarioResourceTest {
 
     // @Inject
     // UsuarioService usuarioService;
@@ -148,4 +148,4 @@ public class UsuarioResourceTest {
 
     // }
 
-}
+//}

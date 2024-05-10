@@ -8,8 +8,14 @@ public record CategoryDTO(
     @NotBlank(message = "Informe o nome da categoria.")
     @Size(max = 60, message = "O campo deve possuir no máximo 60 caracteres.")
     String category,
+
+    String compatibilidade,
+
+    String tipoMola,
+
+    String tipoAmortecedor
     
-    String material
+    //String material
 ) {
 
 } 

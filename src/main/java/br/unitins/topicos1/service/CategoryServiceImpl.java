@@ -40,9 +40,12 @@ public class CategoryServiceImpl implements CategoryService{
         
         Category entity = new Category();
         entity.setCategory(dto.category());
+        entity.setCompatibilidade(dto.compatibilidade());
+        entity.setTipoMola(dto.tipoMola());
+        entity.setTipoAmortecedor(dto.tipoAmortecedor());
 
         // atributo novo
-        entity.setMaterial(dto.material());
+        //entity.setMaterial(dto.material());
         
         categoryRepository.persist(entity);
 
@@ -57,7 +60,10 @@ public class CategoryServiceImpl implements CategoryService{
         Category entity = categoryRepository.findById(id);
 
         entity.setCategory(dto.category());
-        entity.setMaterial(dto.material());
+        entity.setCompatibilidade(dto.compatibilidade());
+        entity.setTipoMola(dto.tipoMola());
+        entity.setTipoAmortecedor(dto.tipoAmortecedor());
+        //entity.setMaterial(dto.material());
         
         return CategoryResponseDTO.valueOf(entity);
     }

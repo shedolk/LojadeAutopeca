@@ -6,7 +6,11 @@ public record CategoryResponseDTO(
 
     Long id,
     String category,
-    String material
+    String compatibilidade,
+    String tipoMola,
+    String tipoAmortecedor
+
+    //String material
 ) {
     
     public static CategoryResponseDTO valueOf(Category category) {
@@ -18,7 +22,10 @@ public record CategoryResponseDTO(
         return new CategoryResponseDTO(
             category.getId(), 
             category.getCategory(),
-            category.getMaterial()
+            category.getCompatibilidade(),
+            category.getTipoMola(),
+            category.getTipoAmortecedor()
+            //category.getMaterial()
         );
     }
 }

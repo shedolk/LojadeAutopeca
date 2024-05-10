@@ -10,10 +10,11 @@ public class Category extends DefaultEntity{
     @Column(length = 20)
     private String category;
 
-    // @Version
-    // private int version;
+    private String compatibilidade;
 
-    private String material;
+    private String tipoMola;
+
+    private String tipoAmortecedor;
 
     public String getCategory() {
         return category;
@@ -23,21 +24,39 @@ public class Category extends DefaultEntity{
         this.category = category;
     }
 
-    // public int getVersion() {
-    //     return version;
-    // }
-
-    // public void setVersion(int version) {
-    //     this.version = version;
-    // }
-
-    public String getMaterial() {
-        return material;
+    public String getCompatibilidade() {
+        return compatibilidade;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
+    public void setCompatibilidade(String compatibilidade) {
+        this.compatibilidade = compatibilidade;
     }
+
+    public String getTipoMola() {
+        return tipoMola;
+    }
+
+    public void setTipoMola(String tipoMola) {
+        this.tipoMola = tipoMola;
+    }
+
+    public String getTipoAmortecedor() {
+        return tipoAmortecedor;
+    }
+
+    public void setTipoAmortecedor(String tipoAmortecedor) {
+        this.tipoAmortecedor = tipoAmortecedor;
+    }
+
+    
+
+    // public String getMaterial() {
+    //     return material;
+    // }
+
+    // public void setMaterial(String material) {
+    //     this.material = material;
+    // }
 
     
 

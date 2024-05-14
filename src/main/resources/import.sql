@@ -43,9 +43,9 @@ INSERT INTO Product (descricao, estoque, nome, nomeImagem, preco, id_category) V
 
 -- Inserção na tabela Usuario
 INSERT INTO Usuario (cpf, login, nome, perfil, senha) VALUES 
-    ('12345678900', 'usuario1', 'Usuário 1', 1, 'senha1'),
-    ('98765432100', 'usuario2', 'Usuário 2', 2, 'senha2'),
-    ('11122233344', 'usuario3', 'Usuário 3', 1, 'senha3');
+    ('12345678900', 'usuario1', 'Usuário 1', 1, 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q=='),
+    ('98765432100', 'usuario2', 'Usuário 2', 2, 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q=='),
+    ('11122233344', 'usuario3', 'Usuário 3', 1, 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==');
 
     -- Inserção na tabela Endereco
 INSERT INTO Endereco (cep, cidade, estado, numero, rua, id_usuario) VALUES 

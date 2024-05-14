@@ -10,8 +10,7 @@ import javax.crypto.spec.PBEKeySpec;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class HashServiceImpl implements HashService{
-
+public class HashServiceImpl implements HashService {
 
     private String salt = "#blahxyz22";
 
@@ -19,15 +18,15 @@ public class HashServiceImpl implements HashService{
 
     private Integer keyLength = 512;
 
-
     @Override
     public String getHashSenha(String senha) {
-        
+
         try {
-            byte[] result =  SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
-                .generateSecret( new PBEKeySpec(senha.toCharArray(), 
-                    salt.getBytes(), iterationCount, keyLength)).getEncoded();
-       
+            byte[] result = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
+                    .generateSecret(new PBEKeySpec(senha.toCharArray(),
+                            salt.getBytes(), iterationCount, keyLength))
+                    .getEncoded();
+
             return Base64.getEncoder().encodeToString(result);
         } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -37,7 +36,7 @@ public class HashServiceImpl implements HashService{
 
     public static void main(String[] args) {
         HashService service = new HashServiceImpl();
-        System.out.println(service.getHashSenha("1234"));
+        System.out.println(service.getHashSenha("123"));
         System.out.println(service.getHashSenha("1234"));
         System.out.println(service.getHashSenha("1234"));
         System.out.println(service.getHashSenha("1234"));
@@ -45,5 +44,5 @@ public class HashServiceImpl implements HashService{
         System.out.println(service.getHashSenha("Matheus"));
         System.out.println(service.getHashSenha("matheus"));
     }
-    
+
 }

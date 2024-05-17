@@ -23,7 +23,9 @@ public interface ProductService {
 
     ProductResponseDTO findById(Long id);
 
-    List<ProductResponseDTO> findAll();
+    List<ProductResponseDTO> getAll(int page, int pageSize);
+
+    //List<ProductResponseDTO> findAll();
 
     List<ProductResponseDTO> findByNome(String nome);
 }

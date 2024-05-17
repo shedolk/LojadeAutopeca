@@ -2,6 +2,7 @@ package br.unitins.topicos1.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
@@ -88,11 +89,11 @@ public class ProductServiceImpl implements ProductService {
         return ProductResponseDTO.valueOf(productRepository.findById(id));
     }
 
-    @Override
-    public List<ProductResponseDTO> findAll() {
-        return productRepository.listAll().stream()
-                .map(e -> ProductResponseDTO.valueOf(e)).toList();
-    }
+    // @Override
+    // public List<ProductResponseDTO> findAll() {
+    //     return productRepository.listAll().stream()
+    //             .map(e -> ProductResponseDTO.valueOf(e)).toList();
+    // }
 
     @Override
     public List<ProductResponseDTO> findByNome(String nome) {
@@ -126,6 +127,16 @@ public class ProductServiceImpl implements ProductService {
 
         return Response.ok(Status.NO_CONTENT).build();
 
+    }
+
+    @Override
+    public List<ProductResponseDTO> getAll(int page, int pageSize) {
+        List<Product> list = productRepository
+                                .findAll()
+                                .page(page, pageSize)
+                                .list();
+        
+        return list.stream().map(e -> ProductResponseDTO.valueOf(e)).collect(Collectors.toList());
     }
 
 }

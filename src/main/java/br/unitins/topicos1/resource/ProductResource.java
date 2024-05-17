@@ -6,6 +6,7 @@ import br.unitins.topicos1.dto.ProductResponseDTO;
 import br.unitins.topicos1.form.ProductImageForm;
 import br.unitins.topicos1.service.ProductFileService;
 import br.unitins.topicos1.service.ProductService;
+//import jakarta.annotation.security.RolesAllowed;
 // import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 
@@ -20,6 +21,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
@@ -27,12 +29,13 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("/products")
+@Path("/produtos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductResource {
@@ -114,9 +117,18 @@ public class ProductResource {
     }
 
     @GET
-    public Response findAll() {
-        return Response.ok(productService.findAll()).build();
+    //@RolesAllowed("User")
+    public Response findAll(
+                @QueryParam("page") @DefaultValue("0") int page,
+                @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+
+        return Response.ok(productService.getAll(page, pageSize)).build();
     }
+
+    // @GET
+    // public Response findAll() {
+    //     return Response.ok(productService.findAll()).build();
+    // }
 
     @GET
     @Path("/{id}")

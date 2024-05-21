@@ -6,7 +6,8 @@ import java.util.List;
 //import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Entity;
-
+//import jakarta.persistence.EnumType;
+//import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -20,7 +21,7 @@ public class Usuario extends DefaultEntity {
 
     private String cpf;
 
-    // @Enumerated(EnumType.ORDINAL)
+    //@Enumerated(EnumType.STRING)
     private Perfil perfil;
 
     @OneToMany(mappedBy = "usuario")

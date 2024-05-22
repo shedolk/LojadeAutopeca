@@ -28,4 +28,6 @@ public interface ProductService {
     //List<ProductResponseDTO> findAll();
 
     List<ProductResponseDTO> findByNome(String nome);
+
+    long count();
 }

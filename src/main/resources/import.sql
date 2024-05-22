@@ -25,7 +25,7 @@ VALUES ('Marca C - Modelo Z', 'Mola reforçada', 'Amortecedor de alta resistênc
 INSERT INTO Category (category, compatibilidade, tipoMola, tipoAmortecedor) VALUES 
     ('SUSPENSAO PADRAO', 'HATCHS', 'Mola helicoidal', 'Amortecedor Hidráulico'),
     ('SUSPENSAO ESPORTIVA', 'SEDANS', 'Mola de Flexão', 'Amortecedor Hidráulico'),
-    ('SUSPENSAO OFF-ROAD', 'OFF-ROAD', 'Mola de Torçãol', 'Amortecedor Pressurizado');
+    ('SUSPENSAO OFF-ROAD', 'OFF-ROAD', 'Mola de Torção', 'Amortecedor Pressurizado');
 
 -- Inserção na tabela Cupom
 INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) VALUES 

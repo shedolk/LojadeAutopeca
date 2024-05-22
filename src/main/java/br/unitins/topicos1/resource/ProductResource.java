@@ -142,4 +142,10 @@ public class ProductResource {
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(productService.findByNome(nome)).build();
     }
+
+    @GET
+    @Path("/count")
+    public long count(){
+        return productService.count();
+    }
 }

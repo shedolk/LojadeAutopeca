@@ -7,7 +7,6 @@ import br.unitins.topicos1.form.ProductImageForm;
 import br.unitins.topicos1.service.ProductFileService;
 import br.unitins.topicos1.service.ProductService;
 //import jakarta.annotation.security.RolesAllowed;
-// import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 
 import br.unitins.topicos1.util.Error;
@@ -48,37 +47,11 @@ public class ProductResource {
 
     private static final Logger LOG = Logger.getLogger(ProductResource.class);
 
-    @PATCH
-    // @RolesAllowed({"Admin"})
-    @Path("/upload/imagem/{id}")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response salvarImagem(@MultipartForm ProductImageForm form, @PathParam("id") Long id) {
-        String nomeImagem;
-        try {
-            nomeImagem = productFileService.salvar(form.getNomeImagem(), form.getImagem());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Error error = new Error("409", e.getMessage());
-            return Response.status(Status.CONFLICT).entity(error).build();
-        }
-
-        productService.updateNomeImagem(id, nomeImagem);
-
-        return Response.ok(Status.NO_CONTENT).build();
-
-    }
-
-    @GET
-    @Path("/download/imagem/{nomeImagem}")
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response download(@PathParam("nomeImagem") String nomeImagem) {
-        ResponseBuilder response = Response.ok(productFileService.obter(nomeImagem));
-        response.header("Content-Disposition", "attachment;filename=" + nomeImagem);
-        return response.build();
-    }
+    
 
     @POST
-    // @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
+    //@Path("/{new}")
     public Response insert(ProductDTO dto) {
         LOG.infof("Inserindo um product: %s", dto.nome());
 
@@ -93,7 +66,7 @@ public class ProductResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    // @RolesAllowed({"Admin"})
+   // @RolesAllowed({"Admin"})
     public Response update(ProductDTO dto, @PathParam("id") Long id) {
 
         try {
@@ -110,7 +83,7 @@ public class ProductResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    // @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         productService.delete(id);
         return Response.noContent().build();
@@ -147,5 +120,33 @@ public class ProductResource {
     @Path("/count")
     public long count(){
         return productService.count();
+    }
+
+    @PATCH
+    //@RolesAllowed({"Admin"})
+    @Path("/upload/imagem/{id}")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response salvarImagem(@MultipartForm ProductImageForm form, @PathParam("id") Long id) {
+        String nomeImagem;
+        try {
+            nomeImagem = productFileService.salvar(form.getNomeImagem(), form.getImagem());
+        } catch (IOException e) {
+            e.printStackTrace();
+            Error error = new Error("409", e.getMessage());
+            return Response.status(Status.CONFLICT).entity(error).build();
+        }
+
+        productService.updateNomeImagem(id, nomeImagem);
+
+        return Response.ok(Status.NO_CONTENT).build();
+    }
+
+    @GET
+    @Path("/download/imagem/{nomeImagem}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response download(@PathParam("nomeImagem") String nomeImagem) {
+        ResponseBuilder response = Response.ok(productFileService.obter(nomeImagem));
+        response.header("Content-Disposition", "attachment;filename=" + nomeImagem);
+        return response.build();
     }
 }

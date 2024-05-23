@@ -19,6 +19,7 @@ import br.unitins.topicos1.util.Error;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+//import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.NotFoundException;
@@ -101,16 +102,6 @@ public class ProductServiceImpl implements ProductService {
                 .map(e -> ProductResponseDTO.valueOf(e)).toList();
     }
 
-    @Override
-    public void updateNomeImagem(Long id, String nomeImagem) {
-        Product produto = productRepository.findById(id);
-
-        if (produto == null)
-            throw new NullPointerException("Nenhum produto encontrado");
-
-        produto.setNomeImagem(nomeImagem);
-    }
-
     @PATCH
     @Path("/upload/imagem/{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -128,6 +119,37 @@ public class ProductServiceImpl implements ProductService {
         return Response.ok(Status.NO_CONTENT).build();
 
     }
+
+    @Override
+    @Transactional
+    public ProductResponseDTO saveImage(Long id, String nomeImagem) {
+
+        Product entity = productRepository.findById(id);
+        entity.setNomeImagem(nomeImagem);
+
+        return ProductResponseDTO.valueOf(entity);
+    }
+
+    // private void validar(ProductDTO productDTO) throws ConstraintViolationException {
+    //     Set<ConstraintViolation<ProductDTO>> violations = validator.validate(productDTO);
+    //     if (!violations.isEmpty())
+    //         throw new ConstraintViolationException(violations);
+
+    // }
+
+
+    @Override
+    @Transactional
+    public void updateNomeImagem(Long id, String nomeImagem) {
+        Product produto = productRepository.findById(id);
+
+        if (produto == null)
+            throw new NullPointerException("Nenhum produto encontrado");
+
+        produto.setNomeImagem(nomeImagem);
+    }
+
+    
 
     @Override
     public List<ProductResponseDTO> getAll(int page, int pageSize) {

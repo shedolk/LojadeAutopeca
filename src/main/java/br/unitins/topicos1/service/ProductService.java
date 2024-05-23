@@ -30,4 +30,6 @@ public interface ProductService {
     List<ProductResponseDTO> findByNome(String nome);
 
     long count();
+
+    ProductResponseDTO saveImage(Long id, String nomeImagem);
 }

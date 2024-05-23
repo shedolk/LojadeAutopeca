@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class ProductFileService implements FileService{
@@ -34,6 +35,7 @@ public class ProductFileService implements FileService{
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 10; // 10mb
 
     @Override
+    @Transactional
     public String salvar(String nomeArquivo, byte[] arquivo) throws IOException {
     
         verificarTamanhoImagem(arquivo);
@@ -80,6 +82,8 @@ public class ProductFileService implements FileService{
             throw new IOException("Tipo de imagem não suportada.");
   
     }
+
+    
 
 }
 

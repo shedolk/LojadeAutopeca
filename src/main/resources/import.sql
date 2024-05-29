@@ -37,9 +37,16 @@ INSERT INTO Cupom (dataAplicada, desconto, nomeCupom) VALUES
 
 -- Inserção na tabela Produto
 INSERT INTO Product (descricao, estoque, nome, nomeImagem, preco, id_category) VALUES 
-    ('FALCON 2000', 100, 'Falcon', 'falcon.jpg', 500.0, 1),
-    ('X-SPORT 1000', 200, 'X-Sport', 'xsport.jpg', 750.0, 2),
-    ('X-COUNTRY', 300, 'CROSS Susp', 'cross.jpg', 1000.0, 3);
+    ('SUSPENSAO1', 100, 'Falcon', 'suspensao1.png', 500.0, 1),
+    ('SUSPENSAO2', 200, 'X-Sport', 'suspensao2.png', 750.0, 2),
+    ('SUSPENSAO3', 100, 'Falcon', 'suspensao3.png', 500.0, 1),
+    ('SUSPENSAO4', 200, 'X-Track', 'suspensao4.png', 750.0, 2),
+    ('SUSPENSAO5', 300, 'S-CROSS', 'suspensao5.png', 1000.0, 3),
+    ('SUSPENSAO1', 100, 'Eagle', 'suspensao1.png', 500.0, 1),
+    ('SUSPENSAO2', 200, 'Z-Sport', 'suspensao2.png', 750.0, 2),
+    ('SUSPENSAO3', 100, 'Lion', 'suspensao3.png', 500.0, 1),
+    ('SUSPENSAO4', 200, 'X-STEEL', 'suspensao4.png', 750.0, 2),
+    ('SUSPENSAO5', 300, 'Z-CROSS', 'suspensao5.png', 1000.0, 3);
 
 -- Inserção na tabela Usuario
 INSERT INTO Usuario (cpf, login, nome, perfil, senha) VALUES 

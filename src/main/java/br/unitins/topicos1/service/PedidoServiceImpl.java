@@ -1,23 +1,23 @@
 package br.unitins.topicos1.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.logging.Logger;
 
-import br.unitins.topicos1.dto.ItemPedidoDTO;
+//import br.unitins.topicos1.dto.ItemPedidoDTO;
 import br.unitins.topicos1.dto.PedidoDTO;
 import br.unitins.topicos1.dto.PedidoResponseDTO;
-import br.unitins.topicos1.dto.TelefoneDTO;
-import br.unitins.topicos1.dto.TelefoneResponseDTO;
+//import br.unitins.topicos1.dto.TelefoneDTO;
+//import br.unitins.topicos1.dto.TelefoneResponseDTO;
 import br.unitins.topicos1.model.Cupom;
-import br.unitins.topicos1.model.ItemPedido;
+//import br.unitins.topicos1.model.ItemPedido;
 import br.unitins.topicos1.model.Pagamento;
 import br.unitins.topicos1.model.Pedido;
-import br.unitins.topicos1.model.Product;
+//import br.unitins.topicos1.model.Product;
 import br.unitins.topicos1.model.StatusPedido;
-import br.unitins.topicos1.model.Telefone;
+//import br.unitins.topicos1.model.Telefone;
 import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.CupomRepository;
 import br.unitins.topicos1.repository.PagamentoRepository;

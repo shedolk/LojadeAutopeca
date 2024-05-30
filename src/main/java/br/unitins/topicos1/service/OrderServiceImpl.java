@@ -73,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponseDTO findById(Long id) {
         return OrderResponseDTO.valueOf(orderRepository.findById(id));
     }
-
+    
     @Override
     public List<OrderResponseDTO> findByAll() {
         return orderRepository.listAll().stream()
@@ -82,8 +82,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderResponseDTO> findByAll(String login) {
-        return orderRepository.listAll().stream()
-                .map(e -> OrderResponseDTO.valueOf(e)).toList();
+
+        // return orderRepository.listAll().stream()
+        //         .map(e -> OrderResponseDTO.valueOf(e)).toList();
+
+        return orderRepository.find("usuario.login", login).list().stream()
+            .map(e -> OrderResponseDTO.valueOf(e)).toList();
     }
 
 }

@@ -13,7 +13,9 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -46,6 +48,22 @@ public class OrderResource {
     @RolesAllowed({"User", "Admin"})
     public Response findAll() {
         
+        return Response.ok(service.findByAll()).build();
+    }
+
+    @GET
+    @RolesAllowed({"User", "Admin"})
+    @Path("/user/{login}")
+    public Response findByUser(@PathParam("login") String login) {
+        return Response.ok(service.findByAll(login)).build();
+    }
+
+    @GET
+    @RolesAllowed({"User", "Admin"})
+    public Response findAll(@QueryParam("login") String login) {
+        if (login != null && !login.isEmpty()) {
+            return Response.ok(service.findByAll(login)).build();
+        }
         return Response.ok(service.findByAll()).build();
     }
 

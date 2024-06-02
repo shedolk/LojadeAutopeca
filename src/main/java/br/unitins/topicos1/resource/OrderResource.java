@@ -1,5 +1,7 @@
 package br.unitins.topicos1.resource;
 
+import java.util.List;
+
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import br.unitins.topicos1.dto.OrderDTO;
@@ -44,11 +46,18 @@ public class OrderResource {
         return Response.status(201).entity(retorno).build();
     }
 
-    @GET
-    @RolesAllowed({"User", "Admin"})
-    public Response findAll() {
+    // @GET
+    // @RolesAllowed({"Admin"})
+    // public Response findAll() {
         
-        return Response.ok(service.findByAll()).build();
+    //     return Response.ok(service.findByAll()).build();
+    // }
+
+    @GET
+    @RolesAllowed({"Admin"})
+    public Response findAll() {
+        List<OrderResponseDTO> orders = service.findByAll();
+        return Response.ok(orders).build();
     }
 
     @GET
@@ -69,6 +78,7 @@ public class OrderResource {
 
     @GET
     @RolesAllowed({"User", "Admin"})
+    @Path("/{id}")
     public Response findById(Long id) {
         
         return Response.ok(service.findById(id)).build();

@@ -25,7 +25,7 @@ public interface ProductService {
 
     List<ProductResponseDTO> getAll(int page, int pageSize);
 
-    //List<ProductResponseDTO> findAll();
+    List<ProductResponseDTO> findAll();
 
     List<ProductResponseDTO> findByNome(String nome);
 

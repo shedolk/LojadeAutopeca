@@ -90,11 +90,11 @@ public class ProductServiceImpl implements ProductService {
         return ProductResponseDTO.valueOf(productRepository.findById(id));
     }
 
-    // @Override
-    // public List<ProductResponseDTO> findAll() {
-    //     return productRepository.listAll().stream()
-    //             .map(e -> ProductResponseDTO.valueOf(e)).toList();
-    // }
+    @Override
+    public List<ProductResponseDTO> findAll() {
+        return productRepository.listAll().stream()
+                .map(e -> ProductResponseDTO.valueOf(e)).toList();
+    }
 
     @Override
     public List<ProductResponseDTO> findByNome(String nome) {

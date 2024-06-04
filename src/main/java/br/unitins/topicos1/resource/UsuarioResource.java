@@ -112,4 +112,10 @@ public class UsuarioResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
+
+    @GET
+    @Path("/search/login/{login}")
+    public Response findByLogin(@PathParam("login") String login) {
+        return Response.ok(service.findByLogin(login)).build();
+    }
 }

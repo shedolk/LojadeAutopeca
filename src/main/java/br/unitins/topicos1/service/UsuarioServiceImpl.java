@@ -177,7 +177,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioResponseDTO findByLogin(String login) {
         Usuario usuario = repository.findByLogin(login);
         if (usuario == null)
-            throw new ValidationException("login", "Login inválido");
+            throw new NotFoundException("Usuário não encontrado com o login: " + login);
 
         return UsuarioResponseDTO.valueOf(usuario);
     }

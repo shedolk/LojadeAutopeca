@@ -10,7 +10,7 @@ import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -22,9 +22,25 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Inject
     UsuarioRepository usuarioRepository;
 
+    // @Override
+    // @Transactional
+    // public EnderecoResponseDTO insert(EnderecoDTO dto, Long idUsuario) {
+    //     Endereco novoEndereco = new Endereco();
+    //     novoEndereco.setRua(dto.rua());
+    //     novoEndereco.setNumero(dto.numero());
+    //     novoEndereco.setCidade(dto.cidade());
+    //     novoEndereco.setEstado(dto.estado());
+    //     novoEndereco.setCep(dto.cep());
+    //     novoEndereco.setUsuario(usuarioRepository.findById(dto.idUsuario()));
+
+    //     enderecoRepository.persist(novoEndereco);
+
+    //     return EnderecoResponseDTO.valueOf(novoEndereco);
+    // }
+
     @Override
     @Transactional
-    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto) {
+    public EnderecoResponseDTO insert(EnderecoDTO dto) {
         Endereco novoEndereco = new Endereco();
         novoEndereco.setRua(dto.rua());
         novoEndereco.setNumero(dto.numero());

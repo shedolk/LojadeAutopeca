@@ -161,12 +161,6 @@ public class ProductServiceImpl implements ProductService {
         return list.stream().map(e -> ProductResponseDTO.valueOf(e)).collect(Collectors.toList());
     }
 
-    // @Override
-    // public long count() {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'count'");
-    // }
-
     @Override
     public long count() {
         return productRepository.count();

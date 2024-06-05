@@ -3,6 +3,7 @@ package br.unitins.topicos1.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.unitins.topicos1.dto.ItemCarrinhoDTO;
 import br.unitins.topicos1.dto.OrderDTO;
@@ -88,6 +89,26 @@ public class OrderServiceImpl implements OrderService {
 
         return orderRepository.find("usuario.login", login).list().stream()
             .map(e -> OrderResponseDTO.valueOf(e)).toList();
+    }
+
+    public List<Order> findByAll(Long idUsuario) {
+        return orderRepository.findAll(idUsuario);
+    }
+
+    @Override
+    public List<OrderResponseDTO> findByUserLogin(String login) {
+        List<Order> orders = orderRepository.findAll(login);
+        return orders.stream()
+                     .map(OrderResponseDTO::valueOf)
+                     .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrderResponseDTO> findByUserId(Long idUsuario) {
+        List<Order> orders = orderRepository.findAll(idUsuario);
+        return orders.stream()
+                     .map(OrderResponseDTO::valueOf)
+                     .collect(Collectors.toList());
     }
 
 }

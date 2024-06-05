@@ -23,6 +23,19 @@ public class TelefoneServiceImpl implements TelefoneService {
     @Inject
     UsuarioRepository usuarioRepository;
 
+    // @Override
+    // @Transactional
+    // public TelefoneResponseDTO insert(TelefoneDTO dto, Long idUsuario) {
+    //     Telefone novoTelefone = new Telefone();
+    //     novoTelefone.setCodigoArea(dto.codigoArea());
+    //     novoTelefone.setNumero(dto.numero());
+    //     novoTelefone.setUsuario(usuarioRepository.findById(dto.idUsuario()));
+
+    //     telefoneRepository.persist(novoTelefone);
+
+    //     return TelefoneResponseDTO.valueOf(novoTelefone);
+    // }
+
     @Override
     @Transactional
     public TelefoneResponseDTO insert(TelefoneDTO dto) {

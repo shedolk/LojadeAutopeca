@@ -4,10 +4,12 @@ import java.util.List;
 
 import br.unitins.topicos1.dto.EnderecoDTO;
 import br.unitins.topicos1.dto.EnderecoResponseDTO;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 
 public interface EnderecoService {
-    public EnderecoResponseDTO insert(@Valid EnderecoDTO dto);
+
+    // public EnderecoResponseDTO insert(EnderecoDTO dto, Long idUsuario);
+    public EnderecoResponseDTO insert(EnderecoDTO dto);
 
     EnderecoResponseDTO update(Long id, EnderecoDTO dto);
 

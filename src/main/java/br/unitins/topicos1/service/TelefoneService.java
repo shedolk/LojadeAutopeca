@@ -6,6 +6,9 @@ import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.TelefoneResponseDTO;
 
 public interface TelefoneService {
+
+    //public TelefoneResponseDTO insert(TelefoneDTO dto);
+
     public TelefoneResponseDTO insert(TelefoneDTO dto);
 
     TelefoneResponseDTO update(Long id, TelefoneDTO dto);

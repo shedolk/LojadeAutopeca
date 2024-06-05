@@ -24,8 +24,23 @@ public class TelefoneResource {
     @Inject
     TelefoneService telefoneService;
 
+    // @POST
+    // public Response insert(TelefoneDTO dto, Long idUsuario) {
+    //     return Response.status(Status.CREATED).entity(telefoneService.insert(dto)).build();
+    // }
+
+    // @POST
+    // @Path("/usuario/{idUsuario}")
+    // @Transactional
+    // public Response insert(@PathParam("idUsuario") Long idUsuario, TelefoneDTO dto) {
+    //     return Response.status(Status.CREATED).entity(telefoneService.insert(dto, idUsuario)).build();
+    // }
+
+
     @POST
-    public Response insert(TelefoneDTO dto, Long idUsuario) {
+    @Path("/usuario/{idUsuario}")
+    @Transactional
+    public Response insert(TelefoneDTO dto) {
         return Response.status(Status.CREATED).entity(telefoneService.insert(dto)).build();
     }
 

@@ -1,6 +1,6 @@
 package br.unitins.topicos1.resource;
 
-import java.util.List;
+//import java.util.List;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
@@ -46,29 +46,9 @@ public class OrderResource {
         return Response.status(201).entity(retorno).build();
     }
 
-    // @GET
-    // @RolesAllowed({"Admin"})
-    // public Response findAll() {
-        
-    //     return Response.ok(service.findByAll()).build();
-    // }
-
     @GET
+    //@RolesAllowed({"User", "Admin"})
     @RolesAllowed({"Admin"})
-    public Response findAll() {
-        List<OrderResponseDTO> orders = service.findByAll();
-        return Response.ok(orders).build();
-    }
-
-    @GET
-    @RolesAllowed({"User", "Admin"})
-    @Path("/user/{login}")
-    public Response findByUser(@PathParam("login") String login) {
-        return Response.ok(service.findByAll(login)).build();
-    }
-
-    @GET
-    @RolesAllowed({"User", "Admin"})
     public Response findAll(@QueryParam("login") String login) {
         if (login != null && !login.isEmpty()) {
             return Response.ok(service.findByAll(login)).build();
@@ -78,9 +58,39 @@ public class OrderResource {
 
     @GET
     @RolesAllowed({"User", "Admin"})
+    @Path("/user/{idUsuario}")
+    public Response findByUserId(@PathParam("idUsuario") Long idUsuario) {
+        return Response.ok(service.findByUserId(idUsuario)).build();
+    }
+
+    @GET
+    @RolesAllowed({"User", "Admin"})
     @Path("/{id}")
     public Response findById(Long id) {
         
         return Response.ok(service.findById(id)).build();
     }
+
+    // @GET
+    // @RolesAllowed({"Admin"})
+    // public Response findAll() {
+        
+    //     return Response.ok(service.findByAll()).build();
+    // }
+
+    // @GET
+    // @RolesAllowed({"Admin"})
+    // public Response findAll() {
+    //     List<OrderResponseDTO> orders = service.findByAll();
+    //     return Response.ok(orders).build();
+    // }
+    
+
+    // @GET
+    // @RolesAllowed({"User", "Admin"})
+    // @Path("/user/{login}")
+    // public Response findByUser(@PathParam("login") String login) {
+    //     return Response.ok(service.findByAll(login)).build();
+    // }
+   
 }

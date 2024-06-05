@@ -27,8 +27,13 @@ public class Usuario extends DefaultEntity {
     @OneToMany(mappedBy = "usuario")
     private List<Telefone> listaTelefone = new ArrayList<>();
 
+    // @OneToMany(mappedBy = "usuario")
+    // private List<Pedido> pedidos = new ArrayList<>();
+
     @OneToMany(mappedBy = "usuario")
-    private List<Pedido> pedidos = new ArrayList<>();
+    private List<Order> orders;
+
+    
 
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> listaEndereco = new ArrayList<>();
@@ -73,13 +78,13 @@ public class Usuario extends DefaultEntity {
         this.perfil = perfil;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
+    // public List<Pedido> getPedidos() {
+    //     return pedidos;
+    // }
 
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
+    // public void setPedidos(List<Pedido> pedidos) {
+    //     this.pedidos = pedidos;
+    // }
 
     public String getCpf() {
         return cpf;
@@ -95,6 +100,14 @@ public class Usuario extends DefaultEntity {
 
     public void setListaEndereco(List<Endereco> listaEndereco) {
         this.listaEndereco = listaEndereco;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
 }

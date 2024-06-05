@@ -19,4 +19,10 @@ public class EnderecoRepository implements PanacheRepository<Endereco> {
         delete("usuario.id", usuarioId);
     }
 
+    public Endereco findById(Integer id) {
+        if (id == null)
+            return null;
+        return find("id", id).firstResult();
+    }
+
 }

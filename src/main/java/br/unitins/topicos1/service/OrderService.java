@@ -14,4 +14,8 @@ public interface OrderService {
     public List<OrderResponseDTO> findByAll();
 
     public List<OrderResponseDTO> findByAll(String login);
+
+    List<OrderResponseDTO> findByUserLogin(String login);
+
+    List<OrderResponseDTO> findByUserId(Long idUsuario);
 }

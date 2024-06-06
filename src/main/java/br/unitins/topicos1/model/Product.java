@@ -1,16 +1,18 @@
 package br.unitins.topicos1.model;
 
 import jakarta.persistence.Entity;
-
+//import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "product")
 public class Product extends DefaultEntity {
 
     private String nome;
 
-    @ManyToOne
+    @ManyToOne //(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category")
     private Category category;
 

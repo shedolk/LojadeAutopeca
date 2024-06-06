@@ -16,4 +16,8 @@ public class OrderRepository implements PanacheRepository<Order>{
     public List<Order> findAll(Long idUsuario) {
         return find("usuario.id = ?1", idUsuario).list();
     }
+
+    public Order findByIdWithItems(Long id) {
+        return find("select o from Order o join fetch o.itens i join fetch i.product p join fetch p.category where o.id = ?1", id).firstResult();
+    }
 }

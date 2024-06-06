@@ -5,17 +5,16 @@ import jakarta.validation.constraints.Size;
 
 public record CategoryDTO(
 
-    @NotBlank(message = "Informe o nome da categoria.")
-    @Size(max = 60, message = "O campo deve possuir no máximo 60 caracteres.")
-    String category,
+        @NotBlank(message = "Informe o nome da categoria.") 
+        @Size(max = 60, message = "O campo deve possuir no máximo 60 caracteres.") 
+        String category,
 
-    String compatibilidade,
+        String compatibilidade,
 
-    String tipoMola,
+        String tipoMola,
 
-    String tipoAmortecedor
-    
-    //String material
+        String tipoAmortecedor
+
 ) {
 
-} 
+}

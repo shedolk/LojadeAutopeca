@@ -3,8 +3,10 @@ package br.unitins.topicos1.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 //import jakarta.persistence.Version;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "category")
 public class Category extends DefaultEntity{
 
     @Column(length = 20)

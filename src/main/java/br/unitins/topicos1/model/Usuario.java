@@ -6,6 +6,7 @@ import java.util.List;
 //import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 //import jakarta.persistence.EnumType;
 //import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
@@ -30,10 +31,8 @@ public class Usuario extends DefaultEntity {
     // @OneToMany(mappedBy = "usuario")
     // private List<Pedido> pedidos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private List<Order> orders;
-
-    
 
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> listaEndereco = new ArrayList<>();

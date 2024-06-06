@@ -66,7 +66,7 @@ public class OrderResource {
     @GET
     @RolesAllowed({"User", "Admin"})
     @Path("/{id}")
-    public Response findById(Long id) {
+    public Response findById(@PathParam("id") Long id) {
         
         return Response.ok(service.findById(id)).build();
     }

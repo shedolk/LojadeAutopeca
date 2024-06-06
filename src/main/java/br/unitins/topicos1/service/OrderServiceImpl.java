@@ -70,25 +70,72 @@ public class OrderServiceImpl implements OrderService {
         return OrderResponseDTO.valueOf(order);
     }
 
+    // @Override
+    // public OrderResponseDTO findById(Long id) {
+    // return OrderResponseDTO.valueOf(orderRepository.findById(id));
+    // }
+
+    // @Override
+    // public OrderResponseDTO findById(Long id) {
+    //     Order order = orderRepository.findById(id);
+    //     if (order == null) {
+    //         // Tratar o caso onde o pedido não é encontrado, talvez lançar uma exceção ou
+    //         // retornar null.
+    //         return null;
+    //     }
+    //     return OrderResponseDTO.valueOf(order);
+    // }
+
     @Override
+    @Transactional
     public OrderResponseDTO findById(Long id) {
-        return OrderResponseDTO.valueOf(orderRepository.findById(id));
+        Order order = orderRepository.findByIdWithItems(id);
+        if (order == null) {
+            // Tratar o caso onde o pedido não é encontrado, talvez lançar uma exceção ou retornar null.
+            return null;
+        }
+        return OrderResponseDTO.valueOf(order);
     }
-    
+
+    // @Override
+    // public List<OrderResponseDTO> findByAll() {
+    // return orderRepository.listAll().stream()
+    // .map(e -> OrderResponseDTO.valueOf(e)).toList();
+    // }
+
     @Override
     public List<OrderResponseDTO> findByAll() {
         return orderRepository.listAll().stream()
-                .map(e -> OrderResponseDTO.valueOf(e)).toList();
+                .map(OrderResponseDTO::valueOf)
+                .collect(Collectors.toList());
     }
+
+    // @Override
+    // public List<OrderResponseDTO> findByAll(String login) {
+    // return orderRepository.find("usuario.login", login).list().stream()
+    // .map(e -> OrderResponseDTO.valueOf(e)).toList();
+    // }
 
     @Override
     public List<OrderResponseDTO> findByAll(String login) {
-
-        // return orderRepository.listAll().stream()
-        //         .map(e -> OrderResponseDTO.valueOf(e)).toList();
-
         return orderRepository.find("usuario.login", login).list().stream()
-            .map(e -> OrderResponseDTO.valueOf(e)).toList();
+                .map(OrderResponseDTO::valueOf)
+                .collect(Collectors.toList());
+    }
+
+    // @Override
+    // public List<OrderResponseDTO> findByUserLogin(String login) {
+    // List<Order> orders = orderRepository.findAll(login);
+    // return orders.stream()
+    // .map(OrderResponseDTO::valueOf)
+    // .collect(Collectors.toList());
+    // }
+
+    @Override
+    public List<OrderResponseDTO> findByUserLogin(String login) {
+        return orderRepository.find("usuario.login", login).list().stream()
+                .map(OrderResponseDTO::valueOf)
+                .collect(Collectors.toList());
     }
 
     public List<Order> findByAll(Long idUsuario) {
@@ -96,19 +143,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponseDTO> findByUserLogin(String login) {
-        List<Order> orders = orderRepository.findAll(login);
-        return orders.stream()
-                     .map(OrderResponseDTO::valueOf)
-                     .collect(Collectors.toList());
+    public List<OrderResponseDTO> findByUserId(Long idUsuario) {
+        return orderRepository.find("usuario.id", idUsuario).list().stream()
+                .map(OrderResponseDTO::valueOf)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public List<OrderResponseDTO> findByUserId(Long idUsuario) {
-        List<Order> orders = orderRepository.findAll(idUsuario);
-        return orders.stream()
-                     .map(OrderResponseDTO::valueOf)
-                     .collect(Collectors.toList());
-    }
+    // @Override
+    // public List<OrderResponseDTO> findByUserId(Long idUsuario) {
+    // List<Order> orders = orderRepository.findAll(idUsuario);
+    // return orders.stream()
+    // .map(OrderResponseDTO::valueOf)
+    // .collect(Collectors.toList());
+    // }
 
 }

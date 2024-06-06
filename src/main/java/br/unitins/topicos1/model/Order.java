@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+//import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -16,11 +17,11 @@ public class Order extends DefaultEntity{
     
     private LocalDateTime dataHora;
 
-    @ManyToOne
+    @ManyToOne //(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order") // fetch = FetchType.EAGER)
     private List<ItemCarrinho> itens;
 
     private Double totalPedido;
